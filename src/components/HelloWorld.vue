@@ -1,20 +1,30 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h3>NewsList</h3>
-    <sv-newsList></sv-newsList>
-  </div>
+  <v-container fluid>
+    <v-slide-y-transition mode="out-in">
+      <v-layout column align-center>
+        <blockquote>
+          &#8220;First, solve the problem. Then, write the code.&#8221;
+          <footer>
+            <small>
+              <em>&mdash;John Johnson</em>
+            </small>
+          </footer>
+        </blockquote>
+        <sv-newsList></sv-newsList>
+      </v-layout>
+    </v-slide-y-transition>
+  </v-container>
 </template>
 
 <script>
-import NewsList from './NewsList.vue'
+import NewsList from './NewsList.vue';
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
   },
   components: {
-    'sv-newsList': NewsList,
+    'sv-newsList': NewsList
   }
 }
 </script>
