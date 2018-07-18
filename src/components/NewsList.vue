@@ -1,6 +1,6 @@
 <template>
     <div class="sv-newsList">
-        <h3>{{title}}</h3>
+        <span class="sv-newsList-title">{{title}}</span>
         <table class="sv-newsList-table" border="1">
             <thead>
                 <tr>
@@ -40,5 +40,9 @@
 <style>
     .sv-newsList-table{
         margin: 0 auto;
+    }
+    .sv-newsList-title{
+        display: inline;
+        text-align: center;
     }
 </style>
