@@ -3,6 +3,7 @@
     <h3>SummarySingle page</h3>
     <a href="#/">返回</a>
     <p>项目id：{{id}}</p>
+    <sv-newsList></sv-newsList>
   </div>
 </template>
 

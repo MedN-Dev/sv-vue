@@ -28,7 +28,7 @@
             <v-toolbar
             app
             :clipped-left="clipped"
-            color="red darken-3"
+            color="sv_red"
             dark
             >
             <v-toolbar-side-icon @click.stop="drawer = drawer"></v-toolbar-side-icon>

@@ -69,7 +69,7 @@ export default new Router({
         },
         {
           path: 'detail',
-          name: 'summarySingle',
+          name: 'detail',
           component: SVDetail,
           props: true
         },

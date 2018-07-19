@@ -2,7 +2,7 @@
     <!-- 多项目 -->
     <div class="sv-project-multi">
       <!-- 内容区域 -->
-      <v-content>
+      <v-content color="sv_purple_dark">
         <router-view/>
       </v-content>
       <!-- 底部路由菜单 -->
@@ -21,7 +21,7 @@ export default {
         }
     },
     components: {
-        'sv-bottom-nav': SVBottomNav
+        'sv-bottom-nav': SVBottomNav,
     }
 }
 </script>

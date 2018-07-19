@@ -3,33 +3,33 @@
         <v-bottom-nav
             :active.sync="activeBtn"
             :value="showNav"
-            color="write"
+            color="sv_purple"
             fixed
             app
             >
             <router-link to="/">
-                <v-btn flat color="red darken-3">
+                <v-btn flat color="sv_red">
                     <span>summary</span>
                     <v-icon>home</v-icon>
                 </v-btn>
             </router-link>
 
             <router-link to="/energy">
-                <v-btn flat color="red darken-3">
+                <v-btn flat color="sv_red">
                     <span>energy</span>
                     <v-icon>equalizer</v-icon>
                 </v-btn>
             </router-link>
 
             <router-link to="/event">
-                <v-btn flat color="red darken-3">
+                <v-btn flat color="sv_red">
                     <span>event</span>
                     <v-icon>date_range</v-icon>
                 </v-btn>
             </router-link>
 
             <router-link to="/portfolio">
-                <v-btn flat color="red darken-3">
+                <v-btn flat color="sv_red">
                     <span>profolio</span>
                     <v-icon>book</v-icon>
                 </v-btn>

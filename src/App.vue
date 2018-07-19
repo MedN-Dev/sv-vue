@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app dark>
     <!-- 顶部菜单 -->
     <sv-top-nav></sv-top-nav>
     <!-- 单项目 or 多项目 -->

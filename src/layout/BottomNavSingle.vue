@@ -3,12 +3,12 @@
         <v-bottom-nav
             :active.sync="activeBtn"
             :value="showNav"
-            color="black"
+            color="sv_purple"
             fixed
             app
             >
             <router-link v-for="item in items" :key="item.text" :to="item.link">
-                <v-btn flat color="red darken-3">
+                <v-btn flat color="sv_red">
                     <span>{{item.text}}</span>
                     <v-icon>{{item.icon}}</v-icon>
                 </v-btn>
