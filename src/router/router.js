@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import SVMultiProject from '../views/MultiProject.vue'
-import SVSingleProject from '../views/SingleProject.vue'
+import SVMultiProject from '../components/multi/MultiProject.vue'
+import SVSingleProject from '../components/single/SingleProject.vue'
 // import SVError from '../pages/404.vue'
 import SVSummary from '../pages/Summary.vue'
 import SVEnergy from '../pages/Energy.vue'
@@ -17,6 +17,7 @@ import SVDetail from '../pages/Detail.vue'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -24,30 +25,38 @@ export default new Router({
       children: [
         {
           path: '',
-          name: 'summary',
+          name: 'index',
           component: SVSummary
         },
         {
-          path: 'energy',
+          path: 'summary/:category',
+          name: 'summary',
+          component: SVSummary,
+          props: true
+        },
+        {
+          path: 'energy/:category',
           name: 'energy',
-          component: SVEnergy
+          component: SVEnergy,
+          props: true
         },
         {
-          path: 'event',
+          path: 'event/:category',
           name: 'event',
-          component: SVEvent
+          component: SVEvent,
+          props: true
         },
         {
-          path: 'portfolio',
+          path: 'portfolio/:category',
           name: 'portfolio',
-          component: SVPortfolio
+          component: SVPortfolio,
+          props: true
         },
       ]
     },
     {
-      path: '/project/:id',
+      path: '/project/:id?',
       component: SVSingleProject,
-      props: true,
       children: [
         {
           path: '',
