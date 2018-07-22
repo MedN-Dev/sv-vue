@@ -57,23 +57,13 @@
                 </v-tab>
             </v-tabs>
         </v-toolbar>
-        <!-- tab切換區域 -->
-        <!-- <v-tabs-items v-model="active">
-            <v-tab-item
-                v-for="tab in tabs"
-                :key="tab.id"
-            >
-                <v-card flat>
-                <v-card-text>{{ tab.text }}</v-card-text>
-                </v-card>
-            </v-tab-item>
-        </v-tabs-items> -->
     </div>
 </template>
 
 <script>
     export default {
         name: 'sv-top-nav',
+        props: ['category', 'routers'],
         data() {
             return {
                 clipped: false,
@@ -84,18 +74,19 @@
                 ],
                 title: 'Solar Value',
                 fixed: true,
-                active: null,
+                active: this.category,
                 tabs: [
-                    { id: 0, name: 'All', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' },
-                    { id: 1, name: 'RJ', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' },
-                    { id: 2, name: 'Infra', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' },
-                    { id: 3, name: '東急不', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' },
-                    { id: 4, name: 'Favorite', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' },
+                    { id: 0, name: 'All' },
+                    { id: 1, name: 'RJ' },
+                    { id: 2, name: 'Infra' },
+                    { id: 3, name: '東急不' },
+                    { id: 4, name: 'Favorite' },
                 ]
             }
         },
         watch: {
             active: function(newActive, oldActive) {
+                if(newActive != oldActive)
                 switch(newActive){
                     case 0:
                         newActive = 'all';
@@ -122,7 +113,7 @@
     }
 </script>
 
-<style>
+<style scoped>
 .v-toolbar__extension{
     background-color: #2c303b;
 }

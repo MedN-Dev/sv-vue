@@ -2,7 +2,7 @@
     <!-- 多项目 -->
     <div class="sv-project-multi">
       <!-- 顶部菜单 -->
-      <sv-top-nav @changeCategory="updateCategory"></sv-top-nav>
+      <sv-top-nav @changeCategory="updateCategory" :category="1" :routers="routers"></sv-top-nav>
       <!-- 多项目内容区域 -->
       <v-content color="sv_purple_dark">
         <router-view/>
