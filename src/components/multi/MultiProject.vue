@@ -2,13 +2,13 @@
     <!-- 多项目 -->
     <div class="sv-project-multi">
       <!-- 顶部菜单 -->
-      <sv-top-nav :routers="topNavRouter" :active="topNavIndex"></sv-top-nav>
+      <sv-top-nav></sv-top-nav>
       <!-- 多项目内容区域 -->
       <v-content color="sv_purple_dark">
         <router-view/>
       </v-content>
       <!-- 底部路由菜单 -->
-      <sv-bottom-nav :routers="bottomNavRouter" :active="bottomNavIndex"></sv-bottom-nav>
+      <sv-bottom-nav></sv-bottom-nav>
     </div>
 </template>
 
@@ -29,20 +29,6 @@ export default {
     components: {
         'sv-bottom-nav': SVBottomNav,
         'sv-top-nav': SVTopNav,
-    },
-    computed: {
-        bottomNavRouter() {
-            return this.$store.state.bottomNavRouter;
-        },
-        bottomNavIndex() {
-            return this.$store.state.bottomNavIndex;
-        },
-        topNavRouter() {
-            return this.$store.state.topNavRouter;
-        },
-        topNavIndex() {
-            return this.$store.state.topNavIndex;
-        },
     }
 }
 </script>

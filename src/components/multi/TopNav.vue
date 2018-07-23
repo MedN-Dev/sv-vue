@@ -12,7 +12,7 @@
             <v-list>
                 <v-list-tile
                     value="true"
-                    v-for="(item, i) in items"
+                    v-for="(item, i) in itemsLeft"
                     :key="i"
                     >
                     <v-list-tile-action>
@@ -50,7 +50,7 @@
             >
                 <v-tabs-slider color="sv_purple_light"></v-tabs-slider>
                 <v-tab
-                    v-for="item in routers"
+                    v-for="item in items"
                     :key="item.id"
                 >
                     <router-link :key="item.id" :to="item.link" class="sv-topNav-link">
@@ -65,35 +65,35 @@
 <script>
     export default {
         name: 'sv-top-nav',
-        props: {
-            routers: Array,
-            active: Number
-        },
         data() {
             return {
                 clipped: false,
                 drawer: false,
-                items: [
+                itemsLeft: [
                     { icon: 'home', title: 'Home' }, 
                     { icon: 'equalizer', title: 'Energy' }
                 ],
                 title: 'Solar Value',
                 fixed: true,
-                activeNav: this.active,
             }
         },
-        watch: {
-            // 底部选中状态一旦改变，立即更新 store
-            activeNav() {
-                this.$store.dispatch('selectTopNav', this.activeNav);
+        computed: {
+            activeNav: function() {
+                let activeItem = this.items.filter((item) => {
+                    if(this.$route.params.category == item.name) return item;
+                });
+                return activeItem[0].id;
             },
-            // 对路由变化作出响应, 更新状态
-            '$route' (to, from) {
-                if(to.path != from.path){
-                    console.log(to, from);
-                }
+            items: function() {
+                return [
+                    { id: 0, name: 'all', text: 'All', link: `/${this.$route.name}/all` },
+                    { id: 1, name: 'rj', text: 'RJ', link: `/${this.$route.name}/rj` },
+                    { id: 2, name: 'infra', text: 'Infra', link: `/${this.$route.name}/infra` },
+                    { id: 3, name: 'djb', text: '東急不', link: `/${this.$route.name}/djb` },
+                    { id: 4, name: 'favorite', text: 'Favorite', link: `/${this.$route.name}/favorite` },
+                ]
             }
-        },
+        }
     }
 </script>
 

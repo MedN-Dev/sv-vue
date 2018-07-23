@@ -2,13 +2,12 @@
     <div class="sv-bottom-nav">
         <v-bottom-nav
             :active.sync="activeNav"
-            @update:active="select"
             :value="showNav"
             color="sv_purple"
             fixed
             app
             >
-            <router-link v-for="item in routers" :key="item.text" :to="item.link" class="sv-bottomNav-link">
+            <router-link v-for="item in items" :key="item.text" :to="item.link" class="sv-bottomNav-link">
                 <v-btn flat dark color="sv_purple_light">
                     <span>{{item.text}}</span>
                     <v-icon color="sv_purple_light">{{item.icon}}</v-icon>
@@ -21,19 +20,25 @@
 <script>
     export default {
         name: 'sv-bottom-nav',
-        props: {
-            routers: Array,
-            active: Number
-        },
         data () {
             return {
-                activeNav: this.active,
                 showNav: true,
             }
         },
-        methods: {
-            select() {
-                this.$store.dispatch('selectBottomNav', this.activeNav);
+        computed: {
+            activeNav: function() {
+                let activeItem = this.items.filter((item) => {
+                    if(this.$route.name == item.name) return item;
+                });
+                return activeItem[0].id;
+            },
+            items: function() {
+                return [
+                    { id: 0, name: 'summary', text: 'summary', icon: 'home', link: `/summary/${this.$route.params.category}` },
+                    { id: 1, name: 'energy', text: 'energy', icon: 'equalizer', link: `/energy/${this.$route.params.category}` },
+                    { id: 2, name: 'event', text: 'event', icon: 'date_range', link: `/event/${this.$route.params.category}` },
+                    { id: 3, name: 'portfolio', text: 'portfolio', icon: 'book', link: `/portfolio/${this.$route.params.category}` },
+                ]
             }
         }
     }

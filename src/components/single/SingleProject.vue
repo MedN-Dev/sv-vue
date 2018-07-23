@@ -8,7 +8,7 @@
         <router-view/>
       </v-content>
       <!-- 底部路由菜单 -->
-      <sv-bottom-nav-single :id="id"></sv-bottom-nav-single>
+      <sv-bottom-nav-single></sv-bottom-nav-single>
     </div>
 </template>
 

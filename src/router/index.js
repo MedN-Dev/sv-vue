@@ -60,12 +60,6 @@ export default new Router({
       props: true,
       children: [
         {
-          path: '',
-          name: 'singleIndex',
-          component: SVSummarySingle,
-          props: true
-        },
-        {
           path: 'summary',
           name: 'summarySingle',
           component: SVSummarySingle,
