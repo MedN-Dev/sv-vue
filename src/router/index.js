@@ -57,9 +57,16 @@ export default new Router({
     {
       path: '/project/:id?',
       component: SVSingleProject,
+      props: true,
       children: [
         {
           path: '',
+          name: 'singleIndex',
+          component: SVSummarySingle,
+          props: true
+        },
+        {
+          path: 'summary',
           name: 'summarySingle',
           component: SVSummarySingle,
           props: true

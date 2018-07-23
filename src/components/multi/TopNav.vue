@@ -44,16 +44,18 @@
             <!-- tab選項 -->
             <v-tabs
                 slot="extension"
-                v-model="active"
+                v-model="activeNav"
                 color="sv_purple"
                 grow
             >
                 <v-tabs-slider color="sv_purple_light"></v-tabs-slider>
                 <v-tab
-                    v-for="tab in tabs"
-                    :key="tab.id"
+                    v-for="item in routers"
+                    :key="item.id"
                 >
-                    {{ tab.name }}
+                    <router-link :key="item.id" :to="item.link" class="sv-topNav-link">
+                        {{ item.text }}
+                    </router-link>
                 </v-tab>
             </v-tabs>
         </v-toolbar>
@@ -63,7 +65,10 @@
 <script>
     export default {
         name: 'sv-top-nav',
-        props: ['category', 'routers'],
+        props: {
+            routers: Array,
+            active: Number
+        },
         data() {
             return {
                 clipped: false,
@@ -74,40 +79,19 @@
                 ],
                 title: 'Solar Value',
                 fixed: true,
-                active: this.category,
-                tabs: [
-                    { id: 0, name: 'All' },
-                    { id: 1, name: 'RJ' },
-                    { id: 2, name: 'Infra' },
-                    { id: 3, name: '東急不' },
-                    { id: 4, name: 'Favorite' },
-                ]
+                activeNav: this.active,
             }
         },
         watch: {
-            active: function(newActive, oldActive) {
-                if(newActive != oldActive)
-                switch(newActive){
-                    case 0:
-                        newActive = 'all';
-                    break;
-                    case 1:
-                        newActive = 'rj';
-                    break;
-                    case 2:
-                        newActive = 'infra';
-                    break;
-                    case 3:
-                        newActive = 'djb';
-                    break;
-                    case 4:
-                        newActive = 'favorite';
-                    break;
-                    default:
-                        newActive = 'all';
-                    break;
+            // 底部选中状态一旦改变，立即更新 store
+            activeNav() {
+                this.$store.dispatch('selectTopNav', this.activeNav);
+            },
+            // 对路由变化作出响应, 更新状态
+            '$route' (to, from) {
+                if(to.path != from.path){
+                    console.log(to, from);
                 }
-                this.$emit('changeCategory', newActive);
             }
         },
     }
@@ -116,5 +100,9 @@
 <style scoped>
 .v-toolbar__extension{
     background-color: #2c303b;
+}
+.sv-topNav-link{
+    color: #fff;
+    text-decoration: none;
 }
 </style>

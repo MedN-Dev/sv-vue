@@ -1,7 +1,7 @@
 <template>
     <div class="sv-bottom-nav">
         <v-bottom-nav
-            :active.sync="activeBtn"
+            :active.sync="activeNav"
             :value="showNav"
             color="sv_purple"
             fixed
@@ -22,14 +22,25 @@
         props: ['id'],
         data () {
             return {
-                activeBtn: 0,
                 showNav: true,
                 items: [
-                    { text: 'summary', icon: 'home', link: `/project/${this.id}` },
-                    { text: 'energy', icon: 'equalizer', link: `/project/${this.id}/energy` },
-                    { text: 'event', icon: 'date_range', link: `/project/${this.id}/event` },
-                    { text: 'detail', icon: 'book', link: `/project/${this.id}/detail` },
+                    { id: 0, name: 'summarySingle', text: 'summary', icon: 'home', link: `/project/${this.id}/summary` },
+                    { id: 1, name: 'energySingle', text: 'energy', icon: 'equalizer', link: `/project/${this.id}/energy` },
+                    { id: 2, name: 'eventSingle', text: 'event', icon: 'date_range', link: `/project/${this.id}/event` },
+                    { id: 3, name: 'detail', text: 'detail', icon: 'book', link: `/project/${this.id}/detail` },
                 ]
+            }
+        },
+        computed: {
+            activeNav: function() {
+                let activeItem = this.items.filter((item) => {
+                    if(this.$route.name == item.name) return item;
+                });
+                if(this.$route.name ==='singleIndex'){
+                    return 0;
+                }else{
+                    return activeItem[0].id;
+                }
             }
         }
     }

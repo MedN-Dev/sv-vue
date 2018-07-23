@@ -1,13 +1,14 @@
 <template>
     <div class="sv-bottom-nav">
         <v-bottom-nav
-            :active.sync="activeBtn"
+            :active.sync="activeNav"
+            @update:active="select"
             :value="showNav"
             color="sv_purple"
             fixed
             app
             >
-            <router-link v-for="item in updateRouters(routers)" :key="item.text" :to="item.link">
+            <router-link v-for="item in routers" :key="item.text" :to="item.link" class="sv-bottomNav-link">
                 <v-btn flat dark color="sv_purple_light">
                     <span>{{item.text}}</span>
                     <v-icon color="sv_purple_light">{{item.icon}}</v-icon>
@@ -21,38 +22,26 @@
     export default {
         name: 'sv-bottom-nav',
         props: {
-            routers: Array
+            routers: Array,
+            active: Number
         },
         data () {
             return {
-                activeBtn: 0,
+                activeNav: this.active,
                 showNav: true,
-                items: [
-                    { text: 'summary', icon: 'home', link: `/summary` },
-                    { text: 'energy', icon: 'equalizer', link: `/energy` },
-                    { text: 'event', icon: 'date_range', link: `/event` },
-                    { text: 'detail', icon: 'book', link: `/portfolio` },
-                ]
             }
         },
         methods: {
-            /**
-             * 方法-从父组件传值过来，更新路由链接
-             */
-            updateRouters: function (newRouters) {
-                let index = -1;
-                return this.items.map((item) => {
-                    index++
-                    return { text: item.text, icon: item.icon, link: newRouters[index].link};
-                });
+            select() {
+                this.$store.dispatch('selectBottomNav', this.activeNav);
             }
         }
     }
 </script>
 
 
-<style>
-.sv-bottom-nav a{
+<style scoped>
+.sv-bottomNav-link{
     text-decoration: none;
 }
 </style>
