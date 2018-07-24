@@ -78,11 +78,16 @@
             }
         },
         computed: {
-            activeNav: function() {
-                let activeItem = this.items.filter((item) => {
-                    if(this.$route.params.category == item.name) return item;
-                });
-                return activeItem[0].id;
+            activeNav: {
+                get() {
+                    let activeItem = this.items.filter((item) => {
+                        if(this.$route.params.category == item.name) return item;
+                    });
+                    return activeItem[0].id;
+                },  
+                set(value) {
+                    // console.log('上菜单', value)
+                }
             },
             items: function() {
                 return [

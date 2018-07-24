@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import SVMultiProject from '../components/multi/MultiProject.vue'
 import SVSingleProject from '../components/single/SingleProject.vue'
+
+import SVLogin from '../pages/Login.vue'
 // import SVError from '../pages/404.vue'
 import SVSummary from '../pages/Summary.vue'
 import SVEnergy from '../pages/Energy.vue'
@@ -23,11 +25,6 @@ export default new Router({
       path: '/',
       component: SVMultiProject,
       children: [
-        {
-          path: '',
-          name: 'index',
-          component: SVSummary
-        },
         {
           path: 'summary/:category',
           name: 'summary',
@@ -84,6 +81,11 @@ export default new Router({
           props: true
         },
       ]
-    }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: SVLogin
+    },
   ]
 })

@@ -1,10 +1,20 @@
 <template>
   <div class="sv-page-event">
-    <h3>Event page</h3>
+    <sv-skeleton/>
   </div>
 </template>
 
-<style>
+<script>
+  import SVSkeleton from '../components/common/Skeleton.vue'
+  export default {
+    data() {
+        return {
 
-</style>
+        }
+    },
+    components: {
+      'sv-skeleton': SVSkeleton
+    }
+  }
+</script>
 

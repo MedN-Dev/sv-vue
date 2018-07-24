@@ -1,19 +1,19 @@
 <template>
   <div class="sv-page-energy">
-    <h3>页面：Energy page </h3>
-    <h3>类别: {{category}}</h3>
-    <sv-skeletonScreen></sv-skeletonScreen>
+    <sv-skeleton/>
   </div>
 </template>
+
 <script>
-  import SVSkeletonScreen from '../components/common/SkeletonScreen.vue'
+  import SVSkeleton from '../components/common/Skeleton.vue'
   export default {
-    props: ['category'],
+    data() {
+        return {
+
+        }
+    },
     components: {
-      'sv-skeletonScreen': SVSkeletonScreen
+      'sv-skeleton': SVSkeleton
     }
   }
 </script>
-<style>
-
-</style>

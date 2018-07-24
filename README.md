@@ -1,31 +1,48 @@
 # sv-vue
 
-## A web app dev for Solar Value
+A Web App dev for Solar Value
 
 ## To DO
 
-- 引入状态管理机制
-
-- 完成应用的路由设计
-
 - 权限登录
-
-- 路由搭建
 
 - 登录验证
 
+- `HighCharts` 主题调整
+
+- 完成图标体系 `Icon` 选型
+
 ## Work Log
 
-- 完成嵌套路由设置，路由传参 `props`
+- 2018/07/24
+    - 完成登陆页面制作，背景放弃图片，选用 `24k` 大小的粒子动画 `particles.js` 
+    - 引入安慰加载骨架屏组件 `vue-content-loader`
+    - 使用状态管理 `Vuex` 存储用户登陆信息状态
 
-- 熟悉父子组件传值方案， 发现 `Vuex` 状态管理的必要性
+- 2018/07/23
+    - 完成嵌套路由设置，路由传参 `props`
+    - 设置 `nav-tabs` 选中状态关联路由
+    - 颜色，icon 的使用
 
-- 颜色，icon 的使用
+- 2017/07/20
+    - 基本页面组件划分搭建
+    - 图表组件选用 `HighCharts`
+    - 尝试对 `api` 封装, 开发环境下请求域名，生产环境下路由
 
-- `vuetify` 引入
+- 2017/07/19
+    - 使用 `egg` 构建 `Nodejs` 轻量服务器 `sv-egg`
+    - 开发 `Restful API`，为前端工程 `sv-vue` 提供接口测试与 `Mock` 服务
 
-- 基本页面组件划分搭建
+- 2017/07/18
+    - 新建前端工程 `sv-vue`, 一款日本新能源产业基金 Web App 应用
+    - `Vuetify` 前端组件库选型测试
 
-- 图表组件选用 `HighCharts`
+- 2017/07/16
+    - 设计图定稿
+    - 参考谷歌 `Material Design` 材料化设计方案
+    - PhotoShop 产出设计稿（共计10页）
 
-- 完成 `api` 封装, 开发环境下请求域名，生产环境下路由
+
+
+
+

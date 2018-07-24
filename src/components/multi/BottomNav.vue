@@ -22,15 +22,20 @@
         name: 'sv-bottom-nav',
         data () {
             return {
-                showNav: true,
+                showNav: true
             }
         },
         computed: {
-            activeNav: function() {
-                let activeItem = this.items.filter((item) => {
-                    if(this.$route.name == item.name) return item;
-                });
-                return activeItem[0].id;
+            activeNav: {
+                get() {
+                    let activeItem = this.items.filter((item) => {
+                        if(this.$route.name == item.name) return item;
+                    });
+                    return activeItem[0].id;
+                },
+                set(value) {
+                    // console.log('下菜单', value)
+                }
             },
             items: function() {
                 return [
