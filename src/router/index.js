@@ -23,7 +23,9 @@ export default new Router({
   routes: [
     {
       path: '/',
+      redirect: 'login',
       component: SVMultiProject,
+      name: 'projectMulti',
       children: [
         {
           path: 'summary/:category',
@@ -54,6 +56,7 @@ export default new Router({
     {
       path: '/project/:id?',
       component: SVSingleProject,
+      name: 'projectSingle',
       props: true,
       children: [
         {
