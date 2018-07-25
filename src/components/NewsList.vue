@@ -30,7 +30,7 @@
             }
         },
         mounted() {
-            axios.get(API.News.newsList)
+            axios.get(API.News.GetNewsList)
                 .then(response => {
                     this.items = response.data.data;
                 });

@@ -10,9 +10,13 @@ A Web App dev for Solar Value
 
 - `HighCharts` 主题调整
 
-- 完成图标体系 `Icon` 选型
+- 下拉懒加载刷新组件
 
 ## Work Log
+
+- 2018/07/25
+    - 完成图标体系 `Icon库` 选型，`Material Design Icon` 配套
+    - 
 
 - 2018/07/24
     - 完成登陆页面制作，背景放弃图片，选用 `24k` 大小的粒子动画 `particles.js` 

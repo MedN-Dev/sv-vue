@@ -64,7 +64,12 @@
     }),
     methods: {
         submit() {
-            this.$router.push({ path: 'summary/all' })
+            // 发起登录http请求, 保存 session 至浏览器
+            setTimeout(()=>{
+                let expireDays = 1000 * 60 * 60 * 24 * 15;
+                this.setCookie('session', 'dengdengju', expireDays);
+                this.$router.push({ path: 'summary/all' });
+            }, 1000)
         }
     },
     mounted() {
