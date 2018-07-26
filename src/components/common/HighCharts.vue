@@ -4,6 +4,7 @@
 
 <script>
     import Highcharts from 'highcharts';
+    import { HighchartsTheme } from '@/utils/highChartsTheme'
     export default {
         data() {
             return {
@@ -66,6 +67,8 @@
             }
         },
         mounted() {
+            Highcharts.theme = HighchartsTheme;
+            Highcharts.setOptions(Highcharts.theme);
             Highcharts.chart('sv_hightCharts', this.option);
         }
     }

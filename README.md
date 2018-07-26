@@ -14,9 +14,12 @@ A Web App dev for Solar Value
 
 ## Work Log
 
+- 2018/07/26
+    - 完善登录流程，理解 `csrfToken` 安全提交校验
+    - 打通前后端登录推出过程
+
 - 2018/07/25
     - 完成图标体系 `Icon库` 选型，`Material Design Icon` 配套
-    - 
 
 - 2018/07/24
     - 完成登陆页面制作，背景放弃图片，选用 `24k` 大小的粒子动画 `particles.js` 

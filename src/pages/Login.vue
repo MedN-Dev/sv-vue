@@ -14,6 +14,7 @@
                             label="Username"
                             clearable
                             required
+                            @click="alert=false"
                         ></v-text-field>
                         <v-text-field
                             v-model="password"
@@ -25,6 +26,7 @@
                             hint="At least 8 characters"
                             counter
                             @click:append="show = !show"
+                            @click="alert=false"
                         ></v-text-field>
                         <v-btn
                             large
@@ -38,18 +40,30 @@
                     </v-form>
                 </v-flex>
                 <v-flex :key="2" xs1/>
+                <v-alert
+                    :value="alert"
+                    type="error"
+                    icon="warning"
+                    transition="scale-transition"
+                    outline
+                    >
+                    Password Error
+                </v-alert>
             </v-layout>
         </v-container>    
     </div>
 </template>
 
 <script>
-  import particlesJS from 'particles.js'
+  import 'particles.js'
   import particlesJSON from '../assets/particlesjs-config.json'
+  import axios from 'axios'
+  import * as API from '../utils/api.js'
   export default {
     name: 'sv-login',
     data: () => ({
       valid: false,
+      alert: false,
       username: 'dengdeng@sail-fs.com',
       usernameRules: [
         v => !!v || 'username is required',
@@ -64,12 +78,18 @@
     }),
     methods: {
         submit() {
-            // 发起登录http请求, 保存 session 至浏览器
-            setTimeout(()=>{
-                let expireDays = 1000 * 60 * 60 * 24 * 15;
-                this.setCookie('session', 'dengdengju', expireDays);
-                this.$router.push({ path: 'summary/all' });
-            }, 1000)
+            // const params = { username: this.username, password: this.password, _csrf: this.$store.state.token };
+            // axios.post(API.Account.Login, params)
+            //     .then((response) => {
+            //         if(response.data.code == 1){
+            //             let expireDays = 1000 * 60 * 60 * 24 * 15;
+            //             this.$setCookie('sv_login_session', response.data.data.session, expireDays);
+            //             this.$router.push({ path: 'summary/all' });
+            //         }else{
+            //             this.alert = true;
+            //         }
+            //     });
+            this.$router.push({ path: 'summary/all' });
         }
     },
     mounted() {
@@ -79,7 +99,7 @@
   }
 </script>
 
-<style scopedSlots>
+<style>
     .sv_login_logo{
         font-size: 3em;
         padding-bottom: 10%;

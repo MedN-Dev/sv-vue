@@ -19,8 +19,8 @@
 </template>
 
 <script>
-    import axios from 'axios';
-    import * as API from '../config/api.js';
+    import axios from 'axios'
+    import { News } from '../utils/api.js'
     export default {
         name: 'sv-newsList',
         data() {
@@ -30,7 +30,7 @@
             }
         },
         mounted() {
-            axios.get(API.News.GetNewsList)
+            axios.get(News.GetNewsList)
                 .then(response => {
                     this.items = response.data.data;
                 });

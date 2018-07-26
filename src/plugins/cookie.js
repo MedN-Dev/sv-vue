@@ -1,15 +1,13 @@
-import Vue from 'vue'
+let SVCookie = new Object();
 
-let Cookie;
-
-Cookie.install = function (Vue, { name }) {
+SVCookie.install = function (Vue) {
     /**
      * 设置cookie
      * @param {String} name 默认为 session
      * @param {String} value 从后端获取的 session 值
      * @param {Number} expiredays 过期时间
      */
-    Vue.prototype.setCookie = function(name, value, expiredays) {
+    Vue.prototype.$setCookie = function(name, value, expiredays) {
         let exdate = new Date();
         exdate.setDate(exdate.getDate() + expiredays);
         document.cookie = name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
@@ -19,26 +17,26 @@ Cookie.install = function (Vue, { name }) {
      * 获取cookie
      * @param {String} name 默认为 session
      */
-    Vue.prototype.getCookie = function(name) {
+    Vue.prototype.$getCookie = function(name) {
         let reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
         let arr = document.cookie.match(reg); 
         if(arr){
-        return (arr[2]);
+            return (arr[2]);
         }else{
-        return null;
+            return null;
         }
     }
     /**
      * 删除cookie
      * @param {String} name 默认为 session
      */
-    Vue.prototype.deleteCookie = function(name) {
+    Vue.prototype.$deleteCookie = function(name) {
         let exp = new Date();
         exp.setTime(exp.getTime() - 1);
-        let cval = this.getCookie(name);
+        let cval = this.$getCookie(name);
         if (cval != null)
         document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
     }
 }
 
-Vue.use(Cookie)
+export default SVCookie;
