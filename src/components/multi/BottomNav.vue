@@ -8,9 +8,9 @@
             app
             >
             <router-link v-for="item in items" :key="item.text" :to="item.link" class="sv-bottomNav-link">
-                <v-btn flat dark color="sv_purple_light">
+                <v-btn flat dark color="sv_write">
                     <span>{{item.text}}</span>
-                    <v-icon color="sv_purple_light">{{item.icon}}</v-icon>
+                    <v-icon color="sv_write">{{item.icon}}</v-icon>
                 </v-btn>
             </router-link>
         </v-bottom-nav>

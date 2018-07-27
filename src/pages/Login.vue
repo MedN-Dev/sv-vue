@@ -50,7 +50,7 @@
                     Password Error
                 </v-alert>
             </v-layout>
-        </v-container>    
+        </v-container>
     </div>
 </template>
 
@@ -78,18 +78,17 @@
     }),
     methods: {
         submit() {
-            // const params = { username: this.username, password: this.password, _csrf: this.$store.state.token };
-            // axios.post(API.Account.Login, params)
-            //     .then((response) => {
-            //         if(response.data.code == 1){
-            //             let expireDays = 1000 * 60 * 60 * 24 * 15;
-            //             this.$setCookie('sv_login_session', response.data.data.session, expireDays);
-            //             this.$router.push({ path: 'summary/all' });
-            //         }else{
-            //             this.alert = true;
-            //         }
-            //     });
-            this.$router.push({ path: 'summary/all' });
+            const params = { username: this.username, password: this.password, _csrf: this.$store.state.token };
+            axios.post(API.Account.Login, params)
+                .then((response) => {
+                    if(response.data.code == 1){
+                        let expireDays = 1000 * 60 * 60 * 24 * 15;
+                        this.$setCookie('sv_login_session', response.data.data.session, expireDays);
+                        this.$router.push({ path: 'summary/all' });
+                    }else{
+                        this.alert = true;
+                    }
+                });
         }
     },
     mounted() {
@@ -112,11 +111,11 @@
         background: #c7161e;
         height: 0.5em;
         width: 0.5em;
-        border-radius: 0.25em; 
+        border-radius: 0.25em;
     }
     .sv_login_btn{
         width: 90%;
-        margin-top: 3em; 
+        margin-top: 3em;
     }
     .sv-login{
         padding-top: 30%;

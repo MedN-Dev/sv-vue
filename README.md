@@ -17,6 +17,7 @@ A Web App dev for Solar Value
 - 2018/07/26
     - 完善登录流程，理解 `csrfToken` 安全提交校验
     - 打通前后端登录推出过程
+    - 改变 `highchart` 主题颜色
 
 - 2018/07/25
     - 完成图标体系 `Icon库` 选型，`Material Design Icon` 配套
