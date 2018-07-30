@@ -46,7 +46,11 @@
                 <router-link to="/summary/all">
                     <v-icon>keyboard_arrow_left</v-icon>
                 </router-link>
-                <!-- <span class="title">金尺</span> -->
+                <v-spacer></v-spacer>
+                <v-btn icon>
+                    <v-icon small>金尺</v-icon>
+                </v-btn>
+                <v-spacer></v-spacer>
             </v-tabs>
         </v-toolbar>
     </div>

@@ -59,7 +59,7 @@
   import particlesJSON from '../assets/particlesjs-config.json'
   import axios from 'axios'
   import * as API from '../utils/api.js'
-  export default {
+    export default {
     name: 'sv-login',
     data: () => ({
       valid: false,

@@ -13,7 +13,7 @@
             }
         },
         mounted() {
-            Highcharts.setOptions(HighchartsTheme)
+            Highcharts.setOptions(HighchartsTheme);
             Highcharts.chart('sv_hightCharts', SUMMARY_ENERGY);
         }
     }

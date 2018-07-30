@@ -14,8 +14,8 @@ export const HighchartsTheme = {
                 y2: 1,
             },
             stops: [
-                [0, '#1f212d'],
-                [1, '#1f212d'],
+                [0, '#2c303b'],
+                [1, '#2c303b'],
             ],
         },
         style: {

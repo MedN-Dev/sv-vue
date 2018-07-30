@@ -1,22 +1,28 @@
 <template>
   <div class="sv-page-summary">
     <!-- 项目分类tabs -->
-    <!-- <sv-projectTabs></sv-projectTabs> -->
-    <h3>Awesome Summary</h3>
-    <sv-highCharts></sv-highCharts>
-    <h3>Awesome Summary</h3>
-    <sv-newsList></sv-newsList>
+    <sv-dashboard></sv-dashboard>
+    <sv-panel title="発電実績">
+      <sv-highCharts></sv-highCharts>
+    </sv-panel>
+    <sv-panel title="Portfolio">
+      <sv-newsList></sv-newsList>
+    </sv-panel>
   </div>
 </template>
 
 <script>
-import SVNewsList from '../components/NewsList.vue'
-import SVHighCharts from '../components/common/HighCharts.vue'
+import SVPanel from '@/components/common/Panel.vue'
+import SVDashboard from '@/components/common/Dashboard.vue'
+import SVNewsList from '@/components/NewsList.vue'
+import SVHighCharts from '@/components/common/HighCharts.vue'
 
 export default {
   components: {
+    'sv-dashboard': SVDashboard,
     'sv-newsList': SVNewsList,
-    'sv-highCharts': SVHighCharts
+    'sv-highCharts': SVHighCharts,
+    'sv-panel': SVPanel
   }
 }
 </script>
@@ -27,6 +33,3 @@ export default {
   text-align: center;
 }
 </style>
-
-
-

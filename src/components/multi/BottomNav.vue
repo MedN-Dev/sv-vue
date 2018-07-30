@@ -22,7 +22,8 @@
         name: 'sv-bottom-nav',
         data () {
             return {
-                showNav: true
+                showNav: true,
+                activeIndex: 1
             }
         },
         computed: {
@@ -34,7 +35,7 @@
                     return activeItem[0].id;
                 },
                 set(value) {
-                    // console.log('下菜单', value)
+                    this.activeIndex = value;
                 }
             },
             items: function() {

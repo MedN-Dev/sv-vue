@@ -11,11 +11,11 @@ let app = new Vue({
   router,
   store,
   render: h => h(App),
-  watch:{
-    "$route" : 'checkLogin'
-  },
+  // watch:{
+  //   "$route" : 'checkLogin'
+  // },
   created() {
-    this.checkLogin();
+    // this.checkLogin();
   },
   methods: {
     checkLogin() {
