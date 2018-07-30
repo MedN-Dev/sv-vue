@@ -14,6 +14,9 @@ A Web App dev for Solar Value
 
 ## Work Log
 
+- 2018/07/30
+    - 完成 `dashboard`
+
 - 2018/07/26
     - 完善登录流程，理解 `csrfToken` 安全提交校验
     - 打通前后端登录推出过程
