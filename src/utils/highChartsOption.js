@@ -108,3 +108,27 @@ export const SUMMARY_PORTFOLIO = {
     }]
 };
 
+// 图表数据源
+export const ENERGY_A = {
+
+}
+
+// 图表数据源
+export const ENERGY_B = {
+    
+}
+
+// 图表数据源
+export const PORTFOLIO_A = {
+
+}
+
+// 图表数据源
+export const PORTFOLIO_B = {
+
+}
+
+// 图表数据源
+export const PORTFOLIO_C = {
+
+}

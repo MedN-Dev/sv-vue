@@ -7,7 +7,7 @@
     </sv-panel>
     <sv-panel title="Portfolio">
       <!-- Radio Button -->
-      <v-layout row wrap>
+      <v-layout row wrap text-xs-center>
         <v-flex xs12 sm6 class="py-2">
           <v-btn-toggle v-model="text">
             <v-btn flat value="left">
@@ -55,10 +55,6 @@ export default {
 </script>
 
 <style>
-.sv-page-summary{
-  display: inline;
-  text-align: center;
-}
 .theme--dark .v-btn-toggle{
   background: transparent;
 }

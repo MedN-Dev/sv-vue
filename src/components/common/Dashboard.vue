@@ -62,5 +62,8 @@
 .sv-dashboard .v-tabs__container{
   height: 20px;
 }
+.sv-dashboard{
+  text-align: center;
+}
 </style>
 
