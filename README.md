@@ -16,8 +16,8 @@ A Web App dev for Solar Value
 
 | 任务名称 | 开始时间 | 预测结束时间 | 实际结束时间 | 负责人 |
 | -------- | -------- | ---------- | ----------- | ----- |
-| `DataTable 组件开发 + Summary 页面` | 2018/07/31 | 2018/07/31 | - | Dengdeng |
-| `Event 页面` | 2018/07/31 | 2018/07/31 | - | Zhanquan |
+| `DataTable` 组件开发 + `Summary` 页面 | 2018/07/31 | 2018/07/31 | - | Dengdeng |
+| `Event 页` + 根据设计图调整 + `highchartsp` 配置 | 2018/07/31 | 2018/07/31 | - | Zhanquan |
 
 ## Work Log
 

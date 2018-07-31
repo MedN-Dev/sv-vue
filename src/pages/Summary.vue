@@ -1,8 +1,8 @@
 <template>
   <div class="sv-page-summary">
-    <!-- 项目分类tabs -->
     <sv-dashboard></sv-dashboard>
     <sv-panel title="発電実績">
+      <!-- 图表1 -->
       <div id="sv_hightCharts_se" class="sv-hightCharts"></div>
     </sv-panel>
     <sv-panel title="Portfolio">
@@ -19,7 +19,10 @@
           </v-btn-toggle>
         </v-flex>
       </v-layout>
+      <!-- 图表2 -->
       <div id="sv_hightCharts_sp" class="sv-hightCharts"></div>
+      <!-- 表格 -->
+      <sv-dataTable></sv-dataTable>
     </sv-panel>
   </div>
 </template>
@@ -27,7 +30,7 @@
 <script>
 import SVPanel from '@/components/common/Panel.vue'
 import SVDashboard from '@/components/common/Dashboard.vue'
-import SVNewsList from '@/components/NewsList.vue'
+import SVDataTable from '@/components/common/DataTable.vue'
 import Highcharts from 'highcharts'
 import { HighchartsTheme } from '@/utils/highChartsTheme'
 import { SUMMARY_ENERGY, SUMMARY_PORTFOLIO } from '@/utils/highChartsOption'
@@ -40,6 +43,7 @@ export default {
   },
   components: {
     'sv-dashboard': SVDashboard,
+    'sv-dataTable': SVDataTable,
     'sv-panel': SVPanel
   },
   mounted() {
