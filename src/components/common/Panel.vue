@@ -34,7 +34,7 @@
 <style>
 .sv-panel{
     background: #2c303b;
-    margin-top: 4px;
+    margin-bottom: 4px;
 }
 .sv-panel-title{
     padding-left: 10px;

@@ -9,6 +9,9 @@ export const SUMMARY_ENERGY = {
     subtitle: {
         text: '',
     },
+    credits: {
+        enabled:false
+},
     xAxis: {
         categories: [
             '1',
@@ -27,18 +30,25 @@ export const SUMMARY_ENERGY = {
         crosshair: true,
     },
     yAxis: {
-        min: 0,
+        gridLineWidth:'0px', 
+        lineWidth: 1,
+		min: 0,
         title: {
             text: '发电量 (KWH)',
         },
     },
     tooltip: {
-        headerFormat: '<span style="font-size:8px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-        footerFormat: '</table>',
+        borderColor:null,
+        borderWidth: 0,
+        borderRadius: 0,
+        shadow:false,
+        backgroundColor:'transparent', 
         shared: true,
         useHTML: true,
+        headerFormat: '<table style="border:1px solid {series.color};text-align:center;padding:4px"><thead><tr><th>{point.x}日</th><th>发电量</th><th>日射量</th></tr></thead>',
+        pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td><td style="text-align: right">{point.y}KWH</td><td style="text-align: right">{point.y}KWH/M2</td></tr>',
+        footerFormat: '</table>',
+        valueDecimals: 2
     },
     plotOptions: {
         column: {
@@ -68,8 +78,21 @@ export const SUMMARY_PORTFOLIO = {
     title: {
         text: ''
     },
+    credits: {
+        enabled:false
+},
+legend: {
+    align: 'center',
+    verticalAlign: 'bottom',
+    labelFormatter: function () {
+        return this.name + ':'+this.percentage.toFixed(2)+'%';
+    }
+},
+
     tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        pointFormatter: function(){
+            return this.name+':'+(this.percentage).toFixed(2)+'%';
+        }
     },
     plotOptions: {
         pie: {
@@ -86,24 +109,24 @@ export const SUMMARY_PORTFOLIO = {
         colorByPoint: true,
         data: [{
             name: '东北',
-            y: 61.41,
+            y: 61,
             sliced: true,
             selected: true
         }, {
             name: '中部',
-            y: 11.84
+            y: 11
         }, {
             name: '九州',
-            y: 10.85
+            y: 10
         }, {
             name: '四国',
-            y: 4.67
+            y: 4
         }, {
             name: '本州',
-            y: 4.18
+            y: 4
         }, {
             name: '琉球',
-            y: 7.05
+            y: 7
         }]
     }]
 };

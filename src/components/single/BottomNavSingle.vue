@@ -26,7 +26,7 @@
                     { id: 0, name: 'summarySingle', text: 'summary', icon: 'home', link: `/project/${this.$route.params.id}/summary` },
                     { id: 1, name: 'energySingle', text: 'energy', icon: 'equalizer', link: `/project/${this.$route.params.id}/energy` },
                     { id: 2, name: 'eventSingle', text: 'event', icon: 'date_range', link: `/project/${this.$route.params.id}/event` },
-                    { id: 3, name: 'detail', text: 'detail', icon: 'book', link: `/project/${this.$route.params.id}/detail` },
+                    { id: 3, name: 'detail', text: 'detail', icon: 'description', link: `/project/${this.$route.params.id}/detail` },
                 ]
             }
         },

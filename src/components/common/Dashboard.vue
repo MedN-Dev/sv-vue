@@ -64,6 +64,10 @@
 }
 .sv-dashboard{
   text-align: center;
+  margin-bottom: 4px;
+}
+.sv-dashboard-control{
+  line-height: 30px;
 }
 </style>
 
