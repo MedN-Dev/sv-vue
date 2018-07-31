@@ -23,7 +23,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: 'summary/all',
+      redirect: 'login',
       component: SVMultiProject,
       name: 'projectMulti',
       children: [

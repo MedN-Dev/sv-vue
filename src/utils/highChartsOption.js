@@ -4,7 +4,7 @@ export const SUMMARY_ENERGY = {
         type: 'column',
     },
     title: {
-        text: 'Energy',
+        text: '',
     },
     subtitle: {
         text: '',
@@ -56,3 +56,55 @@ export const SUMMARY_ENERGY = {
 
     },],
 };
+
+// 图表数据源
+export const SUMMARY_PORTFOLIO = {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: ''
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: '东北',
+            y: 61.41,
+            sliced: true,
+            selected: true
+        }, {
+            name: '中部',
+            y: 11.84
+        }, {
+            name: '九州',
+            y: 10.85
+        }, {
+            name: '四国',
+            y: 4.67
+        }, {
+            name: '本州',
+            y: 4.18
+        }, {
+            name: '琉球',
+            y: 7.05
+        }]
+    }]
+};
+

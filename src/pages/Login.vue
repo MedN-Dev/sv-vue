@@ -78,17 +78,18 @@
     }),
     methods: {
         submit() {
-            const params = { username: this.username, password: this.password, _csrf: this.$store.state.token };
-            axios.post(API.Account.Login, params)
-                .then((response) => {
-                    if(response.data.code == 1){
-                        let expireDays = 1000 * 60 * 60 * 24 * 15;
-                        this.$setCookie('sv_login_session', response.data.data.session, expireDays);
-                        this.$router.push({ path: 'summary/all' });
-                    }else{
-                        this.alert = true;
-                    }
-                });
+            this.$router.push({ path: 'summary/all' });
+            // const params = { username: this.username, password: this.password, _csrf: this.$store.state.token };
+            // axios.post(API.Account.Login, params)
+            //     .then((response) => {
+            //         if(response.data.code == 1){
+            //             let expireDays = 1000 * 60 * 60 * 24 * 15;
+            //             this.$setCookie('sv_login_session', response.data.data.session, expireDays);
+            //             this.$router.push({ path: 'summary/all' });
+            //         }else{
+            //             this.alert = true;
+            //         }
+            //     });
         }
     },
     mounted() {
