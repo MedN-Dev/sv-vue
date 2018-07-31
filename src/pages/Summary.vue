@@ -21,8 +21,8 @@
       </v-layout>
       <!-- 图表2 -->
       <div id="sv_hightCharts_sp" class="sv-hightCharts"></div>
-      <!-- 表格 -->
-      <sv-dataTable></sv-dataTable>
+      <!-- 项目列表 -->
+      <sv-projectList></sv-projectList>
     </sv-panel>
   </div>
 </template>
@@ -30,7 +30,7 @@
 <script>
 import SVPanel from '@/components/common/Panel.vue'
 import SVDashboard from '@/components/common/Dashboard.vue'
-import SVDataTable from '@/components/common/DataTable.vue'
+import SVProjectList from '@/components/common/ProjectList.vue'
 import Highcharts from 'highcharts'
 import { HighchartsTheme } from '@/utils/highChartsTheme'
 import { SUMMARY_ENERGY, SUMMARY_PORTFOLIO } from '@/utils/highChartsOption'
@@ -43,7 +43,7 @@ export default {
   },
   components: {
     'sv-dashboard': SVDashboard,
-    'sv-dataTable': SVDataTable,
+    'sv-projectList': SVProjectList,
     'sv-panel': SVPanel
   },
   mounted() {
