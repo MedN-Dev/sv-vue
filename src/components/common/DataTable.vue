@@ -10,9 +10,9 @@
         >
         <template slot="items" slot-scope="props">
           <td class="sv-dataTable-title text-xs-left">{{ props.item.title }}</td>
-          <td class="text-xs-right">{{ props.item.col1 }}</td>
-          <td class="text-xs-right">{{ props.item.col2 }}</td>
-          <td class="text-xs-right">{{ props.item.col3 }}</td>
+          <td class="sv-dataTable-col-red text-xs-right">{{ props.item.col1 }}</td>
+          <td class="sv-dataTable-col-green text-xs-right">{{ props.item.col2 }}</td>
+          <td class="sv-dataTable-col-blue text-xs-right">{{ props.item.col3 }}</td>
         </template>
       </v-data-table>
       </v-flex>
@@ -49,6 +49,18 @@
 }
 .sv-dataTable-table{
   margin-bottom: 20px;
+}
+.sv-dataTable-col-red{
+  color: #fe6c6e;
+}
+.sv-dataTable-col-green{
+  color: #2eba87;
+}
+.sv-dataTable-col-blue{
+  color: #5478e5;
+}
+.sv-dataTable-col-yellow{
+  color: #ffc000;
 }
 </style>
 

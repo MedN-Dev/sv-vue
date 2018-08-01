@@ -22,7 +22,7 @@
   import SVDataTable from '@/components/common/DataTable.vue'
   import Highcharts from 'highcharts'
   import { HighchartsTheme } from '@/utils/highChartsTheme'
-  import { SUMMARY_ENERGY, SUMMARY_PORTFOLIO } from '@/utils/highChartsOption'
+  import { SINGLE_ENERGY_A, SINGLE_ENERGY_B } from '@/utils/highChartsOption'
   export default {
     data() {
       return {
@@ -36,8 +36,8 @@
     },
     mounted() {
       Highcharts.setOptions(HighchartsTheme);
-      Highcharts.chart('sv_hightCharts_sea', SUMMARY_ENERGY);
-      Highcharts.chart('sv_hightCharts_seb', SUMMARY_PORTFOLIO);
+      Highcharts.chart('sv_hightCharts_sea', SINGLE_ENERGY_A);
+      Highcharts.chart('sv_hightCharts_seb', SINGLE_ENERGY_B);
     }
   }
 </script>

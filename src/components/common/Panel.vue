@@ -7,7 +7,7 @@
                         <v-card-text class="sv-panel-title" align="left">{{title}}</v-card-text>
                     </v-flex>
                     <v-flex xs8>
-                        <v-card-text class="sv-panel-next" align="right">
+                        <v-card-text v-if="!hideMore" class="sv-panel-next" align="right">
                             <v-icon small color="sv_gray">keyboard_arrow_right</v-icon>
                         </v-card-text>
                     </v-flex>
@@ -22,7 +22,7 @@
 
 <script>
     export default {
-        props: ['title'],
+        props: ['title', 'hideMore'],
         data() {
             return {
                 

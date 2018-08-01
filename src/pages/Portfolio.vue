@@ -33,7 +33,7 @@
   import SVProjectList from '@/components/common/ProjectList.vue'
   import Highcharts from 'highcharts'
   import { HighchartsTheme } from '@/utils/highChartsTheme'
-  import { SUMMARY_PORTFOLIO } from '@/utils/highChartsOption'
+  import { PORTFOLIO_A,PORTFOLIO_B,PORTFOLIO_C } from '@/utils/highChartsOption'
   export default {
     data() {
       return {
@@ -47,9 +47,9 @@
     },
     mounted() {
       Highcharts.setOptions(HighchartsTheme);
-      Highcharts.chart('sv_hightCharts_pa', SUMMARY_PORTFOLIO);
-      Highcharts.chart('sv_hightCharts_pb', SUMMARY_PORTFOLIO);
-      Highcharts.chart('sv_hightCharts_pc', SUMMARY_PORTFOLIO);
+      Highcharts.chart('sv_hightCharts_pa', PORTFOLIO_A);
+      Highcharts.chart('sv_hightCharts_pb', PORTFOLIO_B);
+      Highcharts.chart('sv_hightCharts_pc', PORTFOLIO_C);
     }
   }
 </script>

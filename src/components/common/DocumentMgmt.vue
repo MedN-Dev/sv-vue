@@ -68,8 +68,8 @@
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         list: [
           { title: '岩手县一关市月次报告书', date: '2018/05', src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg' },
-          { title: '岩手县一关市月次报告书', date: '2018/05', src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg' },
-          { title: '岩手县一关市月次报告书', date: '2018/05', src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg' }
+          { title: '北斗县一关市月次报告书', date: '2018/04', src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg' },
+          { title: '山神县一关市月次报告书', date: '2018/03', src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg' }
         ]
       }
     },

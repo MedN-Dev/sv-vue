@@ -36,7 +36,7 @@
   import SVProjectList from '@/components/common/ProjectList.vue'
   import Highcharts from 'highcharts'
   import { HighchartsTheme } from '@/utils/highChartsTheme'
-  import { SUMMARY_ENERGY, SUMMARY_PORTFOLIO } from '@/utils/highChartsOption'
+  import { ENERGY_A, ENERGY_B } from '@/utils/highChartsOption'
   export default {
     data() {
         return {
@@ -50,8 +50,8 @@
     },
     mounted() {
       Highcharts.setOptions(HighchartsTheme);
-      Highcharts.chart('sv_hightCharts_ea', SUMMARY_ENERGY);
-      Highcharts.chart('sv_hightCharts_eb', SUMMARY_PORTFOLIO);
+      Highcharts.chart('sv_hightCharts_ea', ENERGY_A);
+      Highcharts.chart('sv_hightCharts_eb', ENERGY_B);
     }
   }
 </script>

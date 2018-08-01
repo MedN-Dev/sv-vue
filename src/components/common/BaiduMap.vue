@@ -1,6 +1,6 @@
 <template>
   <div class="sv-baiduMap">
-    <div id="sv_baiduMap_container" style="height: 200px; width: 100%"></div> 
+    <div id="sv_baiduMap_container" style="height: 180px; width: 100%"></div> 
   </div>
 </template>
 
@@ -12,8 +12,8 @@
         }
       },
       mounted() {
-        var map = new BMap.Map("sv_baiduMap_container");
-        var point = new BMap.Point(139.760089,35.676266);
+        let map = new BMap.Map("sv_baiduMap_container");
+        let point = new BMap.Point(139.760089,35.676266);
         map.centerAndZoom(point, 15);  
       }
     }

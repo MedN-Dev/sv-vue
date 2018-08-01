@@ -55,6 +55,10 @@ export default {
 </script>
 
 <style>
+.sv-page-summary{
+  display: inline;
+  text-align: center;
+}
 .theme--dark .v-btn-toggle{
   background: transparent;
 }
