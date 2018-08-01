@@ -1,13 +1,12 @@
 <template>
   <div class="sv-detailTable">
     <v-layout row wrap>
-      <v-flex xs1></v-flex>
-      <v-flex xs10>
+      <v-flex xs12> 
         <v-data-table
           hide-headers
           :items="desserts"
           hide-actions
-          class="elevation-1"
+          class="sv-detailTable-table"
         >
         <template slot="items" slot-scope="props">
           <td class="sv-detailTable-title text-xs-left">{{ props.item.title }}</td>
@@ -15,7 +14,6 @@
         </template>
       </v-data-table>
       </v-flex>
-      <v-flex xs1></v-flex>
     </v-layout>
   </div>
 </template>
@@ -39,6 +37,9 @@
 </script>
 
 <style>
+.sv-detailTable{
+  padding: 0 10px;
+}
 .sv-detailTable .v-table{
   background-color: transparent;
   border: 1px solid hsla(0,0%,100%,.12);
@@ -48,6 +49,9 @@
 }
 .sv-detailTable .v-table tbody tr:hover:not(.v-datatable__expand-row) {
   background: transparent;
+}
+.sv-detailTable-table{
+  margin-bottom: 20px;
 }
 </style>
 

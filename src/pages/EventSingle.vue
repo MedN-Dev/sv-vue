@@ -1,13 +1,20 @@
 <template>
   <div class="sv-page-eventSingle">
-    <h3>EventSingle page</h3>
-    <p>项目id：{{id}}</p>
+    <!-- <sv-eventCalendar></sv-eventCalendar> -->
   </div>
 </template>
 
 <script>
+  import SVEventCalendar from '@/components/common/EventCalendar.vue'
   export default {
-    props: ['id']
+    data() {
+      return {
+        
+      }
+    },
+    components: {
+      'sv-eventCalendar': SVEventCalendar
+    }
   }
 </script>
 

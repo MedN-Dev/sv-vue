@@ -24,7 +24,6 @@ import SVPanel from '@/components/common/Panel.vue'
 import SVDetailTable from '@/components/common/DetailTable.vue'
 import SVGoogleMap from '@/components/common/GoogleMap.vue'
 export default {
-  props: ['id'],
   components: {
     'sv-dashboard': SVDashboard,
     'sv-panel': SVPanel,

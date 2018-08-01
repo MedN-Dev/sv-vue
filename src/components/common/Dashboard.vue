@@ -4,7 +4,6 @@
       v-model="active"
       color="sv_purple"
       dark
-      slider-color="yellow"
     >
       <v-tab-item
         v-for="tab in tabs"

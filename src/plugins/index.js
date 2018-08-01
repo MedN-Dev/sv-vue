@@ -3,6 +3,8 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import SVCookie from './cookie';
+import 'vue-event-calendar/dist/style.css'
+import VueEventCalendar from 'vue-event-calendar'
 
 Vue.use(Vuetify, {
     theme: {
@@ -18,6 +20,10 @@ Vue.use(Vuetify, {
         sv_chart_yellow: '#ffc000'
     },
     iconfont: 'md' // 'md' || 'mdi' || 'fa' || 'fa4'
+})
+
+Vue.use(VueEventCalendar, {
+    locale: 'en'
 })
 
 Vue.use(SVCookie, {

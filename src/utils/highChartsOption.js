@@ -155,3 +155,17 @@ export const PORTFOLIO_B = {
 export const PORTFOLIO_C = {
 
 }
+
+// 单项目----------------------------
+
+// 图表数据源-singleEnergy
+export const SINGLE_ENERGY_A = {
+
+}
+
+// 图表数据源-singleEnergy
+export const SINGLE_ENERGY_B = {
+
+}
+
+

@@ -21,8 +21,9 @@ A Web App dev for Solar Value
 | `DataTable` 组件开发 + `Summary` 页面 | 2018/07/31 | 2018/07/31 | 达标 | DengDeng |
 | `Event 页` + 根据设计图调整 + `highcharts` 配置 | 2018/07/31 | 2018/07/31 | 达标 | ZhanQuan |
 | 多项目剩余页面搭建 | 2018/08/01 | 2018/08/01 | - | DengDeng |
-| 多项目 `highchart` 图表配置 | 2018/08/01 | 2018/08/01 | - | ZhanQuan |
-
+| 所有项目 `highchart` 图表配置, `Google` 谷歌地图组件 | 2018/08/01 | 2018/08/01 | - | ZhanQuan |
+| `下拉懒加载列表`组件 + 骨架屏 | 2018/08/02 | 2018/08/02 | - | DengDeng |
+| 日历组件 `vue-event-calendar` 改造 | 2018/08/02 | 2018/08/02 | - | ZhanQuan |
 
 - 第二阶段： APP 数据装载与业务组合（1周）
 
@@ -31,6 +32,14 @@ A Web App dev for Solar Value
 - 第四阶段： APP 测试返修与上线优化（1周）
 
 ## Work Log
+
+- 2018/08/01
+    - 完成 `单项目` 基本原型开发
+    - 引入事件日历
+
+- 2018/07/31
+    - 完成 `多项目` 基本原型开发
+    - 组件设计
 
 - 2018/07/30
     - 完成 `dashboard`

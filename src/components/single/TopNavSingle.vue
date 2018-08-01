@@ -44,7 +44,7 @@
             <!-- 返回上層 -->
             <v-tabs color="sv_purple" slot="extension" class="sv-top-nav-back">
                 <router-link to="/summary/all">
-                    <v-icon>keyboard_arrow_left</v-icon>
+                    <v-icon>arrow_back</v-icon>
                 </router-link>
                 <v-spacer></v-spacer>
                 <v-btn icon>
