@@ -36,6 +36,7 @@ A Web App dev for Solar Value
 - 2018/08/01
     - 完成 `单项目` 基本原型开发
     - 引入事件日历
+    - 申请百度地图API `kK8ubS00D9vxxBTEaT8QD8QcIIjfXHZw`
 
 - 2018/07/31
     - 完成 `多项目` 基本原型开发

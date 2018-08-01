@@ -13,8 +13,8 @@
     <sv-panel title="Detail">
       <sv-detailTable></sv-detailTable>
     </sv-panel>
-    <!-- 谷歌地图 -->
-    <sv-googleMap></sv-googleMap>
+    <!-- 百度地图 -->
+    <sv-baiduMap></sv-baiduMap>
   </div>
 </template>
 
@@ -22,25 +22,26 @@
 import SVDashboard from '@/components/common/Dashboard.vue'
 import SVPanel from '@/components/common/Panel.vue'
 import SVDetailTable from '@/components/common/DetailTable.vue'
-import SVGoogleMap from '@/components/common/GoogleMap.vue'
+import SVBaiduMap from '@/components/common/BaiduMap.vue'
+import SVBannerImg from '@/assets/sv-banner-2.png'
 export default {
   components: {
     'sv-dashboard': SVDashboard,
     'sv-panel': SVPanel,
     'sv-detailTable': SVDetailTable,
-    'sv-googleMap': SVGoogleMap
+    'sv-baiduMap': SVBaiduMap
   },
   data() {
     return {
       items: [
         {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
+          src: SVBannerImg
         },
         {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
+          src: SVBannerImg
         },
         {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
+          src: SVBannerImg
         }
       ]
     }

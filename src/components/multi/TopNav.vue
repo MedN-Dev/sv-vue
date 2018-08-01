@@ -74,8 +74,7 @@
                     { icon: 'equalizer', title: 'Energy' }
                 ],
                 title: 'Solar Value',
-                fixed: true,
-                nav: 0,
+                fixed: true
             }
         },
         computed: {
@@ -86,9 +85,7 @@
                     });
                     return activeItem[0].id;
                 },  
-                set(value) {
-                    this.nav = value;
-                }
+                set() {}
             },
             items: function() { 
                 return [

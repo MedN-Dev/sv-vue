@@ -24,12 +24,12 @@
       return {
         desserts: [
           { title: '所在地', descript: '岩手县一关市', },
-          { title: 'Ice cream sandwich', descript: 237, },
-          { title: 'Frozen Yogurt', descript: 159, },
-          { title: 'Ice cream sandwich', descript: 237, },
-          { title: 'Frozen Yogurt', descript: 159, },
-          { title: 'Ice cream sandwich', descript: 237, },
-          { title: 'Ice cream sandwich', descript: 237, }
+          { title: 'Panel出力', descript: '10,793.64KW', },
+          { title: 'Panel枚数', descript: '42,328枚', },
+          { title: '発電設備容量', descript: '7,920KW', },
+          { title: 'FIT価格', descript: '36円/KWH', },
+          { title: '年間予想発電量', descript: '11,473,361/KWH', },
+          { title: '運転開始日', descript: '2015/12/20', }
         ]
       }
     }
