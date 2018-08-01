@@ -75,6 +75,7 @@
                 ],
                 title: 'Solar Value',
                 fixed: true,
+                nav: 0,
             }
         },
         computed: {
@@ -86,16 +87,17 @@
                     return activeItem[0].id;
                 },  
                 set(value) {
-                    // console.log('上菜单', value)
+                    this.nav = value;
                 }
             },
-            items: function() {
+            items: function() { 
                 return [
                     { id: 0, name: 'all', text: 'All', link: `/${this.$route.name}/all` },
                     { id: 1, name: 'rj', text: 'RJ', link: `/${this.$route.name}/rj` },
                     { id: 2, name: 'infra', text: 'Infra', link: `/${this.$route.name}/infra` },
                     { id: 3, name: 'djb', text: '東急不', link: `/${this.$route.name}/djb` },
-                    { id: 4, name: 'favorite', text: 'Favorite', link: `/${this.$route.name}/favorite` },
+                    { id: 4, name: 'jc', text: 'JinChi', link: `/${this.$route.name}/jc` },
+                    { id: 5, name: 'favorite', text: 'Favorite', link: `/${this.$route.name}/favorite` },
                 ]
             }
         }
