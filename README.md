@@ -1,16 +1,6 @@
-# sv-vue
+# Solar Value Web APP
 
 A Web App dev for Solar Value
-
-## To DO
-
-- 权限登录
-
-- 登录验证
-
-- `HighCharts` 主题调整
-
-- 下拉懒加载刷新组件
 
 ## 工作计划
 
