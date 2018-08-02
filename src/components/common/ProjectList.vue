@@ -2,7 +2,7 @@
   <div class="sv-projectList">
     <v-list class="sv-projectList-list" dense>
       <v-list-tile
-        v-for="(item, index) in items"
+        v-for="(item, index) in list"
         :key="index"
         subTitle
       >
@@ -42,21 +42,19 @@
         </v-list-tile-action>
       </v-list-tile>
     </v-list>
+    <!-- lazy-loading component -->
+    <vue-infinite-loading @infinite="infiniteHandler"></vue-infinite-loading>
   </div>
 </template>
 
 <script>
+  import VueInfiniteLoading from 'vue-infinite-loading'
   export default {
     data () {
       return {
         selected: [2, 3],
-        items: [
+        list: [
           { icon: false, title: '项目', col1: 'パネル出力', col2: '当月発電比較', link: '/project/wj871287/summary' },
-          { icon: true, title: '金尺', col1: '454,132', col2: 110, link: '/project/jinchi/summary' },
-          { icon: true, title: '北斗', col1: '454,132', col2: 94, link: '/project/beidou/summary' },
-          { icon: true, title: '山神', col1: '454,132', col2: 45, link: '/project/shanshen/summary' },
-          { icon: true, title: '北海', col1: '454,132', col2: 25, link: '/project/beihai/summary' },
-          { icon: true, title: '北海道', col1: '454,172', col2: 62, link: '/project/beihaidao/summary' }
         ]
       }
     },
@@ -68,7 +66,23 @@
         } else {
           this.selected.push(index)
         }
-      }
+      },
+      infiniteHandler($state) {
+        setTimeout(() => {
+          const temp = [
+            { icon: true, title: '金尺', col1: '454,132', col2: 110, link: '/project/jinchi/summary' },
+            { icon: true, title: '北斗', col1: '454,132', col2: 94, link: '/project/beidou/summary' },
+            { icon: true, title: '山神', col1: '454,132', col2: 45, link: '/project/shanshen/summary' },
+            { icon: true, title: '北海', col1: '454,132', col2: 25, link: '/project/beihai/summary' },
+            { icon: true, title: '北海道', col1: '454,172', col2: 62, link: '/project/beihaidao/summary' }
+          ];
+          this.list = this.list.concat(temp);
+          $state.loaded();
+        }, 1000);
+      },
+    },
+    components: {
+      'vue-infinite-loading': VueInfiniteLoading,
     }
   }
 </script>
