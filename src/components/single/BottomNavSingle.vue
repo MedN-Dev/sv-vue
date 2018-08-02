@@ -38,9 +38,7 @@
                     });
                     return activeItem[0].id;
                 },
-                set(value) {
-                    // console.log('下菜单', value)
-                }
+                set() {}
             }
         }
     }

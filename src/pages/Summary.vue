@@ -31,9 +31,9 @@
 import SVPanel from '@/components/common/Panel.vue'
 import SVDashboard from '@/components/common/Dashboard.vue'
 import SVProjectList from '@/components/common/ProjectList.vue'
-import Highcharts from 'highcharts'
+import Highcharts from 'highcharts/highstock'
 import { HighchartsTheme } from '@/utils/highChartsTheme'
-import { SUMMARY_ENERGY, SUMMARY_PORTFOLIO } from '@/utils/highChartsOption'
+import { SUMMARY_PORTFOLIO, SUMMARY_ENERGY } from '@/utils/highChartsOption'
 
 export default {
   data() {
@@ -47,7 +47,9 @@ export default {
     'sv-panel': SVPanel
   },
   mounted() {
+      // 绘制图表
       Highcharts.setOptions(HighchartsTheme);
+      // Highcharts.stockChart('sv_hightCharts_se', SUMMARY_ENERGY)
       Highcharts.chart('sv_hightCharts_se', SUMMARY_ENERGY);
       Highcharts.chart('sv_hightCharts_sp', SUMMARY_PORTFOLIO);
   }

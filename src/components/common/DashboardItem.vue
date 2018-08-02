@@ -3,17 +3,21 @@
     <v-flex class="sv-dashboard-item" v-for="(item, index) in items" :key="index" xs4>
       <h1 class="display-3">{{item.value}}</h1>
       <h5 class="caption">{{item.unit}}</h5>
-      <h5 class="caption">{{item.text}}</h5>
+      <h5 class="caption">{{item.name}}</h5>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
   export default {
-    props: ['items'],
+    props: {
+      items: Array
+    },
     data() {
       return {
       }
+    },
+    watch: {
     }
   }
 </script>

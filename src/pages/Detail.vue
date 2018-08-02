@@ -1,13 +1,13 @@
 <template>
   <div class="sv-page-detail">
     <!-- 项目明细 -->
-    <!-- <sv-panel title="Detail">
+    <sv-panel title="Detail">
       <sv-detailTable></sv-detailTable>
-    </sv-panel> -->
+    </sv-panel>
     <!-- 项目明细 -->
-    <!-- <sv-panel title="Document">
+    <sv-panel title="Document">
       <sv-documentMgmt></sv-documentMgmt>
-    </sv-panel> -->
+    </sv-panel>
   </div>
 </template>
 

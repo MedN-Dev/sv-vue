@@ -7,9 +7,9 @@
     >
       <v-tab-item
         v-for="tab in tabs"
-        :key="tab.index"
+        :key="tab.id"
       >
-        <sv-dashboard-item :items="tab.items"></sv-dashboard-item>
+        <sv-dashboard-item :items="tab.group"></sv-dashboard-item>
       </v-tab-item>
     </v-tabs>
     <div class="sv-dashboard-control">..</div>
@@ -17,29 +17,29 @@
 </template>
 
 <script>
+  import MOCK_DASHBOARD_EMPTY from '@/mock/DashboardEmpty.json'
+  import MOCK_DASHBOARD from '@/mock/Dashboard.json'
   import SVDashboardItem from './DashboardItem.vue'
   export default {
     data () {
       return {
         active: 0,
-        tabs: [
-          {
-            index: 0,
-            items: [
-              { value: 20, unit: '(箇所)', text: '発電所数' },
-              { value: 100, unit: '(MW)', text: 'パネル出力' },
-              { value: 1.1, unit: '(百万KWH)', text: '当月発電量実績' },
-            ]
-          },
-          {
-            index: 1,
-            items: [
-              { value: 33.6, unit: '(百万円)', text: '当月売電金額' },
-              { value: 99, unit: '(%)', text: '当月売電金額予実比較' },
-              { value: 0.4, unit: '(万KWH)', text: '前日発電量実績' },
-            ]
-          },
-        ],
+        dashboard: MOCK_DASHBOARD_EMPTY.list
+      }
+    },
+    computed: {
+      tabs: {
+        get() {
+          const temp = [];
+          for(var i = 0; i< (this.dashboard.length/3); i++){
+            temp.push({
+              id: i,
+              group: this.dashboard.slice(i*3, i*3+3)
+            });
+          }
+          return temp;
+        },
+        set() {}
       }
     },
     components: {
@@ -50,7 +50,11 @@
         const active = parseInt(this.active)
         this.active = (active < 2 ? active + 1 : 0)
       }
-    }
+    },
+    mounted() {
+      // 绘制数据面板
+      this.dashboard = MOCK_DASHBOARD.list;
+    },
   }
 </script>
 

@@ -1,0 +1,36 @@
+{
+  "category_id": "all",
+  "category_name": "ALL",
+  "list": [
+    {
+      "name": "発電所数",
+      "unit": "(箇所)",
+      "value": 0
+    },
+    {
+      "name": "パネル出力",
+      "unit": "(MW)",
+      "value": 0
+    },
+    {
+      "name": "当月発電量実績",
+      "unit": "(百万KWH)",
+      "value": 0
+    },
+    {
+      "name": "当月売電金額",
+      "unit": "(百万円)",
+      "value": 0
+    },
+    {
+      "name": "当月売電金額予実比較",
+      "unit": "(%)",
+      "value": 0
+    },
+    {
+      "name": "前日発電量実績",
+      "unit": "(万KWH)",
+      "value": 0
+    }
+  ]
+}

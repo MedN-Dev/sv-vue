@@ -11,15 +11,19 @@ const state = {
         ulevel: null,
         uid: null,
         portrait: null
-    }
+    },
+    category: 'all'
 }
 
 export default new Vuex.Store({
     state: state,
     mutations: {
-        //更新用户信息
+        //应用初始化-更新用户信息
         updateUserInfo(state, newUserInfo) {
             state.userInfo = newUserInfo;
+        },
+        updateCategory(state, newCategory) {
+            state.category = newCategory;
         }
     },
     actions: {

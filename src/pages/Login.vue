@@ -57,8 +57,8 @@
 <script>
   import 'particles.js'
   import particlesJSON from '../assets/particlesjs-config.json'
-  import axios from 'axios'
-  import * as API from '../utils/api.js'
+  //import axios from 'axios'
+  //import * as API from '../utils/api.js'
     export default {
     name: 'sv-login',
     data: () => ({
