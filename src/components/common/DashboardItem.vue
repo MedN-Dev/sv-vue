@@ -18,7 +18,7 @@
   }
 </script>
 
-<style>
+<style scoped>
 .sv-dashboard-warp{
   background: #2c303b
 }

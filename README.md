@@ -12,8 +12,8 @@ A Web App dev for Solar Value
 | `Event 页` + 根据设计图调整 + `highcharts` 配置 | 2018/07/31 | 2018/07/31 | 达标 | ZhanQuan |
 | `多项目` 与 `单项目` 剩余页面搭建 | 2018/08/01 | 2018/08/01 | 达标 | DengDeng |
 | 所有项目 `highchart` 图表配置, `Google` 谷歌地图组件 | 2018/08/01 | 2018/08/01 | 达标 | ZhanQuan |
-| `下拉懒加载列表`组件 + 骨架屏 | 2018/08/02 | 2018/08/02 | - | DengDeng |
-| 日历组件 `vue-event-calendar` 改造 | 2018/08/02 | 2018/08/02 | - | ZhanQuan |
+| `下拉无限懒加载列表`组件 + 骨架屏 | 2018/08/02 | 2018/08/02 | - | DengDeng |
+| 日历组件 `vue-event-calendar` 改造 | 2018/08/03 | 2018/08/03 | - | DengDeng |
 
 - 第二阶段： APP 数据装载与业务组合（1周）
 
