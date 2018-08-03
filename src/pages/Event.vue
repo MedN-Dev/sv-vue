@@ -4,7 +4,7 @@
     <!-- Radio Button -->
     <v-layout row wrap>
        <v-flex xs12 sm6 class="py-2">
-          <v-btn-toggle v-model="text">
+          <v-btn-toggle v-model="trigger" mandatory>
             <v-btn flat value="left">
               事件予定
             </v-btn>
@@ -42,7 +42,6 @@
               :key="index"
             ></v-divider>
           </template>
-          
         </v-list>
       </v-flex>
     </v-layout>
@@ -57,21 +56,38 @@
   export default {
     data() {
         return {
-          text: 'left',
+          trigger: 'left',
           list: []
         }
+    },
+    components: {
+      'vue-infinite-loading': VueInfiniteLoading,
+    },
+    watch: {
+      trigger(val, oldVal) {
+        if(this.trigger === 'left'){
+          this.list = MOCK_EVENTLIST.events;
+        }else{
+          this.list = MOCK_EVENTLIST_HAPEN.events;
+        }
+      }
     },
     methods: {
       infiniteHandler($state) {
         setTimeout(() => {
-          const temp = MOCK_EVENTLIST.events;
+          let temp;
+          if(this.trigger === 'left'){
+            temp = MOCK_EVENTLIST.events;
+          }else{
+            temp = MOCK_EVENTLIST_HAPEN.events;
+          }
           this.list = this.list.concat(temp);
           $state.loaded();
         }, 1000);
       },
     },
-    components: {
-      'vue-infinite-loading': VueInfiniteLoading,
+    mounted() {
+      this.list = MOCK_EVENTLIST.events;
     }
   }
 </script>

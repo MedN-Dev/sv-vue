@@ -1,6 +1,6 @@
 <template>
   <div class="sv-page-eventSingle">
-    <!-- <sv-eventCalendar></sv-eventCalendar> -->
+    <sv-eventCalendar></sv-eventCalendar>
   </div>
 </template>
 

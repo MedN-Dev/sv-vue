@@ -3,24 +3,24 @@
     <sv-dashboard></sv-dashboard>
     <sv-panel title="発電実績">
       <!-- 图表1 -->
-      <div id="sv_hightCharts_se" class="sv-hightCharts"></div>
+      <sv-highCharts :id=chart_se_id :options=chart_se_options></sv-highCharts>
     </sv-panel>
     <sv-panel title="Portfolio">
       <!-- Radio Button -->
       <v-layout row wrap text-xs-center>
         <v-flex xs12 sm6 class="py-2">
-          <v-btn-toggle v-model="text">
+          <v-btn-toggle v-model="trigger" mandatory>
             <v-btn flat value="left">
               発電所数(箇所)
             </v-btn>
-            <v-btn flat value="center">
+            <v-btn flat value="right">
               パネル出力(MW)
             </v-btn>
           </v-btn-toggle>
         </v-flex>
       </v-layout>
       <!-- 图表2 -->
-      <div id="sv_hightCharts_sp" class="sv-hightCharts"></div>
+      <sv-highCharts :id=chart_sp_id :options=chart_sp_options></sv-highCharts>
       <!-- 项目列表 -->
       <sv-projectList></sv-projectList>
     </sv-panel>
@@ -31,27 +31,52 @@
 import SVPanel from '@/components/common/Panel.vue'
 import SVDashboard from '@/components/common/Dashboard.vue'
 import SVProjectList from '@/components/common/ProjectList.vue'
-import Highcharts from 'highcharts/highstock'
-import { HighchartsTheme } from '@/utils/highChartsTheme'
+import SVHighcharts from '@/components/common/Highcharts.vue'
 import { SUMMARY_PORTFOLIO, SUMMARY_ENERGY } from '@/utils/highChartsOption'
 
 export default {
+  props: {
+    category: String // 项目分类
+  },
   data() {
     return {
-      text: 'center'
+      trigger: 'left',
+      dashboard: [],
+      chart_se_id: 'sv_hightCharts_se',
+      chart_sp_id: 'sv_hightCharts_sp',
+      chart_se_options: SUMMARY_ENERGY,
+      chart_sp_options: SUMMARY_PORTFOLIO,
     }
   },
   components: {
     'sv-dashboard': SVDashboard,
     'sv-projectList': SVProjectList,
-    'sv-panel': SVPanel
+    'sv-panel': SVPanel,
+    'sv-highCharts': SVHighcharts
+  },
+  watch: {
+    category(val, oldVal) {
+      // 刷新页面
+      // loadPage(category, page)
+    },
+    trigger(val, oldVal) {
+      if(val === 'left'){
+        this.chart_sp_options = SUMMARY_PORTFOLIO;
+      }else{
+        this.chart_sp_options = SUMMARY_ENERGY;
+      }
+    }
   },
   mounted() {
-      // 绘制图表
-      Highcharts.setOptions(HighchartsTheme);
-      // Highcharts.stockChart('sv_hightCharts_se', SUMMARY_ENERGY)
-      Highcharts.chart('sv_hightCharts_se', SUMMARY_ENERGY);
-      Highcharts.chart('sv_hightCharts_sp', SUMMARY_PORTFOLIO);
+    // loadPage(category, page)
+  },
+  methods: {
+    loadPage(category, page) {
+      // 装载 dashboard
+      // 装载发电实际图表
+      // 装载两组发电Porfolio图表
+      // 装载项目列表
+    }
   }
 }
 </script>

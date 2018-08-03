@@ -55,6 +55,11 @@
         selected: [2, 3],
         list: [
           { icon: false, title: '项目', col1: 'パネル出力', col2: '当月発電比較', link: '/project/wj871287/summary' },
+          { icon: true, title: '金尺', col1: '454,132', col2: 110, link: '/project/jinchi/summary' },
+          { icon: true, title: '北斗', col1: '454,132', col2: 94, link: '/project/beidou/summary' },
+          { icon: true, title: '山神', col1: '454,132', col2: 45, link: '/project/shanshen/summary' },
+          { icon: true, title: '北海', col1: '454,132', col2: 25, link: '/project/beihai/summary' },
+          { icon: true, title: '北海道', col1: '454,172', col2: 62, link: '/project/beihaidao/summary' }
         ]
       }
     },

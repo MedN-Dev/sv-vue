@@ -2,7 +2,11 @@
 
 A Web App dev for Solar Value
 
-## 工作计划
+![logo](./doc/sv-logo.png)
+
+![demo](./doc/sv-mobile-demo.gif)
+
+## Work Plan
 
 - 第一阶段：APP 静态原型开发（1周）
 
@@ -13,15 +17,22 @@ A Web App dev for Solar Value
 | `多项目` 与 `单项目` 剩余页面搭建 | 2018/08/01 | 2018/08/01 | 达标 | DengDeng |
 | 所有项目 `highchart` 图表配置, `Google` 谷歌地图组件 | 2018/08/01 | 2018/08/01 | 达标 | ZhanQuan |
 | `下拉无限懒加载列表`组件 + `单项目Detail页面` | 2018/08/02 | 2018/08/02 | 达标 | DengDeng |
-| 日历组件 `vue-event-calendar` 改造 | 2018/08/03 | 2018/08/03 | - | DengDeng |
+| 日历组件 `vue-event-calendar` 开发与改造 | 2018/08/03 | 2018/08/03 | - | DengDeng |
 
-- 第二阶段： APP 数据装载与业务组合（1周）
+- 第二阶段： APP 业务逻辑与接口联调（1周）
 
-- 第三阶段： APP 前后端联调对接（1周）
+| `axios` 请求模块封装 | 2018/08/06 | 2018/08/06 | - | DengDeng |
+| `highcharts` 图表数据源整理与开发 | 2018/08/07 | 2018/08/07 | - | DengDeng |
+| `货币日期单位格式化` 工具函数开发 | 2018/08/08 | 2018/08/08 | - | DengDeng |
 
-- 第四阶段： APP 测试返修与上线优化（1周）
+- 第三阶段： APP 测试返修与上线优化（1周）
+
+    - 待定
 
 ## Work Log
+
+- 2018/08/03
+    - 事件日历组件开发与调试
 
 - 2018/08/02
     - 引入下拉加载组件
