@@ -15,8 +15,6 @@ A Web App dev for Solar Value
   <a href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/npm/l/vue.svg" alt="License"></a>
 </p>
 
-![logo](./doc/sv-logo.png)
-
 ## Work Plan
 
 - 第一阶段：APP 静态原型开发（1周）
