@@ -3,7 +3,7 @@
     <sv-dashboard></sv-dashboard>
     <sv-panel title="発電実績">
       <!-- 图表1 -->
-      <sv-highCharts :id=chart_se_id :options=chart_se_options></sv-highCharts>
+      <sv-highCharts id="sv_hightCharts_se" :options=chart_se_options></sv-highCharts>
     </sv-panel>
     <sv-panel title="Portfolio">
       <!-- Radio Button -->
@@ -20,7 +20,7 @@
         </v-flex>
       </v-layout>
       <!-- 图表2 -->
-      <sv-highCharts :id=chart_sp_id :options=chart_sp_options></sv-highCharts>
+      <sv-highCharts id="sv_hightCharts_sp" :options=chart_sp_options></sv-highCharts>
       <!-- 项目列表 -->
       <sv-projectList></sv-projectList>
     </sv-panel>
@@ -35,24 +35,23 @@ import SVHighcharts from '@/components/common/Highcharts.vue'
 import { SUMMARY_PORTFOLIO, SUMMARY_ENERGY } from '@/utils/highChartsOption'
 
 export default {
+  name: 'sv-summary',
   props: {
     category: String // 项目分类
-  },
-  data() {
-    return {
-      trigger: 'left',
-      dashboard: [],
-      chart_se_id: 'sv_hightCharts_se',
-      chart_sp_id: 'sv_hightCharts_sp',
-      chart_se_options: SUMMARY_ENERGY,
-      chart_sp_options: SUMMARY_PORTFOLIO,
-    }
   },
   components: {
     'sv-dashboard': SVDashboard,
     'sv-projectList': SVProjectList,
     'sv-panel': SVPanel,
     'sv-highCharts': SVHighcharts
+  },
+  data() {
+    return {
+      trigger: 'left',
+      dashboard: [],
+      chart_se_options: SUMMARY_ENERGY,
+      chart_sp_options: SUMMARY_PORTFOLIO,
+    }
   },
   watch: {
     category(val, oldVal) {

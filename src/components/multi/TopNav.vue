@@ -1,6 +1,6 @@
 <template>
     <div class="sv-top-nav">
-        <!-- 左侧菜单 -->
+        <!-- 左侧抽屉菜单 -->
         <v-navigation-drawer
             persistent
             :clipped="clipped"
@@ -8,7 +8,7 @@
             enable-resize-watcher
             fixed
             app
-            >
+        >
             <v-list>
                 <v-list-tile
                     value="true"
@@ -23,9 +23,9 @@
                     </v-list-tile-content>
                 </v-list-tile>
             </v-list>
-            </v-navigation-drawer>
-            <!-- 顶部工具栏 -->
-            <v-toolbar
+        </v-navigation-drawer>
+        <!-- 顶部工具栏 -->
+        <v-toolbar
             app
             :clipped-left="clipped"
             color="sv_red"
@@ -33,7 +33,7 @@
             dense
             height="0"
             tabs
-            >
+        >
             <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-spacer></v-spacer>
             <v-toolbar-title v-text="title" color="white"></v-toolbar-title>
@@ -49,10 +49,7 @@
                 grow
             >
                 <v-tabs-slider color="sv_purple_light"></v-tabs-slider>
-                <v-tab
-                    v-for="item in items"
-                    :key="item.id"
-                >
+                <v-tab v-for="item in items" :key="item.id">
                     <router-link :key="item.id" :to="item.link" class="sv-topNav-link">
                         {{ item.text }}
                     </router-link>

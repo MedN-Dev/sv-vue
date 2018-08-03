@@ -73,7 +73,7 @@
   .__vev_calendar-wrapper .arrow-right.icon{ color: #676c8a; }
   .__vev_calendar-wrapper .events-wrapper{ padding: 0; }
   .__vev_calendar-wrapper .date{ display: none;}
-  .__vev_calendar-wrapper .events-wrapper .event-item { margin-top: 10px; }
+  .__vev_calendar-wrapper .events-wrapper .event-item { margin-top: 5px; }
   .v-toolbar--fixed{ z-index: 4; }
 </style>
 

@@ -135,7 +135,7 @@ export const SUMMARY_PORTFOLIO = {
         colorByPoint: true,
         data: [{
             name: '东北',
-            y: 61,
+            y: 25,
         }, {
             name: '中部',
             y: 11
