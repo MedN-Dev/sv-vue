@@ -2,9 +2,20 @@
 
 A Web App dev for Solar Value
 
-![logo](./doc/sv-logo.png)
+<p align="center">
+    <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer">
+        <img width="200" src="https://avatars1.githubusercontent.com/u/41156540?s=200&v=4" alt="Vue logo">
+    </a>
+</p>
+<p align="center">
+  <a href="https://circleci.com/gh/vuejs/vue/tree/dev"><img src="https://img.shields.io/circleci/project/vuejs/vue/dev.svg" alt="Build Status"></a>
+  <a href="https://codecov.io/github/vuejs/vue?branch=dev"><img src="https://img.shields.io/codecov/c/github/vuejs/vue/dev.svg" alt="Coverage Status"></a>
+  <a href="https://npmcharts.com/compare/vue?minimal=true"><img src="https://img.shields.io/npm/dm/vue.svg" alt="Downloads"></a>
+  <a href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/npm/v/vue.svg" alt="Version"></a>
+  <a href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/npm/l/vue.svg" alt="License"></a>
+</p>
 
-![demo](./doc/sv-mobile-demo.gif)
+![logo](./doc/sv-logo.png)
 
 ## Work Plan
 
