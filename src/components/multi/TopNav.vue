@@ -49,7 +49,7 @@
                 grow
             >
                 <v-tabs-slider color="sv_purple_light"></v-tabs-slider>
-                <v-tab v-for="item in items" :key="item.id">
+                <v-tab v-for="item in nav" :key="item.id">
                     <router-link :key="item.id" :to="item.link" class="sv-topNav-link">
                         {{ item.text }}
                     </router-link>
@@ -72,29 +72,24 @@
                 ],
                 title: 'Solar Value',
                 fixed: true,
-                items: [],
+                nav: [],
                 activeNav: 0
             }
         },
-        computed: {
-            
-        },
         mounted() {
             this.$store.dispatch('updateCollection').then((res) => {
-                this.items = res.map((it) => {
+                this.nav = res.map((item) => {
                     return {
-                        id: it.sequence,
-                        name: it.id,
-                        text: it.name,
-                        link: `/${this.$route.name}/${it.id}`
+                        id: item.sequence,
+                        name: item.id,
+                        text: item.name,
+                        link: `/${this.$route.name}/${item.id}`
                     }
                 });
-                this.activeNav = this.items.filter((item) => {
+                this.activeNav = this.nav.filter((item) => {
                     if(this.$route.params.category == item.name) return item;
                 })[0].id-1;
             })
-        },
-        methods: {
         }
     }
 </script>

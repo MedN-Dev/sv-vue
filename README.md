@@ -32,7 +32,7 @@ A Web App dev for Solar Value
 
 | 任务名称 | 开始时间 | 预测结束时间 | 实际结束时间 | 负责人 |
 | -------- | -------- | ---------- | ----------- | ----- |
-| `axios` 请求模块封装 | 2018/08/06 | 2018/08/06 | - | DengDeng |
+| `axios` 请求模块封装,开发环境跨域代理，`顶部导航` 与 `Widget面板` api联调成功 | 2018/08/06 | 2018/08/06 | 达标 | DengDeng |
 | `highcharts` 图表数据源整理与开发 | 2018/08/07 | 2018/08/07 | - | DengDeng |
 | `货币日期单位格式化` 工具函数开发 | 2018/08/08 | 2018/08/08 | - | DengDeng |
 
@@ -43,6 +43,9 @@ A Web App dev for Solar Value
 ## Work Log
 
 - 2018/08/06
+    - `axios` 请求模块封装
+    - 开发环境跨域代理设置
+    - `顶部导航` 与 `Widget面板` api联调对接成功
     - coolie 键 `.AspNet.ApplicationCookie`, 值 `ufe_dMg_uzRkd3GuZLZUcYe-aXu9HROpLX1vX2agYGX4h68fyQSRrGUkTLNXF29y2UcOphgMq1AgE_1PMVKuudUrvTGA0mgR8EaRpe368XuEMxaprtwQ97tFw_30HyKeOc0km-9f89Su2G40Pwg1EJbuQnxx_fiStPVlRSJEcPujo7Xd9X67j8CEfJCqJYb4eoCQt78L4cN2Xw4C4UEOkiM1aBXc0Z9oUNbhAgCL5cZ5sqoQXTZBa6oasrvm0Vb9zd_ui0Gtag5IK2j8yFIsID5gmcmQdUvTh4NMv6rKJhNxjpJlA1iw89zpBAfYiyCsLxgSTAhP6SR6wweiPUHnjTY6-9bXFQqzNH3mkzmzBJAxQ-ZPk8h3825rpvjYFYwg89o6LR-DD0NzyDB8pvl1k97ciBH-Va_T67DyCDTkYLry_bmxfQsfmOwjGbAygd1YRUg_M1aq996puntTg8pCGDeR1Wulj5B3Se6hrMG_6XDd-RHUH7rIG5NDlm8h5CD5VhR8bF7NHLlWba52w4ViPg`
 
 - 2018/08/03

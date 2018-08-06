@@ -21,10 +21,20 @@
   import MOCK_DASHBOARD from '@/mock/Dashboard.json'
   import SVDashboardItem from './DashboardItem.vue'
   export default {
+    props: {
+      dashboard: {
+        type: Array,
+        default: function() {
+          return MOCK_DASHBOARD_EMPTY.list;
+        }
+      }
+    },
+    components: {
+      'sv-dashboard-item': SVDashboardItem
+    },
     data () {
       return {
-        active: 0,
-        dashboard: MOCK_DASHBOARD_EMPTY.list
+        active: 0
       }
     },
     computed: {
@@ -42,18 +52,11 @@
         set() {}
       }
     },
-    components: {
-      'sv-dashboard-item': SVDashboardItem
-    },
     methods: {
       next () {
         const active = parseInt(this.active)
         this.active = (active < 2 ? active + 1 : 0)
       }
-    },
-    mounted() {
-      // 绘制数据面板
-      this.dashboard = MOCK_DASHBOARD.list;
     },
   }
 </script>

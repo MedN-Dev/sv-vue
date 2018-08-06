@@ -19,7 +19,7 @@ export const News = {
 // 多项目
 export const Collection = {
     List: `${apiAddress}/api/collection/list`,
-    Widgets: `${apiAddress}/api/collection/widgets?id=1&type=summary`,
+    Widgets: `${apiAddress}/api/collection/widgets`,
     Projects: `${apiAddress}/api/collection/projects?id=1&page=1&pagesize=10`,
 }
 
