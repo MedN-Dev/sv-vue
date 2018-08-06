@@ -78,7 +78,7 @@
     }),
     methods: {
         submit() {
-            this.$router.push({ path: 'summary/all' });
+            this.$router.push({ path: 'summary/100' });
             // const params = { username: this.username, password: this.password, _csrf: this.$store.state.token };
             // axios.post(API.Account.Login, params)
             //     .then((response) => {

@@ -1,6 +1,6 @@
 <template>
   <div class="sv-page-summary">
-    <sv-dashboard></sv-dashboard>
+    <sv-dashboard :dashboard="dashboard"></sv-dashboard>
     <sv-panel title="発電実績">
       <!-- 图表1 -->
       <sv-highCharts id="sv_hightCharts_se" :options=chart_se_options></sv-highCharts>
@@ -33,6 +33,7 @@ import SVDashboard from '@/components/common/Dashboard.vue'
 import SVProjectList from '@/components/common/ProjectList.vue'
 import SVHighcharts from '@/components/common/Highcharts.vue'
 import { SUMMARY_PORTFOLIO, SUMMARY_ENERGY } from '@/utils/highChartsOption'
+import { Collection } from '@/http/api'
 
 export default {
   name: 'sv-summary',
@@ -56,7 +57,7 @@ export default {
   watch: {
     category(val, oldVal) {
       // 刷新页面
-      // loadPage(category, page)
+      this.loadPage()
     },
     trigger(val, oldVal) {
       if(val === 'left'){
@@ -66,12 +67,23 @@ export default {
       }
     }
   },
+  computed: {
+    // ...mapGetters([
+    //   'fsd'
+    // ])
+  },
   mounted() {
-    // loadPage(category, page)
+    this.loadPage()
   },
   methods: {
-    loadPage(category, page) {
+    loadPage() {
       // 装载 dashboard
+      this.$axios.get(Collection.Widgets, {id: this.category, type: 'summary'})
+        .then((res)=>{
+          this.dashboard = res.data.map((item)=>{
+            return { name: item.label, unit: item.unit, value: item.value }
+          });
+        })
       // 装载发电实际图表
       // 装载两组发电Porfolio图表
       // 装载项目列表

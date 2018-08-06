@@ -6,23 +6,15 @@
 </template>
 
 <script>
-import { Collection } from '@/http/api'
 export default {
   name: 'sv-app',
   data () {
     return {
       isLogin: false,
-      userInfo: { //保存用户信息
-        nick: null,
-        ulevel: null,
-        uid: null,
-        portrait: null
-      }
     }
   },
   mounted() {
     this.getUserInfo();
-    // this.getCollection();
   },
   methods: {
     //请求用户的一些信息
@@ -35,11 +27,7 @@ export default {
         portrait: 'images/profile.png'
       }
       //提交mutation到Store
-      this.$store.commit('updateUserInfo', this.userInfo); 
-    },
-    async getCollection() {
-      const res = await this.$axios.get(Collection.List, {});
-      this.$store.commit('updateCollection', res.data); 
+      this.$store.dispatch('updateUserInfo', this.userInfo); 
     }
   }
 }
