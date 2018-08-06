@@ -12,7 +12,8 @@ const state = {
         uid: null,
         portrait: null
     },
-    category: 'all'
+    category: 'all',
+    collection: {}
 }
 
 export default new Vuex.Store({
@@ -24,6 +25,9 @@ export default new Vuex.Store({
         },
         updateCategory(state, newCategory) {
             state.category = newCategory;
+        },
+        updateCollection(state, newCollection){
+            state.collection = newCollection;
         }
     },
     actions: {

@@ -1,11 +1,13 @@
 import '@babel/polyfill'
 import Vue from 'vue'
-import './plugins/index'
-import App from './App.vue'
+import './plugins'
 import router from './router'
 import store from './store'
+import axios from '@/http/axios.js'
+import App from './App.vue'
 
-Vue.config.productionTip = false
+Vue.prototype.$axios = axios;
+Vue.config.productionTip = false;
 
 let app = new Vue({
   router,

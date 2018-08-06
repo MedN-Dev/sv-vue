@@ -26,7 +26,7 @@ A Web App dev for Solar Value
 | `多项目` 与 `单项目` 剩余页面搭建 | 2018/08/01 | 2018/08/01 | 达标 | DengDeng |
 | 所有项目 `highchart` 图表配置, `Google` 谷歌地图组件 | 2018/08/01 | 2018/08/01 | 达标 | ZhanQuan |
 | `下拉无限懒加载列表`组件 + `单项目Detail页面` | 2018/08/02 | 2018/08/02 | 达标 | DengDeng |
-| 日历组件 `vue-event-calendar` 开发与改造 | 2018/08/03 | 2018/08/03 | - | DengDeng |
+| 日历组件 `vue-event-calendar` 开发与改造 | 2018/08/03 | 2018/08/03 | 达标 | DengDeng |
 
 - 第二阶段： APP 业务逻辑与接口联调（1周）
 
@@ -41,6 +41,9 @@ A Web App dev for Solar Value
     - 待定
 
 ## Work Log
+
+- 2018/08/06
+    - coolie 键 `.AspNet.ApplicationCookie`, 值 `ufe_dMg_uzRkd3GuZLZUcYe-aXu9HROpLX1vX2agYGX4h68fyQSRrGUkTLNXF29y2UcOphgMq1AgE_1PMVKuudUrvTGA0mgR8EaRpe368XuEMxaprtwQ97tFw_30HyKeOc0km-9f89Su2G40Pwg1EJbuQnxx_fiStPVlRSJEcPujo7Xd9X67j8CEfJCqJYb4eoCQt78L4cN2Xw4C4UEOkiM1aBXc0Z9oUNbhAgCL5cZ5sqoQXTZBa6oasrvm0Vb9zd_ui0Gtag5IK2j8yFIsID5gmcmQdUvTh4NMv6rKJhNxjpJlA1iw89zpBAfYiyCsLxgSTAhP6SR6wweiPUHnjTY6-9bXFQqzNH3mkzmzBJAxQ-ZPk8h3825rpvjYFYwg89o6LR-DD0NzyDB8pvl1k97ciBH-Va_T67DyCDTkYLry_bmxfQsfmOwjGbAygd1YRUg_M1aq996puntTg8pCGDeR1Wulj5B3Se6hrMG_6XDd-RHUH7rIG5NDlm8h5CD5VhR8bF7NHLlWba52w4ViPg`
 
 - 2018/08/03
     - 事件日历组件开发与调试

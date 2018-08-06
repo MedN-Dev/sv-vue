@@ -6,7 +6,7 @@
 </template>
 
 <script>
-
+import { Collection } from '@/http/api'
 export default {
   name: 'sv-app',
   data () {
@@ -22,10 +22,11 @@ export default {
   },
   mounted() {
     this.getUserInfo();
+    // this.getCollection();
   },
   methods: {
     //请求用户的一些信息
-    getUserInfo(){
+    async getUserInfo(){
       //发送http请求获取，这里写死作演示
       this.userInfo = {
         nick: 'Doterlin',
@@ -35,6 +36,10 @@ export default {
       }
       //提交mutation到Store
       this.$store.commit('updateUserInfo', this.userInfo); 
+    },
+    async getCollection() {
+      const res = await this.$axios.get(Collection.List, {});
+      this.$store.commit('updateCollection', res.data); 
     }
   }
 }
