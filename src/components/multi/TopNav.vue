@@ -67,33 +67,34 @@
                 clipped: false,
                 drawer: false,
                 itemsLeft: [
-                    { icon: 'home', title: 'Home' }, 
+                    { icon: 'home', title: 'Home' },
                     { icon: 'equalizer', title: 'Energy' }
                 ],
                 title: 'Solar Value',
-                fixed: true
+                fixed: true,
+                items: [],
+                activeNav: 0
             }
         },
         computed: {
-            activeNav: {
-                get() {
-                    let activeItem = this.items.filter((item) => {
-                        if(this.$route.params.category == item.name) return item;
-                    });
-                    return activeItem[0].id;
-                },  
-                set() {}
-            },
-            items: function() { 
-                return [
-                    { id: 0, name: 'all', text: 'All', link: `/${this.$route.name}/all` },
-                    { id: 1, name: 'rj', text: 'RJ', link: `/${this.$route.name}/rj` },
-                    { id: 2, name: 'infra', text: 'Infra', link: `/${this.$route.name}/infra` },
-                    { id: 3, name: 'djb', text: '東急不', link: `/${this.$route.name}/djb` },
-                    { id: 4, name: 'jc', text: 'JinChi', link: `/${this.$route.name}/jc` },
-                    { id: 5, name: 'favorite', text: 'Favorite', link: `/${this.$route.name}/favorite` },
-                ]
-            }
+            
+        },
+        mounted() {
+            this.$store.dispatch('updateCollection').then((res) => {
+                this.items = res.map((it) => {
+                    return {
+                        id: it.sequence,
+                        name: it.id,
+                        text: it.name,
+                        link: `/${this.$route.name}/${it.id}`
+                    }
+                });
+                this.activeNav = this.items.filter((item) => {
+                    if(this.$route.params.category == item.name) return item;
+                })[0].id-1;
+            })
+        },
+        methods: {
         }
     }
 </script>
