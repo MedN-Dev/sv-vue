@@ -1,6 +1,6 @@
 <template>
   <div class="sv-page-profolio">
-    <sv-dashboard></sv-dashboard>
+    <sv-dashboard :category="category" view="profolio"></sv-dashboard>
     <sv-panel title="Portfolio">
       <!-- Radio Button -->
       <v-layout row wrap text-xs-center>
@@ -35,6 +35,9 @@
   import { HighchartsTheme } from '@/utils/highChartsTheme'
   import { PORTFOLIO_A,PORTFOLIO_B,PORTFOLIO_C } from '@/utils/highChartsOption'
   export default {
+    props: {
+      category: String
+    },
     data() {
       return {
         text: 'left'

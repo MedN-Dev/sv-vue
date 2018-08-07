@@ -1,28 +1,29 @@
 <template>
   <div class="sv-page-summary">
-    <sv-dashboard :dashboard="dashboard"></sv-dashboard>
+    <!-- 组件-指标面板 -->
+    <sv-dashboard :category="category" view="summary"></sv-dashboard>
     <sv-panel title="発電実績">
-      <!-- 图表1 -->
+      <!-- 组件-图表1 -->
       <sv-highCharts id="sv_hightCharts_se" :options=chart_se_options></sv-highCharts>
     </sv-panel>
     <sv-panel title="Portfolio">
-      <!-- Radio Button -->
+      <!-- 组件-RadioButton -->
       <v-layout row wrap text-xs-center>
         <v-flex xs12 sm6 class="py-2">
           <v-btn-toggle v-model="trigger" mandatory>
-            <v-btn flat value="left">
+            <v-btn flat value="COUNT">
               発電所数(箇所)
             </v-btn>
-            <v-btn flat value="right">
+            <v-btn flat value="SUM">
               パネル出力(MW)
             </v-btn>
           </v-btn-toggle>
         </v-flex>
       </v-layout>
-      <!-- 图表2 -->
-      <sv-highCharts id="sv_hightCharts_sp" :options=chart_sp_options></sv-highCharts>
-      <!-- 项目列表 -->
-      <sv-projectList></sv-projectList>
+      <!-- 组件-Portfolio图表 -->
+      <sv-highCharts-portfolio id="sv_hightCharts_sp" :options="chart_sp_options"></sv-highCharts-portfolio>
+      <!-- 组件-项目列表 -->
+      <sv-projectList :category="category"></sv-projectList>
     </sv-panel>
   </div>
 </template>
@@ -32,61 +33,65 @@ import SVPanel from '@/components/common/Panel.vue'
 import SVDashboard from '@/components/common/Dashboard.vue'
 import SVProjectList from '@/components/common/ProjectList.vue'
 import SVHighcharts from '@/components/common/Highcharts.vue'
+import SVHighchartsPortfolio from '@/components/common/HighchartsPortfolio.vue'
 import { SUMMARY_PORTFOLIO, SUMMARY_ENERGY } from '@/utils/highChartsOption'
-import { Collection } from '@/http/api'
+import { Portfolio } from '@/http/api'
 
 export default {
   name: 'sv-summary',
   props: {
-    category: String // 项目分类
+    category: String
   },
   components: {
     'sv-dashboard': SVDashboard,
     'sv-projectList': SVProjectList,
     'sv-panel': SVPanel,
-    'sv-highCharts': SVHighcharts
+    'sv-highCharts': SVHighcharts,
+    'sv-highCharts-portfolio': SVHighchartsPortfolio
   },
   data() {
     return {
-      trigger: 'left',
-      dashboard: [],
+      trigger: 'COUNT',
       chart_se_options: SUMMARY_ENERGY,
-      chart_sp_options: SUMMARY_PORTFOLIO,
+      chart_portfolio_sum_data: [],
+      chart_portfolio_count_data: []
     }
   },
   watch: {
-    category(val, oldVal) {
+    category() {
       // 刷新页面
-      this.loadPage()
-    },
-    trigger(val, oldVal) {
-      if(val === 'left'){
-        this.chart_sp_options = SUMMARY_PORTFOLIO;
-      }else{
-        this.chart_sp_options = SUMMARY_ENERGY;
-      }
+      this.loadPortfolio()
     }
   },
   computed: {
-    // ...mapGetters([
-    //   'fsd'
-    // ])
+    chart_sp_options() {
+      if(this.trigger === 'COUNT'){
+        return this.chart_portfolio_count_data;
+      }else{
+        return this.chart_portfolio_sum_data;
+      }
+    }
   },
-  mounted() {
-    this.loadPage()
+  mounted(){
+    this.loadPortfolio();
   },
   methods: {
-    loadPage() {
-      // 装载 dashboard
-      this.$axios.get(Collection.Widgets, {id: this.category, type: 'summary'})
+    loadPortfolio() {
+      this.$axios.get(Portfolio.Region,{ id: this.category })
         .then((res)=>{
-          this.dashboard = res.data.map((item)=>{
-            return { name: item.label, unit: item.unit, value: item.value }
-          });
+          this.chart_portfolio_sum_data = this.filtersPortfolioSum(res.data);
+          this.chart_portfolio_count_data = this.filtersPortfolioCount(res.data);
         })
-      // 装载发电实际图表
-      // 装载两组发电Porfolio图表
-      // 装载项目列表
+    },
+    filtersPortfolioSum(items) {
+      return items.map((item)=>{
+        return { name: item.label, y: item.value.sum }
+      });
+    },
+    filtersPortfolioCount(items) {
+      return items.map((item)=>{
+        return { name: item.label, y: item.value.count }
+      });
     }
   }
 }

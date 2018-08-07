@@ -49,7 +49,7 @@
                 grow
             >
                 <v-tabs-slider color="sv_purple_light"></v-tabs-slider>
-                <v-tab v-for="item in nav" :key="item.id">
+                <v-tab v-for="item in items" :key="item.id">
                     <router-link :key="item.id" :to="item.link" class="sv-topNav-link">
                         {{ item.text }}
                     </router-link>
@@ -76,9 +76,10 @@
                 activeNav: 0
             }
         },
-        mounted() {
-            this.$store.dispatch('updateCollection').then((res) => {
-                this.nav = res.map((item) => {
+        computed: {
+            // 计算当前导航的路由
+            items() {
+                return this.nav.map((item) => {
                     return {
                         id: item.sequence,
                         name: item.id,
@@ -86,9 +87,15 @@
                         link: `/${this.$route.name}/${item.id}`
                     }
                 });
-                this.activeNav = this.nav.filter((item) => {
-                    if(this.$route.params.category == item.name) return item;
-                })[0].id-1;
+            }
+        },
+        mounted(){
+            this.$store.dispatch('updateCollection').then((res) => {
+                this.nav = res;
+                // 根据路由映射当前选中位置
+                this.activeNav = res.filter((item) => {
+                    if(this.$route.params.category == item.id) return item;
+                })[0].sequence-1;
             })
         }
     }

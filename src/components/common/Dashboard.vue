@@ -20,13 +20,16 @@
   import MOCK_DASHBOARD_EMPTY from '@/mock/DashboardEmpty.json'
   import MOCK_DASHBOARD from '@/mock/Dashboard.json'
   import SVDashboardItem from './DashboardItem.vue'
+  import { Collection } from '@/http/api'
   export default {
     props: {
-      dashboard: {
-        type: Array,
-        default: function() {
-          return MOCK_DASHBOARD_EMPTY.list;
-        }
+      category: {
+        type: String,
+        default: '100'
+      },
+      view: {
+        type: String,
+        default: 'summary'
       }
     },
     components: {
@@ -34,7 +37,8 @@
     },
     data () {
       return {
-        active: 0
+        active: 0,
+        dashboard: MOCK_DASHBOARD_EMPTY.list
       }
     },
     computed: {
@@ -52,8 +56,26 @@
         set() {}
       }
     },
+    watch: {
+      category(val, oldVal) {
+        // 更新视图
+        this.load();
+      },
+    },
+    mounted() {
+      this.load();
+    },
     methods: {
-      next () {
+      load() {
+        // 装载 dashboard
+        this.$axios.get(Collection.Widgets, {id: this.category, type: this.view})
+        .then((res)=>{
+          this.dashboard = res.data.map((item)=>{
+            return { name: item.label, unit: item.unit, value: item.value }
+          });
+        })
+      },
+      next() {
         const active = parseInt(this.active)
         this.active = (active < 2 ? active + 1 : 0)
       }

@@ -12,19 +12,21 @@ export const Account = {
     GetUserInfo: `${apiAddress}/api/v2/Account/UserInfo`,
 }
 
-export const News = {
-    GetNewsList: `${apiAddress}/api/v2/News/GetNewsList`,
-}
-
-// 多项目
+// 多项目分类
 export const Collection = {
     List: `${apiAddress}/api/collection/list`,
     Widgets: `${apiAddress}/api/collection/widgets`,
-    Projects: `${apiAddress}/api/collection/projects?id=1&page=1&pagesize=10`,
+    Projects: `${apiAddress}/api/collection/projects`,
 }
 
-// 多项目
+// 多项目Portfolio
 export const Portfolio = {
-    Region: `${apiAddress}/api/portfolio/region?id=1`,
-    Charts: `${apiAddress}/api/portfolio/charts?id=1&region=&fit=&codYears=0-5`
+    Region: `${apiAddress}/api/portfolio/region`,
+    Charts: `${apiAddress}/api/portfolio/charts`
+}
+
+// 项目相关
+export const Project = {
+    Favorite: `${apiAddress}/api/project/favorite`,
+    UnFavorite: `${apiAddress}/api/project/unfavorite`
 }

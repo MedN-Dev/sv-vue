@@ -8,16 +8,16 @@
       >
         <v-list-tile-action class="sv-projectList-star">
           <v-icon
-            v-if="selected.indexOf(index) < 0"
+            v-if="item.favor != 1"
             color="grey lighten-1"
-            @click="toggle(index)"
+            @click="favoriteHandle(item.id)"
           >
             star_border
           </v-icon>
           <v-icon
             v-else
             color="yellow darken-2"
-            @click="toggle(index)"
+            @click="unfavoriteHandle(item.id)"
           >
             star
           </v-icon>
@@ -36,8 +36,8 @@
         </v-list-tile-content>
 
         <v-list-tile-action class="sv-projectList-link">
-          <router-link :to="item.link">
-            <v-icon v-if="item.icon" color="sv_gray">keyboard_arrow_right</v-icon>
+          <router-link v-if="index != 0" :to="item.link">
+            <v-icon color="sv_gray">keyboard_arrow_right</v-icon>
           </router-link>
         </v-list-tile-action>
       </v-list-tile>
@@ -49,45 +49,89 @@
 
 <script>
   import VueInfiniteLoading from 'vue-infinite-loading'
+  import { Collection, Project } from '@/http/api'
   export default {
+    name: 'sv-projectList',
+    components: {
+      'vue-infinite-loading': VueInfiniteLoading,
+    },
+    props: {
+      category: {
+        type: String,
+        default: '100'
+      }
+    },
     data () {
       return {
-        selected: [2, 3],
-        list: [
-          { icon: false, title: '项目', col1: 'パネル出力', col2: '当月発電比較', link: '/project/wj871287/summary' },
-          { icon: true, title: '金尺', col1: '454,132', col2: 110, link: '/project/jinchi/summary' },
-          { icon: true, title: '北斗', col1: '454,132', col2: 94, link: '/project/beidou/summary' },
-          { icon: true, title: '山神', col1: '454,132', col2: 45, link: '/project/shanshen/summary' },
-          { icon: true, title: '北海', col1: '454,132', col2: 25, link: '/project/beihai/summary' },
-          { icon: true, title: '北海道', col1: '454,172', col2: 62, link: '/project/beihaidao/summary' }
-        ]
+        pageSize: 10,
+        list: [{favor: 0, title: '项目', col1: 'パネル出力', col2: '当月発電比較',}]
+      }
+    },
+    watch: {
+      category() {
+        this.list = [{ favor: 0, title: '项目', col1: 'パネル出力', col2: '当月発電比較',}];
+      }
+    },
+    computed: {
+      page() {
+        return (this.list.length-1) / 10 + 1;
+      },
+      finished() {
+        return (this.list.length-1) / 10 === 10
+      },
+      selected() {
+        let arr = [];
+        this.list.forEach((element, index) => {
+          if(element.favor === 1) arr.push(index)
+        })
+        return arr;
       }
     },
     methods: {
-      toggle (index) {
-        const i = this.selected.indexOf(index)
-        if (i > -1) {
-          this.selected.splice(i, 1)
-        } else {
-          this.selected.push(index)
-        }
-      },
       infiniteHandler($state) {
-        setTimeout(() => {
-          const temp = [
-            { icon: true, title: '金尺', col1: '454,132', col2: 110, link: '/project/jinchi/summary' },
-            { icon: true, title: '北斗', col1: '454,132', col2: 94, link: '/project/beidou/summary' },
-            { icon: true, title: '山神', col1: '454,132', col2: 45, link: '/project/shanshen/summary' },
-            { icon: true, title: '北海', col1: '454,132', col2: 25, link: '/project/beihai/summary' },
-            { icon: true, title: '北海道', col1: '454,172', col2: 62, link: '/project/beihaidao/summary' }
-          ];
-          this.list = this.list.concat(temp);
-          $state.loaded();
-        }, 1000);
+        this.$axios.get(Collection.Projects, { id: this.category, page: this.page, pageSize: this.pageSize })
+        .then((res)=>{
+          if (res.data.items.length) {
+            this.list = this.list.concat(this.filterlist(res.data.items));
+            $state.loaded();
+            if (this.finished) { // 总共加载100条
+              $state.complete();
+            }
+          } else {
+            $state.complete();
+          }
+        })
       },
-    },
-    components: {
-      'vue-infinite-loading': VueInfiniteLoading,
+      filterlist(items) {
+        return items.map((item)=>{
+          return { id: item.id, favor: item.hasFavorite, title: item.name, col1: item.items[0], col2: item.items[1], link: `/project/${item.id}/summary` }
+        })
+      },
+      favoriteHandle(projectId) {
+        this.$axios.post(Project.Favorite, { pid: projectId})
+          .then((res)=>{
+            if(res.code == 1){
+              this.updateListById(projectId, 1);
+            }
+          });
+      },
+      unfavoriteHandle(projectId) {
+        this.$axios.post(Project.UnFavorite, { pid: projectId})
+          .then((res)=>{
+            if(res.code == 1){
+              this.updateListById(projectId, 0);
+            }
+          });
+      },
+      updateListById(projectId, favor) {
+        this.list = this.list.map((item)=>{
+          if(item.id === projectId) {
+            return { id: item.id, favor: favor, title: item.title, col1: item.col1, col2: item.col2, link: item.link };
+          }else{
+            return { id: item.id, favor: item.favor, title: item.title, col1: item.col1, col2: item.col2, link: item.link };
+          }
+        })
+      }
     }
   }
 </script>

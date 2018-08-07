@@ -1,6 +1,6 @@
 <template>
   <div class="sv-page-energy">
-    <sv-dashboard></sv-dashboard>
+    <sv-dashboard :category="category" view="energy"></sv-dashboard>
     <sv-panel title="全体実績">
       <!-- 图表1 -->
       <div id="sv_hightCharts_ea" class="sv-hightCharts"></div>
@@ -38,6 +38,10 @@
   import { HighchartsTheme } from '@/utils/highChartsTheme'
   import { ENERGY_A, ENERGY_B } from '@/utils/highChartsOption'
   export default {
+    name: 'sv-energy',
+    props: {
+      category: String, 
+    },
     data() {
         return {
           text: 'left'

@@ -93,7 +93,7 @@ export const SUMMARY_ENERGY = {
     }],
 };
 
-// 图表数据源
+// 图表数据源-已对接
 export const SUMMARY_PORTFOLIO = {
     chart: {
         plotBackgroundColor: null,
