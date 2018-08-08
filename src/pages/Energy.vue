@@ -11,21 +11,21 @@
       <!-- Radio Button -->
       <v-layout row wrap text-xs-center>
         <v-flex xs12 sm6 class="py-2">
-          <v-btn-toggle v-model="text">
-            <v-btn flat value="left">
+          <v-btn-toggle v-model="trigger" mandatory>
+            <v-btn flat value="output">
               発電量(kWh)
             </v-btn>
-            <v-btn flat value="center">
+            <v-btn flat value="SunRadiation">
               日射量(kWh/m2)
             </v-btn>
-            <v-btn flat value="right">
+            <v-btn flat value="sell">
               売電額(万円)
             </v-btn>
           </v-btn-toggle>
         </v-flex>
       </v-layout>
       <!-- 项目列表 -->
-      <sv-projectList></sv-projectList>
+      <sv-projectList-energy :category="category" :start="start" :end="end" :source="trigger" ></sv-projectList-energy>
     </sv-panel>
   </div>
 </template>
@@ -33,7 +33,7 @@
 <script>
   import SVPanel from '@/components/common/Panel.vue'
   import SVDashboard from '@/components/common/Dashboard.vue'
-  import SVProjectList from '@/components/common/ProjectList.vue'
+  import SVProjectListEnergy from '@/components/multi/energy/ProjectListEnergy.vue'
   import Highcharts from 'highcharts'
   import { HighchartsTheme } from '@/utils/highChartsTheme'
   import { ENERGY_A, ENERGY_B } from '@/utils/highChartsOption'
@@ -44,12 +44,14 @@
     },
     data() {
         return {
-          text: 'left'
+          start: '',
+          end: '',
+          trigger: 'output'
         }
     },
     components: {
       'sv-dashboard': SVDashboard,
-      'sv-projectList': SVProjectList,
+      'sv-projectList-energy': SVProjectListEnergy,
       'sv-panel': SVPanel
     },
     mounted() {

@@ -29,6 +29,10 @@ export default {
     components: {
         'sv-bottom-nav': SVBottomNav,
         'sv-top-nav': SVTopNav,
+    },
+    mounted() {
+        //获取顶部菜单
+        this.$store.dispatch('FETCH_TOPBAR');
     }
 }
 </script>

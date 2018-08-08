@@ -72,31 +72,35 @@
                 ],
                 title: 'Solar Value',
                 fixed: true,
-                nav: [],
                 activeNav: 0
             }
         },
         computed: {
+            category() {
+                return this.$store.state.multi.category;
+            },
+            topBar() {
+                return this.$store.state.multi.topBar;
+            },
             // 计算当前导航的路由
             items() {
-                return this.nav.map((item) => {
+                return this.topBar.map((item) => {
                     return {
-                        id: item.sequence,
-                        name: item.id,
-                        text: item.name,
-                        link: `/${this.$route.name}/${item.id}`
+                        id: item.id,
+                        name: item.name,
+                        text: item.text,
+                        link: `/${this.$route.name}/${item.name}`
                     }
                 });
             }
         },
-        mounted(){
-            this.$store.dispatch('updateCollection').then((res) => {
-                this.nav = res;
-                // 根据路由映射当前选中位置
-                this.activeNav = res.filter((item) => {
-                    if(this.$route.params.category == item.id) return item;
-                })[0].sequence-1;
-            })
+        watch: {
+            // 检测导航是否加载到
+            topBar() {
+                this.activeNav = this.topBar.filter((item) => {
+                    if(this.category == item.name) return item;
+                })[0].id-1;
+            }
         }
     }
 </script>

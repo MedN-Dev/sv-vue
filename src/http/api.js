@@ -7,7 +7,7 @@ const apiAddress = 'http://10.1.2.59:8081';
 export default apiAddress;
 
 export const Account = {
-    Login: `${apiAddress}/api/v2/Account/Login`,
+    Login: `${apiAddress}/Account/Login`,
     Logout: `${apiAddress}/api/v2/Account/Logout`,
     GetUserInfo: `${apiAddress}/api/v2/Account/UserInfo`,
 }
@@ -22,7 +22,13 @@ export const Collection = {
 // 多项目Portfolio
 export const Portfolio = {
     Region: `${apiAddress}/api/portfolio/region`,
-    Charts: `${apiAddress}/api/portfolio/charts`
+    Charts: `${apiAddress}/api/portfolio/chats`,
+    Projects: `${apiAddress}/api/portfolio/projects`,
+}
+
+// 发电量也页面
+export const Energy = {
+    Projects: `${apiAddress}/api/energy/projects`,
 }
 
 // 项目相关

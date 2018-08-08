@@ -1,0 +1,88 @@
+<template>
+  <div class="sv-hightCharts-portfolios">
+    <div :id=id></div>
+  </div>
+</template>
+
+<script>
+  import Highcharts from 'highcharts/highstock';
+  import { HighchartsTheme } from '@/utils/highChartsTheme';
+  export default {
+    name: 'sv-hightCharts-portfolios',
+    props: {
+      id: String,
+      title: String,
+      options: Array
+    },
+    data() {
+      return {
+
+      }
+    },
+    mounted() {
+      this.loadCharts();
+    },
+    watch: {
+      options(){
+        this.loadCharts();
+      }
+    },
+    methods: {
+      loadCharts() {
+        // 绘制图表
+        Highcharts.setOptions(HighchartsTheme);
+        Highcharts.chart(this.id, {
+          chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie',
+          },
+          title: {
+            text: this.title,
+            align: 'center',
+            verticalAlign: 'middle',
+            y:-30,
+            x:0,
+            style: {
+              color: '#ffffff',
+              fontWeight: 'bold',
+              fontSize: "24px"
+            }
+          },
+          credits: {
+            enabled:false
+          },
+          legend: {
+            align: 'center',
+            verticalAlign: 'bottom',
+            labelFormatter: function () {
+              return this.name ;
+            }
+          },
+          tooltip: {
+            pointFormatter: function(){
+              return this.name+':'+(this.percentage).toFixed(2)+'%';
+            }
+          },
+          plotOptions: {
+            pie: {
+              innerSize: '60%',
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                enabled: false	 
+              },
+              showInLegend: true
+            }
+          },
+          series: [{
+            name: 'Brands',
+            colorByPoint: true,
+            data: this.options
+          }]
+        });
+      }
+    }
+  }
+</script>

@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     //请求用户的一些信息
-    async getUserInfo(){
+    getUserInfo(){
       //发送http请求获取，这里写死作演示
       this.userInfo = {
         nick: 'Doterlin',
@@ -27,7 +27,7 @@ export default {
         portrait: 'images/profile.png'
       }
       //提交mutation到Store
-      this.$store.dispatch('updateUserInfo', this.userInfo); 
+      this.$store.dispatch('FETCH_USERINFO', this.userInfo);
     }
   }
 }

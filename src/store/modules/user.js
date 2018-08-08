@@ -14,7 +14,7 @@ export default {
     portrait: state => state.userInfo.portrait,
   },
   mutations: {
-    USER_INFO(state, { nick, ulevel, uid, portrait }) {
+    updateUserInfo(state, { nick, ulevel, uid, portrait }) {
       state.userInfo.nick = nick;
       state.userInfo.ulevel = ulevel;
       state.userInfo.uid = uid;
@@ -22,9 +22,9 @@ export default {
     }
   },
   actions: {
-    updateUserInfo ({ commit }, userInfo) {
+    FETCH_USERINFO ({ commit }, userInfo) {
       setTimeout(() => {
-        commit('USER_INFO', userInfo);
+        commit('updateUserInfo', userInfo);
       }, 1000);
     }
   }

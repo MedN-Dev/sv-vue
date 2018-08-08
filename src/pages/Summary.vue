@@ -21,7 +21,7 @@
         </v-flex>
       </v-layout>
       <!-- 组件-Portfolio图表 -->
-      <sv-highCharts-portfolio id="sv_hightCharts_sp" :options="chart_sp_options"></sv-highCharts-portfolio>
+      <sv-highCharts-portfolio id="sv_hightCharts_portfolio" :options="portfolio_options"></sv-highCharts-portfolio>
       <!-- 组件-项目列表 -->
       <sv-projectList :category="category"></sv-projectList>
     </sv-panel>
@@ -33,8 +33,8 @@ import SVPanel from '@/components/common/Panel.vue'
 import SVDashboard from '@/components/common/Dashboard.vue'
 import SVProjectList from '@/components/common/ProjectList.vue'
 import SVHighcharts from '@/components/common/Highcharts.vue'
-import SVHighchartsPortfolio from '@/components/common/HighchartsPortfolio.vue'
-import { SUMMARY_PORTFOLIO, SUMMARY_ENERGY } from '@/utils/highChartsOption'
+import SVHighchartsPortfolio from '@/components/multi/summary/HighchartsPortfolio.vue'
+import { SUMMARY_ENERGY } from '@/utils/highChartsOption'
 import { Portfolio } from '@/http/api'
 
 export default {
@@ -53,8 +53,8 @@ export default {
     return {
       trigger: 'COUNT',
       chart_se_options: SUMMARY_ENERGY,
-      chart_portfolio_sum_data: [],
-      chart_portfolio_count_data: []
+      portfolio_sum: [],
+      portfolio_count: []
     }
   },
   watch: {
@@ -64,11 +64,11 @@ export default {
     }
   },
   computed: {
-    chart_sp_options() {
+    portfolio_options() {
       if(this.trigger === 'COUNT'){
-        return this.chart_portfolio_count_data;
+        return this.portfolio_count;
       }else{
-        return this.chart_portfolio_sum_data;
+        return this.portfolio_sum;
       }
     }
   },
@@ -79,8 +79,8 @@ export default {
     loadPortfolio() {
       this.$axios.get(Portfolio.Region,{ id: this.category })
         .then((res)=>{
-          this.chart_portfolio_sum_data = this.filtersPortfolioSum(res.data);
-          this.chart_portfolio_count_data = this.filtersPortfolioCount(res.data);
+          this.portfolio_sum = this.filtersPortfolioSum(res.data);
+          this.portfolio_count = this.filtersPortfolioCount(res.data);
         })
     },
     filtersPortfolioSum(items) {

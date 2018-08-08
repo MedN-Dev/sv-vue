@@ -79,7 +79,7 @@
     methods: {
         submit() {
             const expireDays = 1000 * 60 * 60 * 24 * 15;
-            const cookie = 'ufe_dMg_uzRkd3GuZLZUcYe-aXu9HROpLX1vX2agYGX4h68fyQSRrGUkTLNXF29y2UcOphgMq1AgE_1PMVKuudUrvTGA0mgR8EaRpe368XuEMxaprtwQ97tFw_30HyKeOc0km-9f89Su2G40Pwg1EJbuQnxx_fiStPVlRSJEcPujo7Xd9X67j8CEfJCqJYb4eoCQt78L4cN2Xw4C4UEOkiM1aBXc0Z9oUNbhAgCL5cZ5sqoQXTZBa6oasrvm0Vb9zd_ui0Gtag5IK2j8yFIsID5gmcmQdUvTh4NMv6rKJhNxjpJlA1iw89zpBAfYiyCsLxgSTAhP6SR6wweiPUHnjTY6-9bXFQqzNH3mkzmzBJAxQ-ZPk8h3825rpvjYFYwg89o6LR-DD0NzyDB8pvl1k97ciBH-Va_T67DyCDTkYLry_bmxfQsfmOwjGbAygd1YRUg_M1aq996puntTg8pCGDeR1Wulj5B3Se6hrMG_6XDd-RHUH7rIG5NDlm8h5CD5VhR8bF7NHLlWba52w4ViPg';
+            const cookie = 'QBbT4Y6QHT9jWDBzJ1bZceQBD40tCOOm_kfJkDizC96X_13fOH25hf0FuNixRTDE-0Qp9BSfZwDvlIKvT66FpnWd3xtADD5TL0QDC88_kox453B0HagN79EHdyN51CPe2WyDD4X3piiZSSCVrL6ONjAztedhLVwquPLOnlX1AXJRCtrUph1BwHpx5uw16C962YnhuejGItH98nrPsnDuSPSVIWUzgWewc1ehhjHUaFOBgBcYuMokk5ExeMeioZrYzgYhNA77rkCyUk8gjOzt_8KYBmQWon1vtBqut_lA5bLaJmzycRo6iSTg7Yd6kGFfYOxjKqO64VH7pMMobs4JGRa4EcSSSViNRw0J2UfJOZuJ-rRVHsVdytnRpJrnNmi-Aa45CmyYAYrRwHpHcE3QR2jlAsNXS3ODXWXUvCyDCCrrDExiVRI8_S8RSqHCnF9YrDcykaRJEHsBoWc9G_IXUCDav-ZJXXSGz7dy6e38SlChAueRqAKsXkgsmRlBL9w70CapXLwjoa-W-3w41nCMpw';
             this.$setCookie('.AspNet.ApplicationCookie', cookie, expireDays);
             this.$router.push({ path: 'summary/100' });
             // const params = { username: this.username, password: this.password, _csrf: this.$store.state.token };

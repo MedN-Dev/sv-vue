@@ -17,16 +17,16 @@ let app = new Vue({
     "$route" : 'updateRouter'
   },
   created() {
-    // this.checkLogin();
+    this.updateRouter();
   },
   methods: {
     updateRouter() {
-      this.$store.dispatch('updateCategory', this.$route.params.category);
-      //this.checkLogin()
+      this.$store.dispatch('UPDATE_CATEGORY', this.$route.params.category);
+      this.checkLogin();
     },
     checkLogin() {
       //检查是否存在session,判断是否登录状态,
-      if(!this.$getCookie('sv_login_session')){ // 如果取不到 cookie 值则跳转到登陆页
+      if(!this.$getCookie('.AspNet.ApplicationCookie')){ // 如果取不到 cookie 值则跳转到登陆页
         this.$router.push('/login');
       }
     }

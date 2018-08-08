@@ -11,7 +11,7 @@
     name: 'sv-hightCharts-portfolio',
     props: {
       id: String,
-      options: Object
+      options: Array
     },
     data() {
       return {
@@ -22,7 +22,7 @@
       this.loadCharts();
     },
     watch: {
-      options(val, oldVal){
+      options(){
         this.loadCharts();
       }
     },
