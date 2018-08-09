@@ -12,7 +12,7 @@
         <sv-dashboard-item :items="tab.group"></sv-dashboard-item>
       </v-tab-item>
     </v-tabs>
-    <div class="sv-dashboard-control">..</div>
+    <div class="sv-dashboard-control" v-text="control"></div>
   </div>
 </template>
 
@@ -54,6 +54,11 @@
           return temp;
         },
         set() {}
+      },
+      control() {
+        let point = '';
+        for(let i = 0; i< Math.ceil(this.dashboard.length/3); i++) { point += '.'; }
+        return point;
       }
     },
     watch: {

@@ -36,6 +36,7 @@ A Web App dev for Solar Value
 | Portfolio `highcharts` 图表与 `Projectlist` 接口联调  | 2018/08/07 | 2018/08/07 | 达标 | DengDeng |
 | Energy `highcharts` 图表与 `Projectlist` 接口联调 | 2018/08/08 | 2018/08/08 | 达标 | DengDeng |
 | Summary `highcharts` 图表与 `Projectlist` 接口联调 | 2018/08/09 | 2018/08/09 | 达标 | DengDeng |
+| Portfolio 图表点击事件联动 | 2018/08/09 | 2018/08/09 | - | DengDeng |
 
 - 第三阶段： APP 测试返修与上线优化（1周）
 

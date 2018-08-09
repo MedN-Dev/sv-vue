@@ -59,13 +59,14 @@
     data () {
       return {
         pageSize: 10,
-        list: [{favor: 0, title: '项目', col1: 'パネル出力', col2: '当月発電比較',}]
+        list: [{favor: 0, title: '项目', col1: 'パネル出力MW', col2: 'FIT 円',}]
       }
     },
     watch: {
-      category() {
-        this.resetList();
-      }
+      category() { this.resetList(); },
+      region() { this.resetList(); },
+      fit() { this.resetList(); },
+      codYears() { this.resetList(); },
     },
     computed: {
       page() {
@@ -103,17 +104,17 @@
         })
       },
       favoriteHandle(projectId) {
-        this.$axios.post(Project.Favorite, { pid: projectId})
+        this.$axios.post(`${Project.Favorite}?pid=${projectId}`)
           .then((res)=>{
-            if(res.code == 1){
+            if(res.code == 0){
               this.updateListById(projectId, 1);
             }
           });
       },
       unfavoriteHandle(projectId) {
-        this.$axios.post(Project.UnFavorite, { pid: projectId})
+        this.$axios.post(`${Project.UnFavorite}?pid=${projectId}`)
           .then((res)=>{
-            if(res.code == 1){
+            if(res.code == 0){
               this.updateListById(projectId, 0);
             }
           });
@@ -128,7 +129,7 @@
         })
       },
       resetList() {
-        this.list = [{ favor: 0, title: '项目', col1: 'パネル出力', col2: '当月発電比較',}];
+        this.list = [{ favor: 0, title: '项目', col1: 'パネル出力MW', col2: 'FIT 円',}];
         this.$nextTick(() => {
           this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset');
         });

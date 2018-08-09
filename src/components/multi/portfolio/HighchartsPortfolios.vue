@@ -16,7 +16,7 @@
     },
     data() {
       return {
-
+        active: ''
       }
     },
     mounted() {
@@ -28,7 +28,13 @@
       }
     },
     methods: {
+      // 点击图表
+      activeChart(name) {
+        this.active = name;
+        this.$emit("listenActiveChart", name);
+      },
       loadCharts() {
+        var That = this;
         // 绘制图表
         Highcharts.setOptions(HighchartsTheme);
         Highcharts.chart(this.id, {
@@ -68,8 +74,13 @@
           plotOptions: {
             pie: {
               innerSize: '60%',
-              allowPointSelect: true,
+              allowPointSelect: false,
               cursor: 'pointer',
+              events: { 
+                click: function(e) { 
+                  That.activeChart(e.point.name);
+                } 
+              },
               dataLabels: {
                 enabled: false	 
               },

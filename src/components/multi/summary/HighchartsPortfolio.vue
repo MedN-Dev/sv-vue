@@ -58,10 +58,10 @@
           plotOptions: {
             pie: {
                 innerSize: '40%',
-                allowPointSelect: true,
+                allowPointSelect: false,
                 cursor: 'pointer',
                 dataLabels: {
-                    enabled: false
+                  enabled: false
                 },
                 showInLegend: true
             }

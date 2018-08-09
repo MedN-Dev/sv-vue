@@ -16,11 +16,11 @@
         </v-flex>
       </v-layout>
       <!-- 组件-Portfolio图表 -->
-      <sv-highCharts-portfolios id="sv_hightCharts_portfolios_region" title="地域" :options="region_options"></sv-highCharts-portfolios>
+      <sv-highCharts-portfolios id="sv_hightCharts_portfolios_region" title="地域" :options="region_options" @listenActiveChart="changeRegion"></sv-highCharts-portfolios>
       <!-- 组件-Portfolio图表 -->
-      <sv-highCharts-portfolios id="sv_hightCharts_portfolios_fit" title="Fit" :options="fit_options"></sv-highCharts-portfolios>
+      <sv-highCharts-portfolios id="sv_hightCharts_portfolios_fit" title="FIT" :options="fit_options" @listenActiveChart="changeFit"></sv-highCharts-portfolios>
       <!-- 组件-Portfolio图表 -->
-      <sv-highCharts-portfolios id="sv_hightCharts_portfolios_codYears" title="年限" :options="codYears_options"></sv-highCharts-portfolios>
+      <sv-highCharts-portfolios id="sv_hightCharts_portfolios_codYears" title="建筑年限" :options="codYears_options" @listenActiveChart="changeCodYears"></sv-highCharts-portfolios>
       <!-- 项目列表 -->
       <sv-projectList-portfolio :category="category" :region="region" :fit="fit" :codYears="codYears"></sv-projectList-portfolio>
     </sv-panel>
@@ -70,15 +70,19 @@
       }
     },
     watch: {
-      category() {
-        // 刷新页面
-        this.loadPortfolio()
-      }
+      category() { this.resetChart(); this.loadPortfolio() },
+      region() { this.loadPortfolio() },
+      fit() { this.loadPortfolio() },
+      codYears() { this.loadPortfolio() },
     },
     mounted() {
       this.loadPortfolio();
     },
     methods: {
+      resetChart() { this.region = ''; this.fit = ''; this.codYears = ''; },
+      changeRegion(value) { this.region = value; },
+      changeFit(value) { this.fit = value; },
+      changeCodYears(value) { this.codYears = value; },
       loadPortfolio() {
         this.$axios.get(Portfolio.Charts,{ id: this.category, region: this.region, fit: this.fit, codYears: this.codYears })
           .then((res)=>{

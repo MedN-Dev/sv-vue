@@ -108,17 +108,17 @@
         })
       },
       favoriteHandle(projectId) {
-        this.$axios.post(Project.Favorite, { pid: projectId})
+        this.$axios.post(`${Project.Favorite}?pid=${projectId}`)
           .then((res)=>{
-            if(res.code == 1){
+            if(res.code == 0){
               this.updateListById(projectId, 1);
             }
           });
       },
       unfavoriteHandle(projectId) {
-        this.$axios.post(Project.UnFavorite, { pid: projectId})
+        this.$axios.post(`${Project.UnFavorite}?pid=${projectId}`)
           .then((res)=>{
-            if(res.code == 1){
+            if(res.code == 0){
               this.updateListById(projectId, 0);
             }
           });
