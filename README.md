@@ -35,7 +35,7 @@ A Web App dev for Solar Value
 | `axios` 请求模块封装,开发环境跨域代理，`顶部导航` 与 `Widget面板` api联调成功 | 2018/08/06 | 2018/08/06 | 达标 | DengDeng |
 | Portfolio `highcharts` 图表与 `Projectlist` 接口联调  | 2018/08/07 | 2018/08/07 | 达标 | DengDeng |
 | Energy `highcharts` 图表与 `Projectlist` 接口联调 | 2018/08/08 | 2018/08/08 | 达标 | DengDeng |
-| Portfolio 图表点击事件联动,除了Document分页tab其余已给出的接口已调通 | 2018/08/09 | 2018/08/09 | - | DengDeng |
+| Portfolio 图表点击事件联动,除了Document分页tab其余已给出的接口已调通 | 2018/08/09 | 2018/08/09 | 达标 | DengDeng |
 
 - 第三阶段： APP 测试返修与上线优化（1周）
 
