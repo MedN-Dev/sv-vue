@@ -18,7 +18,6 @@
 
 <script>
   import MOCK_DASHBOARD_EMPTY from '@/mock/DashboardEmpty.json'
-  import MOCK_DASHBOARD from '@/mock/Dashboard.json'
   import SVDashboardItem from './DashboardItem.vue'
   import { Collection } from '@/http/api'
   export default {
@@ -62,10 +61,7 @@
       }
     },
     watch: {
-      category(val, oldVal) {
-        // 更新视图
-        this.load();
-      },
+      category() { this.load(); },
     },
     mounted() {
       this.load();

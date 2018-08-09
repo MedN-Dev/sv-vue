@@ -96,12 +96,12 @@
       },
       filtersPortfolioSum(items) {
         return items.map((item)=>{
-          return { name: item.label, y: item.values[0] }
+          return { name: item.label, y: item.indexValues['1'] }
         });
       },
       filtersPortfolioCount(items) {
         return items.map((item)=>{
-          return { name: item.label, y: item.values[1] }
+          return { name: item.label, y: item.indexValues['2'] }
         });
       }
     }
