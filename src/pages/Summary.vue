@@ -31,8 +31,8 @@
 <script>
 import SVPanel from '@/components/common/Panel.vue'
 import SVDashboard from '@/components/common/Dashboard.vue'
-import SVProjectList from '@/components/common/ProjectList.vue'
 import SVHighcharts from '@/components/common/Highcharts.vue'
+import SVProjectList from '@/components/multi/summary/ProjectList.vue'
 import SVHighchartsPortfolio from '@/components/multi/summary/HighchartsPortfolio.vue'
 import { SUMMARY_ENERGY } from '@/utils/highChartsOption'
 import { Portfolio } from '@/http/api'

@@ -48,7 +48,7 @@
                 </router-link>
                 <v-spacer></v-spacer>
                 <v-btn icon>
-                    <v-icon small>金尺</v-icon>
+                    <v-icon small v-text="text"></v-icon>
                 </v-btn>
                 <v-spacer></v-spacer>
             </v-tabs>
@@ -59,6 +59,7 @@
 <script>
     export default {
         name: 'sv-top-nav-single',
+        props: ['text'],
         data() {
             return {
                 clipped: false,

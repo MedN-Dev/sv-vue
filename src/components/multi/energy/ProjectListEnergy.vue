@@ -102,7 +102,7 @@
       },
       filterlist(items) {
         return items.map((item)=>{
-          return { id: item.id, favor: item.hasFavorite, title: item.name, col1: item.items[0], col2: item.items[1], link: `/project/${item.id}/summary` }
+          return { id: item.id, favor: item.hasFavorite, title: item.name, col1: item.items[0], col2: item.items[1], link: `/project/${item.id}/summary?name=${item.name}` }
         })
       },
       favoriteHandle(projectId) {

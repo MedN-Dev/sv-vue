@@ -35,6 +35,6 @@ export const Energy = {
 export const Project = {
     Favorite: `${apiAddress}/api/project/favorite`,
     UnFavorite: `${apiAddress}/api/project/unfavorite`,
-    Items: `${apiAddress}/api/project/items?pid=10`,
-    Documents: `${apiAddress}api/project/documents?pid=10&type=monthlyreport&page=1&pagesize=10`,
+    Items: `${apiAddress}/api/project/items`,
+    Documents: `${apiAddress}/api/project/documents`,
 }

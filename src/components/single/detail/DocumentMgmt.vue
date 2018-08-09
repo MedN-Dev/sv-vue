@@ -58,7 +58,10 @@
 </template>
 
 <script>
+  import { Project } from '@/http/api.js'
   export default {
+    name: 'sv-documentMgmt',
+    props: ['projectId'],
     data() {
       return {
         tab: null,
@@ -73,11 +76,25 @@
         ]
       }
     },
+    mounted() {
+      this.fetchDocumentList();
+    },
     methods: {
+      fetchDocumentList() {
+        this.$axios.get(Project.Documents, { pid: this.projectId, type: 'monthlyreport', page: 1, pagesize: 10 })
+          .then((res)=>{
+            this.list = this.filterDocumentList(res.data.items);
+          });
+      },
+      filterDocumentList(items) {
+        return items.map((item)=>{
+          return { id: item.id, title: item.name, date: item.date, src: item.url }
+        })
+      },
       download() {
         // location.href = src;
       }
-    }
+    },
   }
 </script>
 
