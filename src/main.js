@@ -22,7 +22,7 @@ var app = new Vue({
   methods: {
     updateRouter() {
       this.$store.dispatch('UPDATE_CATEGORY', this.$route.params.category);
-      this.checkLogin();
+      //this.checkLogin();
     },
     checkLogin() {
       //检查是否存在session,判断是否登录状态,

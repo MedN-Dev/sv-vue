@@ -47,7 +47,7 @@
 
 <style>
 .sv-detailTable{
-  padding: 0 10px;
+  padding: 0 4px;
 }
 .sv-detailTable .v-table{
   background-color: transparent;

@@ -71,9 +71,11 @@
         // 装载 dashboard
         this.$axios.get(Collection.Widgets, {id: this.category, type: this.view})
         .then((res)=>{
-          this.dashboard = res.data.map((item)=>{
-            return { name: item.label, unit: item.unit, value: item.value }
-          });
+          if(res.code === 0){
+            this.dashboard = res.data.map((item)=>{
+              return { name: item.label, unit: item.unit, value: item.value }
+            });
+          }
         })
       },
       next() {

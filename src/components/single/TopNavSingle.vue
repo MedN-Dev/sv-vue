@@ -48,10 +48,10 @@
                 </router-link>
                 <v-spacer></v-spacer>
                 <v-btn icon>
-                    <v-icon small v-text="text"></v-icon>
+                    <v-icon small v-text="projectName"></v-icon>
                 </v-btn>
                 <v-spacer></v-spacer>
-                <router-link to="/summary/100">
+                <router-link :to="searchLink">
                     <v-icon>search</v-icon>
                 </router-link>
             </v-tabs>
@@ -72,11 +72,16 @@
                 ],
                 title: 'Solar Value',
                 fixed: true,
-                text: '',
+                projectName: '',
+            }
+        },
+        computed: {
+            searchLink() {
+                return `/search?name=${this.projectName}`;
             }
         },
         mounted() {
-            this.text = this.$route.query.name;
+            this.projectName = this.$route.query.name;
         }
     }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="sv-page-detail">
     <!-- 组件-项目明细 -->
-    <sv-panel title="Detail" hideMore>
+    <sv-panel>
       <sv-detailTable></sv-detailTable>
     </sv-panel>
     <!-- 组件-文档管理 -->

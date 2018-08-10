@@ -2,15 +2,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import SVMultiProject from '../components/multi/MultiProject.vue'
 import SVSingleProject from '../components/single/SingleProject.vue'
-
 import SVLogin from '../pages/Login.vue'
-// import SVError from '../pages/404.vue'
+import SVError from '../pages/404.vue'
+import SVSearch from '../pages/Search.vue'
 import SVSummary from '../pages/Summary.vue'
 import SVEnergy from '../pages/Energy.vue'
 import SVEvent from '../pages/Event.vue'
 import SVPortfolio from '../pages/Portfolio.vue'
-
-// 单项目
 import SVSummarySingle from '../pages/SummarySingle.vue'
 import SVEnergySingle from '../pages/EnergySingle.vue'
 import SVEventSingle from '../pages/EventSingle.vue'
@@ -21,6 +19,9 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
+    { path: '*', component: SVError },
+    { path: '/search', name: 'search', component: SVSearch },
+    { path: '/login', name: 'login', component: SVLogin },
     {
       path: '/',
       redirect: 'summary/100',
@@ -84,11 +85,6 @@ export default new Router({
           props: true
         },
       ]
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: SVLogin
     },
   ],
   scrollBehavior (to, from, savedPosition) {

@@ -99,7 +99,8 @@
       fetchDocumentList() {
         this.$axios.get(Project.Documents, { pid: this.projectId, type: this.docType, page: 1, pagesize: 10 })
           .then((res)=>{
-            this.list = this.filterDocumentList(res.data.items);
+            if(res.code === 0)
+              this.list = this.filterDocumentList(res.data.items);
           });
       },
       filterDocumentList(items) {

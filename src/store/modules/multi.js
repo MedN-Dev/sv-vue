@@ -24,7 +24,9 @@ export default {
     FETCH_TOPBAR ({ commit }) {
       axios.get(Collection.List, {})
         .then((res)=>{
-          commit('updateTopBar', res.data);
+          if(res.code === 0){
+            commit('updateTopBar', res.data);
+          }
         });
     },
     // 更新当前 tabs 分类

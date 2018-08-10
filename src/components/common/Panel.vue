@@ -7,9 +7,8 @@
             <v-card-text class="sv-panel-title" align="left">{{title}}</v-card-text>
           </v-flex>
           <v-flex xs8>
-            <v-card-text v-if="!hideMore" class="sv-panel-next" align="right">
-              <v-icon small color="sv_gray">keyboard_arrow_right</v-icon>
-            </v-card-text>
+            <!-- 插槽-右侧控制 -->
+            <slot name="right"></slot>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -25,7 +24,6 @@
     name: 'sv-panel',
     props: {
       title: String,
-      hideMore: Boolean,
     },
     data() {
       return {

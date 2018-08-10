@@ -1,16 +1,35 @@
 <template>
   <div class="sv-page-summarySingle">
     <sv-dashboard></sv-dashboard>
+    <!-- 静态图 -->
+    <v-jumbotron
+      :gradient="gradient"
+      dark
+      :src="items[0].src"
+      height="180px"
+      class="sv-page-summarySingle-carousel"
+    >
+      <v-container fill-height>
+        <v-layout align-center>
+          <v-flex text-xs-center>
+            <h3 class="display-13"></h3>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-jumbotron>
     <!-- 轮播图 -->
-    <v-carousel class="sv-page-summarySingle-carousel" dark hide-controls hide-delimiters>
+    <!-- <v-carousel class="sv-page-summarySingle-carousel" dark hide-controls hide-delimiters>
       <v-carousel-item
         v-for="(item,i) in items"
         :key="i"
         :src="item.src"
       ></v-carousel-item>
-    </v-carousel>
+    </v-carousel> -->
     <!-- 项目明细 -->
-    <sv-panel title="Detail">
+    <sv-panel>
+      <!-- <v-card-text class="sv-panel-next" align="right" slot="right">
+        <v-icon small color="sv_gray" @click="goDetailPage">keyboard_arrow_right</v-icon>
+      </v-card-text> -->
       <sv-detailTable :tableList="details"></sv-detailTable>
     </sv-panel>
     <!-- 百度地图 -->
@@ -41,15 +60,8 @@ export default {
         { src: SVBannerImg },
         { src: SVBannerImg }
       ],
-      details: [
-        { title: '所在地', descript: '岩222手县一关市', },
-        { title: 'Panel出力', descript: '10,793.64KW', },
-        { title: 'Panel枚数', descript: '42,328枚', },
-        { title: '発電設備容量', descript: '7,920KW', },
-        { title: 'FIT価格', descript: '36円/KWH', },
-        { title: '年間予想発電量', descript: '11,473,361/KWH', },
-        { title: '運転開始日', descript: '2015/12/20', }
-      ]
+      details: [],
+      gradient: 'to top right, rgba(44,48,59, .7), rgba(31,33,45, .3)'
     }
   },
   mounted() {
@@ -60,7 +72,9 @@ export default {
     fetchProjectDetail() {
       this.$axios.get(Project.Items,{ pid: this.id })
       .then((res)=>{
-        this.details = this.filterProjectDetail(res.data);
+        if(res.code === 0){
+          this.details = this.filterProjectDetail(res.data);
+        }
       })
     },
     // 清洗数据源
@@ -68,6 +82,9 @@ export default {
       return items.map((item)=>{
         return { title: item.name, descript: item.value };
       })
+    },
+    goDetailPage() {
+      //this.$router.push('/project/91/detail?name=鹿屋市高隈第1');
     }
   }
 }

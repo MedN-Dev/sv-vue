@@ -79,8 +79,10 @@ export default {
     loadPortfolio() {
       this.$axios.get(Portfolio.Region,{ id: this.category })
         .then((res)=>{
-          this.portfolio_sum = this.filtersPortfolioSum(res.data);
-          this.portfolio_count = this.filtersPortfolioCount(res.data);
+          if(res.code === 0) {
+            this.portfolio_sum = this.filtersPortfolioSum(res.data);
+            this.portfolio_count = this.filtersPortfolioCount(res.data);
+          }
         })
     },
     filtersPortfolioSum(items) {

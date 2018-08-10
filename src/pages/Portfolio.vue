@@ -86,12 +86,14 @@
       loadPortfolio() {
         this.$axios.get(Portfolio.Charts,{ id: this.category, region: this.region, fit: this.fit, codYears: this.codYears })
           .then((res)=>{
-            this.region_count = this.filtersPortfolioSum(res.data.region);
-            this.region_sum = this.filtersPortfolioCount(res.data.region);
-            this.fit_count = this.filtersPortfolioSum(res.data.fit);
-            this.fit_sum = this.filtersPortfolioCount(res.data.fit);
-            this.codYears_count = this.filtersPortfolioSum(res.data.codYears);
-            this.codYears_sum = this.filtersPortfolioCount(res.data.codYears);
+            if(res.code === 0){
+              this.region_count = this.filtersPortfolioSum(res.data.region);
+              this.region_sum = this.filtersPortfolioCount(res.data.region);
+              this.fit_count = this.filtersPortfolioSum(res.data.fit);
+              this.fit_sum = this.filtersPortfolioCount(res.data.fit);
+              this.codYears_count = this.filtersPortfolioSum(res.data.codYears);
+              this.codYears_sum = this.filtersPortfolioCount(res.data.codYears);
+            }
           })
       },
       filtersPortfolioSum(items) {

@@ -1,5 +1,6 @@
 import axios from 'axios'
-// import Router from '../router'
+import qs from 'qs'
+import $router from '@/router'
 
 axios.interceptors.request.use(config => {
   return config
@@ -38,8 +39,9 @@ function checkCode (res) {
   if (res.code === 1) { 
     //console.log('操作失败') 
   }
-  if (res.isAuthorized != 1) { 
+  if (res.isAuthorized === 0) { 
     //console.log('请先登录') 
+    $router.push('/login');
   }
   if (res.data) {
     // console.log('请求成功')
@@ -58,7 +60,10 @@ export default {
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      }
+      },
+      transformRequest: [function (data) {
+        return qs.stringify(data);
+      }],
     }).then(
       (response) => {
         return checkStatus(response)

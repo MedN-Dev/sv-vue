@@ -2,12 +2,13 @@
 const apiAddress = 'http://10.1.2.59:8081';
 
 // 生产环境域名
-// const apiAddress = 'http://127.0.0.1:7001';
+// const apiAddress = 'http://solar-value.com';
 
 export default apiAddress;
 
 export const Account = {
-    Login: `${apiAddress}/api/account/loginForMB`,
+    Login: `${apiAddress}/account/loginForMB`,
+    Logout: `${apiAddress}/account/logoutForMB`,
 }
 
 // 多项目分类

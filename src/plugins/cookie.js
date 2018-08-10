@@ -18,12 +18,16 @@ SVCookie.install = function (Vue) {
      * @param {String} name 默认为 session
      */
     Vue.prototype.$getCookie = function(name) {
-        let reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-        let arr = document.cookie.match(reg); 
-        if(arr){
-            return (arr[2]);
-        }else{
-            return null;
+        var strcookie = document.cookie;
+        var arrcookie = strcookie.split("; ");//分割
+        //遍历匹配
+        for ( var i = 0; i < arrcookie.length; i++) {
+            var arr = arrcookie[i].split("=");
+            if (arr[0] == name){
+                return arr[1];
+            }else{
+                return null
+            }
         }
     }
     /**
