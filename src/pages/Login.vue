@@ -57,8 +57,7 @@
 <script>
   import 'particles.js'
   import particlesJSON from '../assets/particlesjs-config.json'
-  //import axios from 'axios'
-  //import * as API from '../utils/api.js'
+  import { Account } from '@/http/api.js'
     export default {
     name: 'sv-login',
     data: () => ({
@@ -76,28 +75,29 @@
         v => v.length >= 8 || 'Min 8 characters',
       ]
     }),
-    methods: {
-        submit() {
-            const expireDays = 1000 * 60 * 60 * 24 * 15;
-            const cookie = 'QBbT4Y6QHT9jWDBzJ1bZceQBD40tCOOm_kfJkDizC96X_13fOH25hf0FuNixRTDE-0Qp9BSfZwDvlIKvT66FpnWd3xtADD5TL0QDC88_kox453B0HagN79EHdyN51CPe2WyDD4X3piiZSSCVrL6ONjAztedhLVwquPLOnlX1AXJRCtrUph1BwHpx5uw16C962YnhuejGItH98nrPsnDuSPSVIWUzgWewc1ehhjHUaFOBgBcYuMokk5ExeMeioZrYzgYhNA77rkCyUk8gjOzt_8KYBmQWon1vtBqut_lA5bLaJmzycRo6iSTg7Yd6kGFfYOxjKqO64VH7pMMobs4JGRa4EcSSSViNRw0J2UfJOZuJ-rRVHsVdytnRpJrnNmi-Aa45CmyYAYrRwHpHcE3QR2jlAsNXS3ODXWXUvCyDCCrrDExiVRI8_S8RSqHCnF9YrDcykaRJEHsBoWc9G_IXUCDav-ZJXXSGz7dy6e38SlChAueRqAKsXkgsmRlBL9w70CapXLwjoa-W-3w41nCMpw';
-            this.$setCookie('.AspNet.ApplicationCookie', cookie, expireDays);
-            this.$router.push({ path: 'summary/100' });
-            // const params = { username: this.username, password: this.password, _csrf: this.$store.state.token };
-            // axios.post(API.Account.Login, params)
-            //     .then((response) => {
-            //         if(response.data.code == 1){
-            //             let expireDays = 1000 * 60 * 60 * 24 * 15;
-            //             this.$setCookie('sv_login_session', response.data.data.session, expireDays);
-            //             this.$router.push({ path: 'summary/all' });
-            //         }else{
-            //             this.alert = true;
-            //         }
-            //     });
-        }
-    },
     mounted() {
         // 加载粒子动画
         window.particlesJS('sv_login', particlesJSON);
+    },
+    methods: {
+        submit() {
+            this.$axios.post(`${Account.Login}?LoginName=panbo&Password=123456`)
+                .then((res) => {
+                    debugger
+                    // if(res.data.code == 1){
+                    //     const expireDays = 1000 * 60 * 60 * 24 * 15;
+                    //     const cookie = 'QBbT4Y6QHT9jWDBzJ1bZceQBD40tCOOm_kfJkDizC96X_13fOH25hf0FuNixRTDE-0Qp9BSfZwDvlIKvT66FpnWd3xtADD5TL0QDC88_kox453B0HagN79EHdyN51CPe2WyDD4X3piiZSSCVrL6ONjAztedhLVwquPLOnlX1AXJRCtrUph1BwHpx5uw16C962YnhuejGItH98nrPsnDuSPSVIWUzgWewc1ehhjHUaFOBgBcYuMokk5ExeMeioZrYzgYhNA77rkCyUk8gjOzt_8KYBmQWon1vtBqut_lA5bLaJmzycRo6iSTg7Yd6kGFfYOxjKqO64VH7pMMobs4JGRa4EcSSSViNRw0J2UfJOZuJ-rRVHsVdytnRpJrnNmi-Aa45CmyYAYrRwHpHcE3QR2jlAsNXS3ODXWXUvCyDCCrrDExiVRI8_S8RSqHCnF9YrDcykaRJEHsBoWc9G_IXUCDav-ZJXXSGz7dy6e38SlChAueRqAKsXkgsmRlBL9w70CapXLwjoa-W-3w41nCMpw';
+                    //     this.$setCookie('.AspNet.ApplicationCookie', cookie, expireDays);
+                    //     this.$router.push({ path: 'summary/100' });
+
+                    //     let expireDays = 1000 * 60 * 60 * 24 * 15;
+                    //     this.$setCookie('sv_login_session', res.data.data.session, expireDays);
+                    //     this.$router.push({ path: 'summary/all' });
+                    // }else{
+                    //     this.alert = true;
+                    // }
+                });
+        }
     }
   }
 </script>

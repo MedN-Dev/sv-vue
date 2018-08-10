@@ -64,7 +64,7 @@
     props: ['projectId'],
     data() {
       return {
-        tab: null,
+        tab: 0,
         items: [
           '月次报告书', '施工图', '契约书'
         ],
@@ -76,12 +76,28 @@
         ]
       }
     },
+    computed: {
+      docType() {
+        if(this.tab === 0) {
+          return 'monthlyreport';
+        }else if(this.tab === 1){
+          return 'workPicture';
+        }else{
+          return 'comfirmDoc';
+        }
+      }
+    },
+    watch: {
+      docType() {
+        this.fetchDocumentList();
+      }
+    },
     mounted() {
       this.fetchDocumentList();
     },
     methods: {
       fetchDocumentList() {
-        this.$axios.get(Project.Documents, { pid: this.projectId, type: 'monthlyreport', page: 1, pagesize: 10 })
+        this.$axios.get(Project.Documents, { pid: this.projectId, type: this.docType, page: 1, pagesize: 10 })
           .then((res)=>{
             this.list = this.filterDocumentList(res.data.items);
           });

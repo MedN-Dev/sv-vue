@@ -2,7 +2,7 @@
     <!-- 单项目 -->
     <div class="sv-project-single">
       <!-- 顶部菜单 -->
-      <sv-top-nav-single :text="projectName"></sv-top-nav-single>
+      <sv-top-nav-single></sv-top-nav-single>
       <!-- 内容区域 -->
       <v-content>
         <router-view/>
@@ -18,17 +18,13 @@ import SVBottomNavSingle from './BottomNavSingle.vue' // 底部导航路由菜�
 
 export default {
     name: 'sv-single-project',
-    data() {
-        return {
-            projectName: ''
-        }
-    },
-    mounted() {
-        this.projectName = this.$route.query.name;
-    },
     components: {
         'sv-bottom-nav-single': SVBottomNavSingle,
         'sv-top-nav-single': SVTopNavSingle,
-    }
+    },
+    data() {
+        return {
+        }
+    },
 }
 </script>

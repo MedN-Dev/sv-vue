@@ -51,6 +51,9 @@
                     <v-icon small v-text="text"></v-icon>
                 </v-btn>
                 <v-spacer></v-spacer>
+                <router-link to="/summary/100">
+                    <v-icon>search</v-icon>
+                </router-link>
             </v-tabs>
         </v-toolbar>
     </div>
@@ -59,7 +62,6 @@
 <script>
     export default {
         name: 'sv-top-nav-single',
-        props: ['text'],
         data() {
             return {
                 clipped: false,
@@ -70,7 +72,11 @@
                 ],
                 title: 'Solar Value',
                 fixed: true,
+                text: '',
             }
+        },
+        mounted() {
+            this.text = this.$route.query.name;
         }
     }
 </script>

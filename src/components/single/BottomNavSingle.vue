@@ -22,23 +22,24 @@
         data () {
             return {
                 showNav: true,
-                items: [
-                    { id: 0, name: 'summarySingle', text: 'summary', icon: 'home', link: `/project/${this.$route.params.id}/summary` },
-                    { id: 1, name: 'energySingle', text: 'energy', icon: 'equalizer', link: `/project/${this.$route.params.id}/energy` },
-                    { id: 2, name: 'eventSingle', text: 'event', icon: 'date_range', link: `/project/${this.$route.params.id}/event` },
-                    { id: 3, name: 'detail', text: 'detail', icon: 'description', link: `/project/${this.$route.params.id}/detail` },
-                ]
+                activeNav: 0,
+                items: []
             }
         },
-        computed: {
-            activeNav: {
-                get() {
-                    let activeItem = this.items.filter((item) => {
-                        if(this.$route.name == item.name) return item;
-                    });
-                    return activeItem[0].id;
-                },
-                set() {}
+        mounted() {
+            this.items = [
+                { id: 0, name: 'summarySingle', text: 'summary', icon: 'home', link: `/project/${this.$route.params.id}/summary?name=${this.$route.query.name}` },
+                { id: 1, name: 'energySingle', text: 'energy', icon: 'equalizer', link: `/project/${this.$route.params.id}/energy?name=${this.$route.query.name}` },
+                { id: 2, name: 'eventSingle', text: 'event', icon: 'date_range', link: `/project/${this.$route.params.id}/event?name=${this.$route.query.name}` },
+                { id: 3, name: 'detail', text: 'detail', icon: 'description', link: `/project/${this.$route.params.id}/detail?name=${this.$route.query.name}` },
+            ];
+            this.setDefaultNav();
+        },
+        methods: {
+            setDefaultNav() {
+                this.activeNav = this.items.filter((item) => {
+                    if(this.$route.name == item.name) return item;
+                })[0].id;
             }
         }
     }

@@ -16,19 +16,16 @@
 import SVTopNav from './TopNav.vue';
 import SVBottomNav from './BottomNav.vue'; // 底部导航路由菜单
 
-/**
- * 动态路由决策-根据底部和上部拼接路由url
- */
 export default {
     name: 'sv-multi-project',
+    components: {
+        'sv-bottom-nav': SVBottomNav,
+        'sv-top-nav': SVTopNav,
+    },
     data() {
         return {
             
         }
-    },
-    components: {
-        'sv-bottom-nav': SVBottomNav,
-        'sv-top-nav': SVTopNav,
     },
     mounted() {
         //获取顶部菜单

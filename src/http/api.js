@@ -7,9 +7,7 @@ const apiAddress = 'http://10.1.2.59:8081';
 export default apiAddress;
 
 export const Account = {
-    Login: `${apiAddress}/Account/Login`,
-    Logout: `${apiAddress}/api/v2/Account/Logout`,
-    GetUserInfo: `${apiAddress}/api/v2/Account/UserInfo`,
+    Login: `${apiAddress}/api/account/loginForMB`,
 }
 
 // 多项目分类
