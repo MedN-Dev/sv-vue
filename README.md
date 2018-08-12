@@ -47,8 +47,8 @@ A Web App dev for Solar Value
 
 | : 名称 | 所属模块 | 参数 | URL | 类型 |
 | ---- | ------- | ---- | ---- | ---- |
-| 用户登陆 | Account | { loginName, password } | http://10.1.2.59:8081/account/loginForMB | POST |
-| 用户注销 | Account | - | http://10.1.2.59:8081/account/logoutForMB | GET |
+| 用户登陆 | Account | POST | { loginName, password } | http://10.1.2.59:8081/account/loginForMB |
+| 用户注销 | Account | GET | - | http://10.1.2.59:8081/account/logoutForMB |
 
 ## Work Log
 
