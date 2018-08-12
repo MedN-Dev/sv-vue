@@ -21,6 +21,7 @@
   import SVDashboardItem from './DashboardItem.vue'
   import { Collection } from '@/http/api'
   export default {
+    name: 'sv-dashboard',
     props: {
       category: {
         type: String,

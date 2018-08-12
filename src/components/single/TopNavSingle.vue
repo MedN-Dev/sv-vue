@@ -47,13 +47,11 @@
                     <v-icon>arrow_back</v-icon>
                 </router-link>
                 <v-spacer></v-spacer>
-                <v-btn icon>
-                    <v-icon small v-text="projectName"></v-icon>
-                </v-btn>
+                <p class="sv-top-nav-title" v-text="projectName"></p>
                 <v-spacer></v-spacer>
-                <router-link :to="searchLink">
+                <!-- <router-link :to="searchLink">
                     <v-icon>search</v-icon>
-                </router-link>
+                </router-link> -->
             </v-tabs>
         </v-toolbar>
     </div>
@@ -93,5 +91,8 @@
 .sv-top-nav-back a{
     text-decoration: none;
     line-height: 56px;
+}
+.sv-top-nav-title{
+    line-height: 48px;
 }
 </style>

@@ -5,6 +5,7 @@
         v-for="(item, index) in list"
         :key="index"
         subTitle
+        v-ripple
       >
         <v-list-tile-action class="sv-projectList-star">
           <v-icon

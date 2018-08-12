@@ -1,20 +1,33 @@
 <template>
   <div class="sv-detailTable">
-    <v-layout row wrap>
-      <v-flex xs12> 
-        <v-data-table
-          hide-headers
-          :items="tableList"
-          hide-actions
-          class="sv-detailTable-table"
-        >
-        <template slot="items" slot-scope="props">
-          <td class="sv-detailTable-title text-xs-left">{{ props.item.title }}</td>
-          <td class="sv-detailTable-descript text-xs-right">{{ props.item.descript }}</td>
-        </template>
-      </v-data-table>
-      </v-flex>
-    </v-layout>
+    <v-tabs
+      v-model="active"
+      color="sv_purple"
+      dark
+    >
+      <v-tab-item
+        v-for="tab in tabs"
+        :key="tab.id"
+      >
+        <!-- 插槽滚频内容 -->
+        <v-layout row wrap>
+          <v-flex xs12> 
+            <v-data-table
+              hide-headers
+              :items="tab.group"
+              hide-actions
+              class="sv-detailTable-table"
+            >
+            <template slot="items" slot-scope="props">
+              <td class="sv-detailTable-title text-xs-left">{{ props.item.title }}</td>
+              <td class="sv-detailTable-descript text-xs-right">{{ props.item.descript }}</td>
+            </template>
+          </v-data-table>
+          </v-flex>
+        </v-layout>
+      </v-tab-item>
+    </v-tabs>
+    <div class="sv-detailTable-control" v-if="control!='.'" v-text="control"></div>
   </div>
 </template>
 
@@ -35,19 +48,43 @@
             { title: '運転開始日', descript: '2015/12/20', }
           ]
         }
+      },
+      pageSize: {
+        type: Number,
+        default: 6
       }
     },
     data() {
       return {
-
+         active: 0,
       }
-    }
+    },
+    computed: {
+      tabs() {
+        const temp = [];
+        for(var i = 0; i< (this.tableList.length/this.pageSize); i++){
+          temp.push({
+            id: i,
+            group: this.tableList.slice(i*this.pageSize, i*this.pageSize+this.pageSize)
+          });
+        }
+        return temp;
+      },
+      control() {
+        let point = '';
+        for(let i = 0; i< Math.ceil(this.tableList.length/this.pageSize); i++) { point += '.'; }
+        return point;
+      }
+    },
   }
 </script>
 
 <style>
 .sv-detailTable{
   padding: 0 4px;
+}
+.sv-detailTable .v-tabs__container{
+  height: 0px;
 }
 .sv-detailTable .v-table{
   background-color: transparent;
@@ -63,8 +100,8 @@
 .sv-detailTable .v-table tbody tr:hover:not(.v-datatable__expand-row) {
   background: transparent;
 }
-.sv-detailTable-table{
-  margin-bottom: 20px;
+.sv-detailTable-control{
+  text-align: center;
 }
 </style>
 
