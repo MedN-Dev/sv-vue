@@ -45,17 +45,17 @@ A Web App dev for Solar Value
     
 ## API
 
-| 名称 | 所属模块 | 类型 | 参数 | URL |
-| :---- | ------- | ---- | ---- | ----: |
-| 用户登陆 | Account | POST | { loginName, password } | http://solar-value.com/account/loginForMB |
-| 用户注销 | Account | GET | - | http://solar-value.com/account/logoutForMB |
-| 项目分类 | Collection | GET | - | http://solar-value.com/api/collection/list |
-| 指标数据 | Collection | GET | { id, type } | http://solar-value.com/api/collection/widgets |
-| 多项目列表 | Collection | GET | { id } | http://solar-value.com/api/collection/projects |
-| 项目地区分布 | Portfolio | GET | { id } | http://solar-value.com/api/portfolio/region |
-| 项目联动图表 | Portfolio | GET | { id, region, fit, codYears } | http://solar-value.com/api/portfolio/chats |
-| 项目列表 | Portfolio | GET | { id, region } | http://solar-value.com/api/portfolio/projects |
-| 发电量页面项目列表 | Energy | GET | { id, page } | http://solar-value.com/api/energy/projects |
+| 名称 | 类型 | 参数 | URL |
+| :---- | ---- | ---- | ----: |
+| 用户登陆 | POST | { loginName, password } | http://solar-value.com/account/loginForMB |
+| 用户注销 | GET | - | http://solar-value.com/account/logoutForMB |
+| 项目分类 | GET | - | http://solar-value.com/api/collection/list |
+| 指标数据 | GET | { id, type } | http://solar-value.com/api/collection/widgets |
+| 多项目列表 | GET | { id } | http://solar-value.com/api/collection/projects |
+| 项目地区分布 | GET | { id } | http://solar-value.com/api/portfolio/region |
+| 项目联动图表 | GET | { id, region, fit, codYears } | http://solar-value.com/api/portfolio/chats |
+| 项目列表 | GET | { id, region } | http://solar-value.com/api/portfolio/projects |
+| 发电量页面项目列表 | GET | { id, page } | http://solar-value.com/api/energy/projects |
 
 
 ## Work Log

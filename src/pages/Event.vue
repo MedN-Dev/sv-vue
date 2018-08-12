@@ -90,7 +90,7 @@
       fetchEventsList() {
         this.$axios.get(Events.Data, { pid: '', begin: '', end: '', cid: 100, type: 0, page: 1, pageSize: 10 })
           .then(res => {
-            if(re.code === 1) this.eventsList = this.filterEventsList(res.data);
+            if(res.code === 1) this.eventsList = this.filterEventsList(res.data);
           })
       },
       filterEventsList(items) {
