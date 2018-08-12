@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "google-maps": "^3.3.0",
     "highcharts": "^6.1.1",
     "particles.js": "^2.0.0",
     "qs": "^6.5.2",

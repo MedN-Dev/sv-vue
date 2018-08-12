@@ -16,7 +16,7 @@
     },
     data() {
       return {
-        active: ''
+        active: true
       }
     },
     mounted() {
@@ -30,8 +30,8 @@
     methods: {
       // 点击图表
       activeChart(name) {
-        this.active = name;
-        this.$emit("listenActiveChart", name);
+        this.active? this.$emit("listenActiveChart", name) : this.$emit("listenActiveChart", '');
+        this.active = !this.active;
       },
       loadCharts() {
         var That = this;
@@ -78,7 +78,7 @@
               cursor: 'pointer',
               events: { 
                 click: function(e) { 
-                  That.activeChart(e.point.name);
+                  That.activeChart(e.point.code);
                 } 
               },
               dataLabels: {

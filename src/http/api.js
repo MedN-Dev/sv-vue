@@ -15,8 +15,12 @@ export const Account = {
 // 多项目总览
 export const Collection = {
     List: `${apiAddress}/api/collection/list`,
-    Widgets: `${apiAddress}/api/collection/widgets`,
     Projects: `${apiAddress}/api/collection/projects`,
+}
+
+// 指标面板
+export const Widgets = {
+    Data: `${apiAddress}/api/widgets/data`,
 }
 
 // 多项目Portfolio
@@ -37,6 +41,7 @@ export const Project = {
     UnFavorite: `${apiAddress}/api/project/unfavorite`,
     Items: `${apiAddress}/api/project/items`,
     Documents: `${apiAddress}/api/project/documents`,
+    Infoes: `${apiAddress}/api/project/infoes`,
 }
 
 // 日历事件

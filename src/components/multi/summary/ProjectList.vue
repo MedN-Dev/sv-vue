@@ -44,7 +44,7 @@
       </v-list-tile>
     </v-list>
     <!-- lazy-loading component -->
-    <vue-infinite-loading @infinite="infiniteHandler"></vue-infinite-loading>
+    <vue-infinite-loading @infinite="infiniteHandler" ref="infiniteLoading"></vue-infinite-loading>
   </div>
 </template>
 
@@ -59,18 +59,19 @@
     props: {
       category: {
         type: String,
-        default: '100'
+        default: '1'
       }
     },
     data () {
       return {
         pageSize: 10,
+        totalCount: 100,
         list: [{favor: 0, title: '项目', col1: 'パネル出力', col2: '当月発電比較',}]
       }
     },
     watch: {
       category() {
-        this.list = [{ favor: 0, title: '项目', col1: 'パネル出力', col2: '当月発電比較',}];
+        this.resetList();
       }
     },
     computed: {
@@ -78,7 +79,7 @@
         return (this.list.length-1) / 10 + 1;
       },
       finished() {
-        return (this.list.length-1) / 10 === 10
+        return this.list.length >= this.totalCount + 1;
       },
       selected() {
         let arr = [];
@@ -86,7 +87,7 @@
           if(element.favor === 1) arr.push(index)
         })
         return arr;
-      }
+      },
     },
     methods: {
       infiniteHandler($state) {
@@ -94,8 +95,9 @@
         .then((res)=>{
           if (res.data.items.length) {
             this.list = this.list.concat(this.filterlist(res.data.items));
+            this.totalCount = res.data.totalCount;
             $state.loaded();
-            if (this.finished) { // 总共加载100条
+            if (this.finished) {
               $state.complete();
             }
           } else {
@@ -132,6 +134,12 @@
             return { id: item.id, favor: item.favor, title: item.title, col1: item.col1, col2: item.col2, link: item.link };
           }
         })
+      },
+      resetList() {
+        this.list = [{ favor: 0, title: '项目', col1: 'パネル出力', col2: '当月発電比較',}];
+        this.$nextTick(() => {
+          this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset');
+        });
       }
     }
   }

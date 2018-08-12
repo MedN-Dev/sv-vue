@@ -43,7 +43,7 @@
             </v-btn>
             <!-- 返回上層 -->
             <v-tabs color="sv_purple" slot="extension" class="sv-top-nav-back">
-                <router-link to="/summary/100">
+                <router-link to="/summary/1">
                     <v-icon>arrow_back</v-icon>
                 </router-link>
                 <v-spacer></v-spacer>

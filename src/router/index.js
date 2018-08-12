@@ -24,7 +24,7 @@ export default new Router({
     { path: '/login', name: 'login', component: SVLogin },
     {
       path: '/',
-      redirect: 'summary/100',
+      redirect: 'summary/1',
       component: SVMultiProject,
       name: 'projectMulti',
       children: [

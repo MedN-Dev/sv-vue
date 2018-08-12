@@ -99,7 +99,7 @@
             topBar() {
                 this.activeNav = this.topBar.filter((item) => {
                     if(this.category == item.name) return item;
-                })[0].id-1;
+                })[0].id;
             }
         }
     }

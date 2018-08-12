@@ -19,17 +19,21 @@
 <script>
   import MOCK_DASHBOARD_EMPTY from '@/mock/DashboardEmpty.json'
   import SVDashboardItem from './DashboardItem.vue'
-  import { Collection } from '@/http/api'
+  import { Widgets } from '@/http/api'
   export default {
     name: 'sv-dashboard',
     props: {
       category: {
         type: String,
-        default: '100'
+        default: ''
       },
       view: {
         type: String,
         default: 'summary'
+      },
+      project: {
+        type: String,
+        default: ''
       }
     },
     components: {
@@ -70,7 +74,7 @@
     methods: {
       load() {
         // 装载 dashboard
-        this.$axios.get(Collection.Widgets, {id: this.category, type: this.view})
+        this.$axios.get(Widgets.Data, {cid: this.category, pid: this.project, type: this.view})
         .then((res)=>{
           if(res.code === 0){
             this.dashboard = res.data.map((item)=>{

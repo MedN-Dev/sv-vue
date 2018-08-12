@@ -59,6 +59,7 @@
     data () {
       return {
         pageSize: 10,
+        totalCount: 100,
         list: [{favor: 0, title: '项目', col1: 'パネル出力MW', col2: 'FIT 円',}]
       }
     },
@@ -70,10 +71,10 @@
     },
     computed: {
       page() {
-        return (this.list.length-1) / 10 + 1;
+        return Math.ceil((this.list.length-1) / 10) + 1;
       },
       finished() {
-        return (this.list.length-1) / 10 === 10
+        return this.list.length >= this.totalCount + 1;
       },
       selected() {
         let arr = [];
@@ -89,6 +90,7 @@
         .then((res)=>{
           if (res.data.items.length) {
             this.list = this.list.concat(this.filterlist(res.data.items));
+            this.totalCount = res.data.totalCount;
             $state.loaded();
             if (this.finished) { // 总共加载100条
               $state.complete();
