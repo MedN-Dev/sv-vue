@@ -42,6 +42,14 @@ A Web App dev for Solar Value
 - 第三阶段： APP 测试返修与上线优化（1周）
 
     - 待定
+    
+## API
+
+| 名称 | 所属模块 | 描述 | URL | 类型 |
+| ---- | ------- | ---- | ---- | ---- |
+| Account.Login | Account | 登录请求 | http://10.1.2.59:8081/account/loginForMB | GET |
+| Account.Login | Account | 登录请求 | http://10.1.2.59:8081/account/loginForMB | GET |
+| Account.Login | Account | 登录请求 | http://10.1.2.59:8081/account/loginForMB | GET |
 
 ## Work Log
 
