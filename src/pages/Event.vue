@@ -5,10 +5,10 @@
     <v-layout row wrap>
        <v-flex xs12 sm6 class="py-2">
           <v-btn-toggle v-model="trigger" mandatory>
-            <v-btn flat value="left">
+            <v-btn flat value=0>
               事件予定
             </v-btn>
-            <v-btn flat value="right">
+            <v-btn flat value=1>
               発生事象
             </v-btn>
           </v-btn-toggle>
@@ -51,13 +51,15 @@
 </template>
 <script>
   import VueInfiniteLoading from 'vue-infinite-loading'
+  import { Events } from '@/http/api'
   import MOCK_EVENTLIST from '@/mock/EventList.json'
   import MOCK_EVENTLIST_HAPEN from '@/mock/EventListHapen.json'
   export default {
     data() {
         return {
-          trigger: 'left',
-          list: []
+          trigger: 0,
+          list: [],
+          eventsList: []
         }
     },
     components: {
@@ -85,9 +87,19 @@
           $state.loaded();
         }, 1000);
       },
+      fetchEventsList() {
+        this.$axios.get(Events.Data, { pid: '', begin: '', end: '', cid: 100, type: 0, page: 1, pageSize: 10 })
+          .then(res => {
+            if(re.code === 1) this.eventsList = this.filterEventsList(res.data);
+          })
+      },
+      filterEventsList(items) {
+        return items;
+      }
     },
     mounted() {
       this.list = MOCK_EVENTLIST.events;
+      this.fetchEventsList();
     }
   }
 </script>

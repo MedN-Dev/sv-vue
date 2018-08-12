@@ -19,8 +19,8 @@ A Web App dev for Solar Value
 
 - 第一阶段：APP 静态原型开发（1周）
 
-| 任务名称 | 开始时间 | 预测结束时间 | 实际结束时间 | 负责人 |
-| :-------- | -------- | ---------- | ----------- | -----: |
+| 任务名称 | 开始时间 | 预测结束 | 实际结束 | 负责人 |
+| :-------- | :--------: | :----------: | :-----------: | :-----: |
 | `DataTable` 组件开发 + `Summary` 页面 | 2018/07/31 | 2018/07/31 | 达标 | DengDeng |
 | `Event 页` + 根据设计图调整 + `highcharts` 配置 | 2018/07/31 | 2018/07/31 | 达标 | ZhanQuan |
 | `多项目` 与 `单项目` 剩余页面搭建 | 2018/08/01 | 2018/08/01 | 达标 | DengDeng |
@@ -30,9 +30,9 @@ A Web App dev for Solar Value
 
 - 第二阶段： APP 业务逻辑与接口联调（1周）
 
-| 任务名称 | 开始时间 | 预测结束时间 | 实际结束时间 | 负责人 |
-| :-------- | -------- | ---------- | ----------- | -----: |
-| `axios` 请求模块封装,开发环境跨域代理`顶部导航``Widget面板` api联调 | 2018/08/06 | 2018/08/06 | 达标 | DengDeng |
+| 任务名称 | 开始时间 | 预测结束 | 实际结束 | 负责人 |
+| :-------- | -------- | ---------- | ----------- | :-----: |
+| `axios` 请求模块封装,Nodejs 开发环境跨域代理 | 2018/08/06 | 2018/08/06 | 达标 | DengDeng |
 | Portfolio `highcharts` 图表与 `Projectlist` 接口联调  | 2018/08/07 | 2018/08/07 | 达标 | DengDeng |
 | Energy `highcharts` 图表与 `Projectlist` 接口联调 | 2018/08/08 | 2018/08/08 | 达标 | DengDeng |
 | Portfolio 图表点击事件联动加载数据 | 2018/08/09 | 2018/08/09 | 达标 | DengDeng |
@@ -49,6 +49,13 @@ A Web App dev for Solar Value
 | :---- | ------- | ---- | ---- | ----: |
 | 用户登陆 | Account | POST | { loginName, password } | http://solar-value.com/account/loginForMB |
 | 用户注销 | Account | GET | - | http://solar-value.com/account/logoutForMB |
+| 项目分类 | Collection | GET | - | http://solar-value.com/api/collection/list |
+| 指标数据 | Collection | GET | { id, type } | http://solar-value.com/api/collection/widgets |
+| 多项目列表 | Collection | GET | { id } | http://solar-value.com/api/collection/projects |
+| 项目地区分布 | Portfolio | GET | { id } | http://solar-value.com/api/portfolio/region |
+| 项目联动图表 | Portfolio | GET | { id, region, fit, codYears } | http://solar-value.com/api/portfolio/chats |
+| 项目列表 | Portfolio | GET | { id, region, fit, codYears, page, pageSize } | http://solar-value.com/api/portfolio/projects |
+| 发电量页面项目列表 | Energy | GET | { id, page, pageSize, start, end, source } | http://solar-value.com/api/energy/projects |
 
 
 ## Work Log

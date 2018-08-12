@@ -6,12 +6,13 @@ const apiAddress = 'http://10.1.2.59:8081';
 
 export default apiAddress;
 
+// 账户相关
 export const Account = {
     Login: `${apiAddress}/account/loginForMB`,
     Logout: `${apiAddress}/account/logoutForMB`,
 }
 
-// 多项目分类
+// 多项目总览
 export const Collection = {
     List: `${apiAddress}/api/collection/list`,
     Widgets: `${apiAddress}/api/collection/widgets`,
@@ -25,7 +26,7 @@ export const Portfolio = {
     Projects: `${apiAddress}/api/portfolio/projects`,
 }
 
-// 发电量也页面
+// 发电量
 export const Energy = {
     Projects: `${apiAddress}/api/energy/projects`,
 }
@@ -36,4 +37,9 @@ export const Project = {
     UnFavorite: `${apiAddress}/api/project/unfavorite`,
     Items: `${apiAddress}/api/project/items`,
     Documents: `${apiAddress}/api/project/documents`,
+}
+
+// 日历事件
+export const Events = {
+    Data: `${apiAddress}/api/events/data`,
 }
