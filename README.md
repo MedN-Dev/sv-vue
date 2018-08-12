@@ -54,9 +54,8 @@ A Web App dev for Solar Value
 | 多项目列表 | GET | { id } | http://solar-value.com/api/collection/projects |
 | 项目地区分布 | GET | { id } | http://solar-value.com/api/portfolio/region |
 | 项目联动图表 | GET | { id, region, fit, codYears } | http://solar-value.com/api/portfolio/chats |
-| 项目列表 | GET | { id, region } | http://solar-value.com/api/portfolio/projects |
-| 发电量页面项目列表 | GET | { id, page } | http://solar-value.com/api/energy/projects |
-
+| 项目列表 | GET | { id, region, fit, codYears, page, pageSize } | http://solar-value.com/api/portfolio/projects |
+| 发电量页面项目列表 | GET | { id, start, end, source, page, pageSize } | http://solar-value.com/api/energy/projects |
 
 ## Work Log
 
