@@ -45,11 +45,10 @@ A Web App dev for Solar Value
     
 ## API
 
-| 名称 | 所属模块 | 描述 | URL | 类型 |
+| : 名称 | 所属模块 | 参数 | URL | 类型 |
 | ---- | ------- | ---- | ---- | ---- |
-| Account.Login | Account | 登录请求 | http://10.1.2.59:8081/account/loginForMB | GET |
-| Account.Login | Account | 登录请求 | http://10.1.2.59:8081/account/loginForMB | GET |
-| Account.Login | Account | 登录请求 | http://10.1.2.59:8081/account/loginForMB | GET |
+| 用户登陆 | Account | { loginName, password } | http://10.1.2.59:8081/account/loginForMB | POST |
+| 用户注销 | Account | - | http://10.1.2.59:8081/account/logoutForMB | GET |
 
 ## Work Log
 
