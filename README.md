@@ -3,9 +3,9 @@
 <p align="center">
     <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer">
         <img width="200" src="https://avatars1.githubusercontent.com/u/41156540?s=200&v=4" alt="Vue logo">
-        <span>A Web App dev for Solar Value</span>
     </a>
 </p>
+<p align="center">A Web App dev for Solar Value</p>
 <p align="center">
   <a href="https://circleci.com/gh/vuejs/vue/tree/dev"><img src="https://img.shields.io/circleci/project/vuejs/vue/dev.svg" alt="Build Status"></a>
   <a href="https://codecov.io/github/vuejs/vue?branch=dev"><img src="https://img.shields.io/codecov/c/github/vuejs/vue/dev.svg" alt="Coverage Status"></a>
