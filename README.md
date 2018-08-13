@@ -45,7 +45,7 @@
 ## API
 
 | 名称 | 类型 | URL |
-| :---- | ---- | ----: |
+| :---- | ---- | :---- |
 | 用户登陆 | POST | http://solar-value.com/account/loginForMB |
 | 用户注销 | GET | http://solar-value.com/account/logoutForMB |
 | 项目分类 | GET | http://solar-value.com/api/collection/list |
