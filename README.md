@@ -1,12 +1,11 @@
 # Solar Value Web APP
 
-A Web App dev for Solar Value
-
 <p align="center">
     <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer">
         <img width="200" src="https://avatars1.githubusercontent.com/u/41156540?s=200&v=4" alt="Vue logo">
     </a>
 </p>
+<p align="center">A Web App dev for Solar Value</p>
 <p align="center">
   <a href="https://circleci.com/gh/vuejs/vue/tree/dev"><img src="https://img.shields.io/circleci/project/vuejs/vue/dev.svg" alt="Build Status"></a>
   <a href="https://codecov.io/github/vuejs/vue?branch=dev"><img src="https://img.shields.io/codecov/c/github/vuejs/vue/dev.svg" alt="Coverage Status"></a>
@@ -31,7 +30,7 @@ A Web App dev for Solar Value
 - 第二阶段： APP 业务逻辑与接口联调（1周）
 
 | 任务名称 | 开始时间 | 预测结束 | 实际结束 | 负责人 |
-| :-------- | -------- | ---------- | ----------- | :-----: |
+| :-------- | -------- | ---------- | :-----------: | :-----: |
 | `axios` 请求模块封装,Nodejs 开发环境跨域代理 | 2018/08/06 | 2018/08/06 | 达标 | DengDeng |
 | Portfolio `highcharts` 图表与 `Projectlist` 接口联调  | 2018/08/07 | 2018/08/07 | 达标 | DengDeng |
 | Energy `highcharts` 图表与 `Projectlist` 接口联调 | 2018/08/08 | 2018/08/08 | 达标 | DengDeng |
@@ -47,17 +46,17 @@ A Web App dev for Solar Value
     
 ## API
 
-| 名称 | 类型 | 参数 | URL |
-| :---- | ---- | ---- | ----: |
-| 用户登陆 | POST | { loginName, password } | http://solar-value.com/account/loginForMB |
-| 用户注销 | GET | - | http://solar-value.com/account/logoutForMB |
-| 项目分类 | GET | - | http://solar-value.com/api/collection/list |
-| 指标数据 | GET | { id, type } | http://solar-value.com/api/collection/widgets |
-| 多项目列表 | GET | { id } | http://solar-value.com/api/collection/projects |
-| 项目地区分布 | GET | { id } | http://solar-value.com/api/portfolio/region |
-| 项目联动图表 | GET | { id, region, fit, codYears } | http://solar-value.com/api/portfolio/chats |
-| 项目列表 | GET | { id, region, fit, codYears, page, pageSize } | http://solar-value.com/api/portfolio/projects |
-| 发电量页面项目列表 | GET | { id, start, end, source, page, pageSize } | http://solar-value.com/api/energy/projects |
+| 名称 | 类型 | URL |
+| :---- | ---- | :---- |
+| 用户登陆 | POST | http://solar-value.com/account/loginForMB |
+| 用户注销 | GET | http://solar-value.com/account/logoutForMB |
+| 项目分类 | GET | http://solar-value.com/api/collection/list |
+| 指标数据 | GET | http://solar-value.com/api/collection/widgets |
+| 多项目列表 | GET | http://solar-value.com/api/collection/projects |
+| 项目地区分布 | GET | http://solar-value.com/api/portfolio/region |
+| 项目联动图表 | GET | http://solar-value.com/api/portfolio/chats |
+| 项目列表 | GET | http://solar-value.com/api/portfolio/projects |
+| 发电量页面项目列表 | GET | http://solar-value.com/api/energy/projects |
 
 ## Work Log
 
