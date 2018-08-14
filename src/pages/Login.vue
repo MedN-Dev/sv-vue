@@ -76,6 +76,7 @@
       ]
     }),
     mounted() {
+        this.logOut();
         // 加载粒子动画
         window.particlesJS('sv_login', particlesJSON);
     },
@@ -92,6 +93,9 @@
                         this.alert = true;
                     }
                 });
+        },
+        logOut() {
+            this.$axios.post(`${Account.Logout}`);
         }
     }
   }

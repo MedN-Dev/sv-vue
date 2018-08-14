@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
-import SVCookie from './cookie';
 import 'vue-event-calendar/dist/style.css'
 import VueEventCalendar from 'vue-event-calendar'
+import _ from 'lodash'
 
 Vue.use(Vuetify, {
     theme: {
@@ -26,6 +26,4 @@ Vue.use(VueEventCalendar, {
     locale: 'en'
 })
 
-Vue.use(SVCookie, {
-    author: 'dengdeng'
-})
+Object.defineProperty(Vue.prototype, '$_', { value: _ });

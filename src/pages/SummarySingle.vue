@@ -23,15 +23,16 @@
         v-for="(item,i) in items"
         :key="i"
         :src="item.src"
-        
       ></v-carousel-item>
     </v-carousel>
     <!-- 项目明细 -->
     <sv-panel>
-      <sv-detailTable :tableList="details" :pageSize=100></sv-detailTable>
+      <sv-detailTable :tableList="details" :pageSize="details.length"></sv-detailTable>
     </sv-panel>
     <!-- 谷歌地图 -->
-    <!-- <sv-googleMap :lat="lat" :lng="lng"></sv-googleMap> -->
+    <sv-googleMap :lat="lat" :lng="lng"></sv-googleMap>
+    <!-- 百度地图 -->
+    <!-- <sv-baiduMap></sv-baiduMap> -->
   </div>
 </template>
 
@@ -40,6 +41,7 @@ import SVDashboard from '@/components/common/Dashboard.vue'
 import SVPanel from '@/components/common/Panel.vue'
 import SVDetailTable from '@/components/common/DetailTable.vue'
 import SVGoogleMap from '@/components/single/summary/GoogleMap.vue'
+import SVBaiduMap from '@/components/single/summary/BaiduMap.vue'
 import SVBannerImg from '@/assets/sv-banner-2.png'
 import { Project } from '@/http/api'
 export default {
@@ -49,6 +51,7 @@ export default {
     'sv-dashboard': SVDashboard,
     'sv-panel': SVPanel,
     'sv-detailTable': SVDetailTable,
+    'sv-baiduMap': SVBaiduMap,
     'sv-googleMap': SVGoogleMap
   },
   data() {
@@ -74,6 +77,7 @@ export default {
       .then((res)=>{
         if(res.code === 0){
           this.details = this.filterProjectDetail(res.data.items);
+          this.setMapConfig(res.data.latitude, res.data.longitude);
         }
       })
     },
@@ -82,6 +86,11 @@ export default {
       return items.map((item)=>{
         return { title: item.name, descript: item.value };
       })
+    },
+    // 取经地图经纬度
+    setMapConfig(lat, lng) {
+      this.lat = lat;
+      this.lng = lng;
     },
     goDetailPage() {
       //this.$router.push('/project/91/detail?name=鹿屋市高隈第1');

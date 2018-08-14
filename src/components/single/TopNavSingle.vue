@@ -49,9 +49,9 @@
                 <v-spacer></v-spacer>
                 <p class="sv-top-nav-title" v-text="projectName"></p>
                 <v-spacer></v-spacer>
-                <!-- <router-link :to="searchLink">
+                <router-link :to="searchLink">
                     <v-icon>search</v-icon>
-                </router-link> -->
+                </router-link>
             </v-tabs>
         </v-toolbar>
     </div>

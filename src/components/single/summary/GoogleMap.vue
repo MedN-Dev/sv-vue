@@ -8,44 +8,23 @@
   import GoogleMapsLoader from 'google-maps'
   export default {
     name: 'sv-googleMap',
+    props: ['lat', 'lng'],
     data() {
       return {
-        lat: '',
-        lng: ''
+        key: 'AIzaSyCm_mBbcHow6L8IDEJvWFdZ8q0F-R_RhS0'
       }
     },
-    mounted() {
-      this.renderMap();
+    watch: {
+      lat() { this.renderMap(); },
+      lng() { this.renderMap(); },
     },
     methods: {
       renderMap() {
+        var LAT = this.lat;
+        var LNG = this.lng;
+        GoogleMapsLoader.KEY = this.key;
         GoogleMapsLoader.load(function(google) {
-          var map;
-          console.log(google);
-          function initMap() {
-            map = new google.maps.Map(document.getElementById('sv_googleMap_container'), {
-                center: { lat: 39.01, lng: 141.27 },
-              zoom: 10
-            });
-          }
-          function initialize() {
-            var lat = calculateDu("38°56'19.98\"N");
-            var lng = calculateDu("141°21'43.81\"E");
-            var center = new google.maps.LatLng(lat, lng)
-            var mapProp = {
-                center: center,
-                zoom: 18,
-                streetViewControl: false,
-                mapTypeId: google.maps.MapTypeId.HYBRID
-            };
-            var marker = new google.maps.Marker({
-                position: center,
-            });
-            var map = new google.maps.Map(document.getElementById("sv_googleMap_container"), mapProp);
-            marker.setMap(map);
-          }
-          google.maps.event.addDomListener(window, 'load', initialize);
-          function calculateDu(value) {
+          var calculateDu = function(value) {
             value = value.replace(/\s+/g, '');
             var isN = /N/i.test(value);
             var isE = /E/i.test(value);
@@ -54,9 +33,20 @@
             var m = /\d+(?:\.\d+){0,1}(?=")/.exec(value)
             var f = parseFloat(f) + parseFloat(m / 60);
             var du = parseFloat(f / 60) + parseFloat(d);
-            console.log(du);
             return du;
           }
+          var center = new google.maps.LatLng(calculateDu(LAT), calculateDu(LNG));
+          var mapProp = {
+              center: center,
+              zoom: 18,
+              streetViewControl: false,
+              mapTypeId: google.maps.MapTypeId.HYBRID
+          };
+          var marker = new google.maps.Marker({
+              position: center,
+          });
+          var map = new google.maps.Map(document.getElementById("sv_googleMap_container"), mapProp);
+          marker.setMap(map);
         })
       }
     }

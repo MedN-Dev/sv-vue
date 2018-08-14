@@ -1,5 +1,5 @@
 // 开发环境域名-Egg服务器接口
-const apiAddress = 'http://10.1.2.59:8081';
+const apiAddress = 'http://10.1.2.59:9000';
 
 // 生产环境域名
 // const apiAddress = 'http://solar-value.com';
@@ -9,7 +9,7 @@ export default apiAddress;
 // 账户相关
 export const Account = {
     Login: `${apiAddress}/account/loginForMB`,
-    Logout: `${apiAddress}/account/logoutForMB`,
+    Logout: `${apiAddress}/account/logOff`,
 }
 
 // 多项目总览
@@ -47,4 +47,9 @@ export const Project = {
 // 日历事件
 export const Events = {
     Data: `${apiAddress}/api/events/data`,
+}
+
+// 搜索功能
+export const Search = {
+    Projects: `${apiAddress}/api/search/projects`,
 }
