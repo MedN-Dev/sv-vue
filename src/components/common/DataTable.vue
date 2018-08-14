@@ -4,7 +4,7 @@
       <v-flex xs12>
         <v-data-table
           :headers="headers"
-          :items="desserts"
+          :items="bodys"
           hide-actions
           class="sv-dataTable-table"
         >
@@ -22,19 +22,33 @@
 
 <script>
   export default {
+    name: 'sv-dataTable',
+    props: {
+      headers: {
+        type: Array,
+        default: function() {
+          return [
+            { text: '', value: 'name', sortable: false, align: 'left'},
+            { text: '実績值', value: 'calories',sortable: false, align: 'right',},
+            { text: '予測値', value: 'fat', sortable: false, align: 'right',},
+            { text: '予実比較', value: 'carbs', sortable: false, align: 'right',}
+          ]
+        }
+      },
+      bodys: {
+        type: Array,
+        default: function() {
+          return [
+            { title: '発電量', col1: 110, col2: 110, col3: 110 },
+            { title: '日射量', col1: 45, col2: 110, col3: 110 },
+            { title: '売電額', col1: 159, col2: 110, col3: 110 }
+          ]
+        }
+      }
+    },
     data() {
       return {
-        headers: [
-          { text: '', value: 'name', sortable: false, align: 'left'},
-          { text: '実績值', value: 'calories',sortable: false, align: 'right',},
-          { text: '予測値', value: 'fat', sortable: false, align: 'right',},
-          { text: '予実比較', value: 'carbs', sortable: false, align: 'right',}
-        ],
-        desserts: [
-          { title: '発電量', col1: 110, col2: 110, col3: 110 },
-          { title: '日射量', col1: 45, col2: 110, col3: 110 },
-          { title: '売電額', col1: 159, col2: 110, col3: 110 }
-        ]
+
       }
     }
   }

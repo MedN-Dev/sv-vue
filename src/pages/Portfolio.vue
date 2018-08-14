@@ -1,6 +1,6 @@
 <template>
   <div class="sv-page-profolio">
-    <sv-dashboard :category="category" view="profolio"></sv-dashboard>
+    <sv-dashboard :dashboard="dashboard"></sv-dashboard>
     <sv-panel title="Portfolio">
       <!-- Radio Button -->
       <v-layout row wrap text-xs-center>
@@ -46,6 +46,7 @@
     },
     data() {
       return {
+        dashboard: [],
         trigger: 'COUNT',
         region: '',
         fit: '',
@@ -70,7 +71,7 @@
       }
     },
     watch: {
-      category() { this.resetChart(); this.loadPortfolio() },
+      category() { this.resetChart(); this.loadPortfolio(); },
       region() { this.loadPortfolio() },
       fit() { this.loadPortfolio() },
       codYears() { this.loadPortfolio() },
@@ -79,11 +80,15 @@
       this.loadPortfolio();
     },
     methods: {
+      loadPortfolio() { this.fetchPortfolio(); this.fetchDashboard(); },
       resetChart() { this.region = ''; this.fit = ''; this.codYears = ''; },
       changeRegion(value) { this.region = value; },
       changeFit(value) { this.fit = value; },
       changeCodYears(value) { this.codYears = value; },
-      loadPortfolio() {
+      /**
+       * 获取图表
+       */
+      fetchPortfolio() {
         this.$axios.get(Portfolio.Charts,{ id: this.category, region: this.region, fit: this.fit, codYears: this.codYears })
           .then((res)=>{
             if(res.code === 0){
@@ -105,6 +110,20 @@
         return items.map((item)=>{
           return { name: item.label, code: item.code, y: item.indexValues['2'] }
         });
+      },
+      /**
+       * 获取面板指标
+       */
+      fetchDashboard() {
+        this.$axios.get(Portfolio.Widgets, {id: this.category, region: this.region, fit: this.fit, codYears: this.codYears})
+        .then((res)=>{
+          if(res.code === 0){ this.dashboard = this.filterDashboard(res.data); }
+        })
+      },
+      filterDashboard(items) {
+        return items.map((item) => {
+          return { name: item.label, unit: item.unit, value: item.value };
+        })
       }
     }
   }

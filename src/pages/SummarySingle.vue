@@ -1,6 +1,6 @@
 <template>
   <div class="sv-page-summarySingle">
-    <sv-dashboard :project="id" view="summarySingle"></sv-dashboard>
+    <sv-dashboard :dashboard="dashboard"></sv-dashboard>
     <!-- 静态图 -->
     <!-- <v-jumbotron
       :gradient="gradient"
@@ -43,7 +43,7 @@ import SVDetailTable from '@/components/common/DetailTable.vue'
 import SVGoogleMap from '@/components/single/summary/GoogleMap.vue'
 import SVBaiduMap from '@/components/single/summary/BaiduMap.vue'
 import SVBannerImg from '@/assets/sv-banner-2.png'
-import { Project } from '@/http/api'
+import { Project, Widgets } from '@/http/api'
 export default {
   name: 'sv-summarySingle',
   props: ['id'],
@@ -56,6 +56,7 @@ export default {
   },
   data() {
     return {
+      dashboard: [],
       items: [ 
         { src: SVBannerImg },
         { src: SVBannerImg },
@@ -69,9 +70,23 @@ export default {
   },
   mounted() {
     this.fetchProjectDetail();
+    this.fetchDashboard();
   },
   methods: {
-    // 获取项目
+    // 获取面板指标
+    fetchDashboard() {
+      this.$axios.get(Widgets.Data, {pid: this.id, type: 'summary'})
+      .then((res)=>{
+        if(res.code === 0){ this.dashboard = this.filterDashboard(res.data); }
+      })
+    },
+    // 清洗面板数据源
+    filterDashboard(items) {
+      return items.map((item) => {
+        return { name: item.label, unit: item.unit, value: item.value };
+      })
+    },
+    // 获取项目明细
     fetchProjectDetail() {
       this.$axios.get(Project.Infoes,{ pid: this.id })
       .then((res)=>{
@@ -81,20 +96,17 @@ export default {
         }
       })
     },
-    // 清洗数据源
+    // 清洗项目明细数据源
     filterProjectDetail(items) {
       return items.map((item)=>{
         return { title: item.name, descript: item.value };
       })
     },
-    // 取经地图经纬度
+    // 设置地图经纬度
     setMapConfig(lat, lng) {
       this.lat = lat;
       this.lng = lng;
     },
-    goDetailPage() {
-      //this.$router.push('/project/91/detail?name=鹿屋市高隈第1');
-    }
   }
 }
 </script>

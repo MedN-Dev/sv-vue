@@ -60,9 +60,6 @@
             //this.searchResult = this.$_.capitalize(res.data);
             if(res.code === 0) { this.searchResult = this.filterSearchResult(res.data); }
           })
-          .catch((error) => {
-            //this.searchResult = 'Error! Could not reach the API. ' + error;
-          })
       },
       filterSearchResult(items) {
         return items.map((item) => {

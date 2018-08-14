@@ -28,11 +28,13 @@ export const Portfolio = {
     Region: `${apiAddress}/api/portfolio/region`,
     Charts: `${apiAddress}/api/portfolio/chats`,
     Projects: `${apiAddress}/api/portfolio/projects`,
+    Widgets: `${apiAddress}/api/portfolio/widgets`,
 }
 
 // 发电量
 export const Energy = {
     Projects: `${apiAddress}/api/energy/projects`,
+    Tables: `${apiAddress}/api/energy/tables`,
 }
 
 // 项目相关

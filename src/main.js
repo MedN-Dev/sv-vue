@@ -5,8 +5,10 @@ import router from './router'
 import store from './store'
 import App from './App.vue'
 import axios from '@/http/axios'
+import _ from 'lodash'
 
 Vue.prototype.$axios = axios;
+Vue.prototype.$_ = _;
 Vue.config.productionTip = false;
 
 var app = new Vue({

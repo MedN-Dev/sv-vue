@@ -4,7 +4,6 @@ import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import 'vue-event-calendar/dist/style.css'
 import VueEventCalendar from 'vue-event-calendar'
-import _ from 'lodash'
 
 Vue.use(Vuetify, {
     theme: {
@@ -25,5 +24,3 @@ Vue.use(Vuetify, {
 Vue.use(VueEventCalendar, {
     locale: 'en'
 })
-
-Object.defineProperty(Vue.prototype, '$_', { value: _ });

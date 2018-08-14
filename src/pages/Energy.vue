@@ -1,6 +1,6 @@
 <template>
   <div class="sv-page-energy">
-    <sv-dashboard :category="category" view="energy"></sv-dashboard>
+    <sv-dashboard :dashboard="dashboard"></sv-dashboard>
     <sv-panel title="全体実績">
       <!-- 图表1 -->
       <div id="sv_hightCharts_ea" class="sv-hightCharts"></div>
@@ -37,27 +37,48 @@
   import Highcharts from 'highcharts'
   import { HighchartsTheme } from '@/utils/highChartsTheme'
   import { ENERGY_A, ENERGY_B } from '@/utils/highChartsOption'
+  import { Widgets } from '@/http/api'
   export default {
     name: 'sv-energy',
     props: {
       category: String, 
     },
     data() {
-        return {
-          start: '',
-          end: '',
-          trigger: 'output'
-        }
+      return {
+        dashboard: [],
+        start: '',
+        end: '',
+        trigger: 'output'
+      }
     },
     components: {
       'sv-dashboard': SVDashboard,
       'sv-projectList-energy': SVProjectListEnergy,
       'sv-panel': SVPanel
     },
+    watch: {
+      category() {
+        this.fetchDashboard();
+      }
+    },
     mounted() {
+      this.fetchDashboard();
       Highcharts.setOptions(HighchartsTheme);
       Highcharts.chart('sv_hightCharts_ea', ENERGY_A);
       Highcharts.chart('sv_hightCharts_eb', ENERGY_B);
+    },
+    methods: {
+      fetchDashboard() {
+        this.$axios.get(Widgets.Data, {cid: this.category, type: 'energy'})
+        .then((res)=>{
+          if(res.code === 0){ this.dashboard = this.filterDashboard(res.data); }
+        })
+      },
+      filterDashboard(items) {
+        return items.map((item) => {
+          return { name: item.label, unit: item.unit, value: item.value };
+        })
+      }
     }
   }
 </script>

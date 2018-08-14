@@ -1,7 +1,7 @@
 <template>
   <div class="sv-page-summary">
     <!-- 组件-指标面板 -->
-    <sv-dashboard :category="category" view="summary"></sv-dashboard>
+    <sv-dashboard :dashboard="dashboard" view="summary"></sv-dashboard>
     <sv-panel title="発電実績">
       <!-- 组件-图表1 -->
       <sv-highCharts id="sv_hightCharts_se" :options=chart_se_options></sv-highCharts>
@@ -35,7 +35,7 @@ import SVHighcharts from '@/components/common/Highcharts.vue'
 import SVProjectList from '@/components/multi/summary/ProjectList.vue'
 import SVHighchartsPortfolio from '@/components/multi/summary/HighchartsPortfolio.vue'
 import { SUMMARY_ENERGY } from '@/utils/highChartsOption'
-import { Portfolio } from '@/http/api'
+import { Portfolio, Widgets } from '@/http/api'
 
 export default {
   name: 'sv-summary',
@@ -51,6 +51,7 @@ export default {
   },
   data() {
     return {
+      dashboard: [],
       trigger: 'COUNT',
       chart_se_options: SUMMARY_ENERGY,
       portfolio_sum: [],
@@ -60,7 +61,8 @@ export default {
   watch: {
     category() {
       // 刷新页面
-      this.loadPortfolio()
+      this.fetchPortfolio()
+      this.fetchDashboard();
     }
   },
   computed: {
@@ -73,10 +75,11 @@ export default {
     }
   },
   mounted(){
-    this.loadPortfolio();
+    this.fetchPortfolio();
+    this.fetchDashboard();
   },
   methods: {
-    loadPortfolio() {
+    fetchPortfolio() {
       this.$axios.get(Portfolio.Region,{ id: this.category })
         .then((res)=>{
           if(res.code === 0) {
@@ -94,6 +97,17 @@ export default {
       return items.map((item)=>{
         return { name: item.label, y: item.indexValues['2'] }
       });
+    },
+    fetchDashboard() {
+      this.$axios.get(Widgets.Data, {cid: this.category, type: 'summary'})
+      .then((res)=>{
+        if(res.code === 0){ this.dashboard = this.filterDashboard(res.data); }
+      })
+    },
+    filterDashboard(items) {
+      return items.map((item) => {
+        return { name: item.label, unit: item.unit, value: item.value };
+      })
     }
   }
 }
