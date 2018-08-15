@@ -48,15 +48,15 @@
 
 | 名称 | 类型 | URL |
 | :---- | ---- | :---- |
-| 用户登陆 | POST | http://solar-value.com/account/loginForMB |
-| 用户注销 | GET | http://solar-value.com/account/logoutForMB |
-| 项目分类 | GET | http://solar-value.com/api/collection/list |
-| 指标数据 | GET | http://solar-value.com/api/collection/widgets |
-| 多项目列表 | GET | http://solar-value.com/api/collection/projects |
-| 项目地区分布 | GET | http://solar-value.com/api/portfolio/region |
-| 项目联动图表 | GET | http://solar-value.com/api/portfolio/chats |
-| 项目列表 | GET | http://solar-value.com/api/portfolio/projects |
-| 发电量页面项目列表 | GET | http://solar-value.com/api/energy/projects |
+| 用户登陆 | POST | /account/loginForMB?loginName=&password= |
+| 用户注销 | POST | /account/logoutForMB |
+| 项目分类 | GET | /api/collection/list |
+| 多项目总览项目列表 | GET | /api/collection/projects |
+| 指标面板数据 | GET | /api/widgets/data |
+| 项目地区分布 | GET | /api/portfolio/region |
+| 项目联动图表 | GET | /api/portfolio/chats |
+| 项目列表 | GET | /api/portfolio/projects |
+| 发电量页面项目列表 | GET | /api/energy/projects |
 
 ## Work Log
 
