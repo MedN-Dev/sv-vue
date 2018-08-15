@@ -53,10 +53,19 @@
 | 项目分类 | GET | /api/collection/list |
 | 多项目总览项目列表 | GET | /api/collection/projects |
 | 指标面板数据 | GET | /api/widgets/data |
-| 项目地区分布 | GET | /api/portfolio/region |
-| 项目联动图表 | GET | /api/portfolio/chats |
-| 项目列表 | GET | /api/portfolio/projects |
+| portfolio项目地区分布 | GET | /api/portfolio/region |
+| portfolio三联动图表 | GET | /api/portfolio/chats |
+| portfolio项目列表 | GET | /api/portfolio/projects |
+| portfolio指标面板 | GET | /api/portfolio/widgets |
 | 发电量页面项目列表 | GET | /api/energy/projects |
+| 发电量页面比较表格 | GET | /api/energy/tables |
+| 项目列表-收藏 | GET | /api/project/favorite|
+| 项目列表-取消收藏 | GET | /api/project/unfavorite |
+| 单项目滚屏幕明细 | GET | /api/project/Items |
+| 单项目总览明细 | GET | /api/project/Infoes |
+| 单项目相关文档 | GET | /api/project/documents |
+| 日历列表 | GET | /api/events/data |
+| 项目搜索功能 | GET | /api/search/projects?keyword=金尺 |
 
 ## Work Log
 
