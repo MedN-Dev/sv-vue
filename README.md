@@ -55,7 +55,7 @@
 | 指标面板数据 | GET | /api/widgets/data?cid=1&type=summary |
 | portfolio项目地区分布 | GET | /api/portfolio/region?id=1 |
 | portfolio三联动图表 | GET | /api/portfolio/chats?id=1&region=Kyushu&fit=40&codYears=0-5 |
-| portfolio项目列表 | GET | /api/portfolio/projects?id=1&region=Kyushu&fit=40&codYears=0-5&page=1&pageSize=10 |
+| portfolio项目列表 | GET | /api/portfolio/projects?id=1&region=Kyushu&fit=40&codYears=0-5 &page=1&pageSize=10 |
 | portfolio指标面板 | GET | /api/portfolio/widgets?id=1&region=Kyushu&fit=40&codYears=0-5 |
 | 发电量页面项目列表 | GET | /api/energy/projects?id=1&start=&end=&source=output&page=1&pageSize=10 |
 | 发电量页面比较表格 | GET | /api/energy/tables?pid=1&start=2018-8-15&end=2018-9-15 |
