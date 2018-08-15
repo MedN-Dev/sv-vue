@@ -2,6 +2,7 @@
   <div class="sv-page-energySingle">
     <sv-dashboard :dashboard="dashboard"></sv-dashboard>
     <sv-panel title="予実Graph">
+      <sv-dateSelect slot="right" :default="start" @listenStart="val=>{this.start=val}" @listenEnd="val=>{this.end=val}"></sv-dateSelect>
       <!-- 图表1 -->
       <div id="sv_hightCharts_sea" class="sv-hightCharts"></div>
       <!-- 图表2 -->
@@ -20,6 +21,7 @@
   import SVPanel from '@/components/common/Panel.vue'
   import SVDashboard from '@/components/common/Dashboard.vue'
   import SVDataTable from '@/components/common/DataTable.vue'
+  import SVDateSelect from '@/components/common/DateSelect'
   import Highcharts from 'highcharts'
   import { HighchartsTheme } from '@/utils/highChartsTheme'
   import { SINGLE_ENERGY_A, SINGLE_ENERGY_B } from '@/utils/highChartsOption'
@@ -27,9 +29,15 @@
   export default {
     name: 'sv-energySignle',
     props: ['id'],
+    components: {
+      'sv-dashboard': SVDashboard,
+      'sv-panel': SVPanel,
+      'sv-dataTable': SVDataTable,
+      'sv-dateSelect': SVDateSelect
+    },
     data() {
       return {
-        start: '2018-8-1',
+        start: new Date().toLocaleDateString().split('/').join('-'),
         end: '',
         dashboard: [],
         compare_headers: [],
@@ -38,19 +46,21 @@
         month_bodys: [],
       }
     },
-    components: {
-      'sv-dashboard': SVDashboard,
-      'sv-panel': SVPanel,
-      'sv-dataTable': SVDataTable
+    watch: {
+      start(val, newVal) { if(val!=newVal) this.fetchDataTable(); }
     },
     mounted() {
-      this.fetchDashboard();
-      this.fetchDataTable();
+      this.loadPage();
       Highcharts.setOptions(HighchartsTheme);
       Highcharts.chart('sv_hightCharts_sea', SINGLE_ENERGY_A);
       Highcharts.chart('sv_hightCharts_seb', SINGLE_ENERGY_B);
     },
     methods: {
+      // 刷新页面
+      loadPage() {
+        this.fetchDashboard();
+        this.fetchDataTable();
+      },
       // 获取面板指标
       fetchDashboard() {
         this.$axios.get(Widgets.Data, {pid: this.id, type: 'energy'})
@@ -89,7 +99,7 @@
         return items.map((item) => {
           return { title: item.label, col1: item.indexValues['1'], col2: item.indexValues['2'], col3: item.indexValues['3'] };
         })
-      }
+      },
     }
   }
 </script>
