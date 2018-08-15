@@ -56,10 +56,10 @@ npm run build // publish
 
 | 名称 | 类型 | URL |
 | :---- | ---- | :---- |
-| 用户登陆 | POST | /account/loginForMB?`loginName`=panbo&`password`=xxx |
+| 用户登陆 | POST | /account/loginForMB?loginName=panbo&password=xxx |
 | 用户注销 | POST | /account/logoutForMB |
 | 项目分类 | GET | /api/collection/list |
-| 多项目总览项目列表 | GET | /api/collection/projects?`id=1`&`page=1`&`pageSize=10`|
+| 多项目总览项目列表 | GET | /api/collection/projects?id=1&page=1&pageSize=10|
 | 指标面板数据 | GET | /api/widgets/data?cid=1&type=summary |
 | portfolio项目地区分布 | GET | /api/portfolio/region?id=1 |
 | portfolio三联动图表 | GET | /api/portfolio/chats?id=1&region=Kyushu&fit=40&codYears=0-5 |
