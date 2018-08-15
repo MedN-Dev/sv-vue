@@ -44,26 +44,26 @@
 | :-------- | -------- | ---------- | ----------- | :-----: |
 | 谷歌地图联调，多项目顶部菜单改造,搜索功能样式 | 2018/08/13 | 2018/08/13 | - | DengDeng |
     
-## API
+## Restful API
 
 | 名称 | 类型 | URL |
 | :---- | ---- | :---- |
-| 用户登陆 | POST | /account/loginForMB?loginName=&password= |
+| 用户登陆 | POST | /account/loginForMB?loginName=panbo&password=xxx |
 | 用户注销 | POST | /account/logoutForMB |
 | 项目分类 | GET | /api/collection/list |
-| 多项目总览项目列表 | GET | /api/collection/projects |
-| 指标面板数据 | GET | /api/widgets/data |
-| portfolio项目地区分布 | GET | /api/portfolio/region |
-| portfolio三联动图表 | GET | /api/portfolio/chats |
-| portfolio项目列表 | GET | /api/portfolio/projects |
-| portfolio指标面板 | GET | /api/portfolio/widgets |
-| 发电量页面项目列表 | GET | /api/energy/projects |
-| 发电量页面比较表格 | GET | /api/energy/tables |
-| 项目列表-收藏 | GET | /api/project/favorite|
-| 项目列表-取消收藏 | GET | /api/project/unfavorite |
-| 单项目滚屏幕明细 | GET | /api/project/Items |
-| 单项目总览明细 | GET | /api/project/Infoes |
-| 单项目相关文档 | GET | /api/project/documents |
+| 多项目总览项目列表 | GET | /api/collection/projects?id=1&page=1&pageSize=10 |
+| 指标面板数据 | GET | /api/widgets/data?cid=1&type=summary |
+| portfolio项目地区分布 | GET | /api/portfolio/region?id=1 |
+| portfolio三联动图表 | GET | /api/portfolio/chats?id=1&region=Kyushu&fit=40&codYears=0-5 |
+| portfolio项目列表 | GET | /api/portfolio/projects?id=1&region=Kyushu&fit=40&codYears=0-5&page=1&pageSize=10 |
+| portfolio指标面板 | GET | /api/portfolio/widgets?id=1&region=Kyushu&fit=40&codYears=0-5 |
+| 发电量页面项目列表 | GET | /api/energy/projects?id=1&start=&end=&source=output&page=1&pageSize=10 |
+| 发电量页面比较表格 | GET | /api/energy/tables?pid=1&start=2018-8-15&end=2018-9-15 |
+| 项目列表-收藏 | GET | /api/project/favorite?pid=8|
+| 项目列表-取消收藏 | GET | /api/project/unfavorite?pid=8 |
+| 单项目滚屏幕明细 | GET | /api/project/Items?pid=105 |
+| 单项目总览明细 | GET | /api/project/Infoes?pid=105 |
+| 单项目相关文档 | GET | /api/project/documents?pid=105&type=monthlyreport&page=1&pagesize=10 |
 | 日历列表 | GET | /api/events/data |
 | 项目搜索功能 | GET | /api/search/projects?keyword=金尺 |
 
