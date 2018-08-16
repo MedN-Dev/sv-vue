@@ -22,7 +22,7 @@
       this.loadCharts();
     },
     watch: {
-      options(val, oldVal){
+      options(){
         this.loadCharts();
       }
     },

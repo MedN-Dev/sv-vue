@@ -51,7 +51,7 @@ npm run build // publish
 | 任务名称 | 开始时间 | 预测结束 | 实际结束 | 负责人 |
 | :-------- | -------- | ---------- | ----------- | :-----: |
 | 谷歌地图联调，多项目顶部菜单改造,搜索功能样式 | 2018/08/13 | 2018/08/13 | 达标 | DengDeng |
-| 联调接口 | 2018/08/14 | 2018/08/14 | 达标 | DengDeng |
+| 完成 `Energy/Table` 的拼接联调接口 | 2018/08/14 | 2018/08/14 | 达标 | DengDeng |
 | 新增日历选择控件，修改日期联动发电量图表 | 2018/08/15 | 2018/08/15 | - | DengDeng |
     
 ## Restful API
@@ -83,7 +83,7 @@ npm run build // publish
     - `axios` 请求模块封装
     - 开发环境跨域代理设置
     - `顶部导航` 与 `Widget面板` api联调对接成功
-    - coolie 键 `.AspNet.ApplicationCookie`, 值 `ufe_dMg_uzRkd3GuZLZUcYe-aXu9HROpLX1vX2agYGX4h68fyQSRrGUkTLNXF29y2UcOphgMq1AgE_1PMVKuudUrvTGA0mgR8EaRpe368XuEMxaprtwQ97tFw_30HyKeOc0km-9f89Su2G40Pwg1EJbuQnxx_fiStPVlRSJEcPujo7Xd9X67j8CEfJCqJYb4eoCQt78L4cN2Xw4C4UEOkiM1aBXc0Z9oUNbhAgCL5cZ5sqoQXTZBa6oasrvm0Vb9zd_ui0Gtag5IK2j8yFIsID5gmcmQdUvTh4NMv6rKJhNxjpJlA1iw89zpBAfYiyCsLxgSTAhP6SR6wweiPUHnjTY6-9bXFQqzNH3mkzmzBJAxQ-ZPk8h3825rpvjYFYwg89o6LR-DD0NzyDB8pvl1k97ciBH-Va_T67DyCDTkYLry_bmxfQsfmOwjGbAygd1YRUg_M1aq996puntTg8pCGDeR1Wulj5B3Se6hrMG_6XDd-RHUH7rIG5NDlm8h5CD5VhR8bF7NHLlWba52w4ViPg`
+    - coolie 键 `.AspNet.ApplicationCookie`
 
 - 2018/08/03
     - 事件日历组件开发与调试

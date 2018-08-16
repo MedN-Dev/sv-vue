@@ -66,7 +66,7 @@
       'vue-infinite-loading': VueInfiniteLoading,
     },
     watch: {
-      trigger(val, oldVal) {
+      trigger() {
         if(this.trigger === 'left'){
           this.list = MOCK_EVENTLIST.events;
         }else{

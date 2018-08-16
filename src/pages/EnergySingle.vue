@@ -2,7 +2,7 @@
   <div class="sv-page-energySingle">
     <sv-dashboard :dashboard="dashboard"></sv-dashboard>
     <sv-panel title="予実Graph">
-      <sv-dateSelect slot="right" :default="start" @listenStart="val=>{this.start=val}" @listenEnd="val=>{this.end=val}"></sv-dateSelect>
+      <sv-monthSelect slot="right" :default="start" @listenStart="val=>{this.start=val}" @listenEnd="val=>{this.end=val}"></sv-monthSelect>
       <!-- 图表1 -->
       <div id="sv_hightCharts_sea" class="sv-hightCharts"></div>
       <!-- 图表2 -->
@@ -21,11 +21,12 @@
   import SVPanel from '@/components/common/Panel.vue'
   import SVDashboard from '@/components/common/Dashboard.vue'
   import SVDataTable from '@/components/common/DataTable.vue'
-  import SVDateSelect from '@/components/common/DateSelect'
+  import SVMonthSelect from '@/components/common/MonthSelect'
   import Highcharts from 'highcharts'
   import { HighchartsTheme } from '@/utils/highChartsTheme'
   import { SINGLE_ENERGY_A, SINGLE_ENERGY_B } from '@/utils/highChartsOption'
   import { Widgets, Energy } from '@/http/api'
+  import SVDate from '@/utils/date'
   export default {
     name: 'sv-energySignle',
     props: ['id'],
@@ -33,11 +34,11 @@
       'sv-dashboard': SVDashboard,
       'sv-panel': SVPanel,
       'sv-dataTable': SVDataTable,
-      'sv-dateSelect': SVDateSelect
+      'sv-monthSelect': SVMonthSelect
     },
     data() {
       return {
-        start: new Date().toLocaleDateString().split('/').join('-'),
+        start: SVDate.getThisMonthDay(),
         end: '',
         dashboard: [],
         compare_headers: [],
