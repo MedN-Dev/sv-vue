@@ -3,7 +3,7 @@ export default {
    * 方法-获取当月首日日期 2018-08-01
    */
   getThisMonthDay() {
-    let date = new Date().toLocaleDateString().split('/').join('-');
+    let date = `${new Date().getFullYear()}-${new Date().getMonth()+1}-01`;
     let [year, month] = date.split('-');
     let monthNum = parseInt(month, 10);
     if(monthNum < 10){

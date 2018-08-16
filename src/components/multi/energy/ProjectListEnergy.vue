@@ -59,7 +59,7 @@
     data () {
       return {
         pageSize: 10,
-        list: [{favor: 0, title: '项目', col1: 'パネル出力', col2: '当月発電比較',}]
+        list: [{favor: 0, title: '项目', col1: '実績值', col2: '预测比较',}]
       }
     },
     watch: {
@@ -133,7 +133,7 @@
       resetList() {
         this.$axios.get(Energy.Projects, { id: this.category, start: this.start, end: this.end, source: this.source, page: 1, pageSize: this.pageSize })
         .then((res)=>{
-          this.list = [{ favor: 0, title: '项目', col1: 'パネル出力', col2: '当月発電比較',}];
+          this.list = [{ favor: 0, title: '项目', col1: '実績值', col2: '预测比较',}];
           if (res.data.items.length) {
             this.list = this.list.concat(this.filterlist(res.data.items));
           }
