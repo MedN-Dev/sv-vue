@@ -66,7 +66,7 @@
       category() {
         this.resetList();
       },
-      source(val, newVal) {
+      source() {
         this.resetList();
       }
     },

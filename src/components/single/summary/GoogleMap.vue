@@ -26,7 +26,10 @@
         GoogleMapsLoader.load(function(google) {
           var calculateDu = function(value) {
             value = value.replace(/\s+/g, '');
+            var isN = /N/i.test(value);
+            var isE = /E/i.test(value);
             var d = /\d+(?=°)/.exec(value)
+            var f = /\d+(?=')/.exec(value)
             var m = /\d+(?:\.\d+){0,1}(?=")/.exec(value)
             var f = parseFloat(f) + parseFloat(m / 60);
             var du = parseFloat(f / 60) + parseFloat(d);
