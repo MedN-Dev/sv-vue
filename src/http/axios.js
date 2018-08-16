@@ -1,6 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 import $router from '@/router'
+import $store from '@/store'
 
 axios.interceptors.request.use(config => {
   return config
@@ -9,14 +10,9 @@ axios.interceptors.request.use(config => {
 })
 
 axios.interceptors.response.use(response => {
-  /* 检测某种状态进行重定向
-  if (response.status === 302) {
-    Router.push({
-      name: 'home'
-    })
-  } */
   return response
 }, error => {
+  $store.dispatch('OPPEN_ERROR', error.message);
   return Promise.resolve(error.response)
 })
 
@@ -25,28 +21,26 @@ const checkStatus = response => {
   // 如果http状态码正常，则直接返回数据
   if (response && (response.status === 200 || response.status === 304 || response.status === 400)) {
     return response.data
-    // 如果不需要除了data之外的数据，可以直接 return response.data
   }
-  // 异常状态下，把错误信息返回去
   return {
     status: -404,
     msg: '网络异常'
   }
 }
 
-function checkCode (res) {
+const checkCode = response => {
   // 如果code异常(这里已经包括网络错误，服务器错误，后端抛出的错误)，可以弹出一个错误提示，告诉用户
-  if (res.code === 1) { 
-    //console.log('操作失败') 
+  if (response.code === 1) {
+    $store.dispatch('OPPEN_ERROR', '服务器响应失败):code=1');
   }
-  if (res.isAuthorized === 0) { 
+  if (response.isAuthorized === 0) { 
     //console.log('请先登录') 
     $router.push('/login');
   }
-  if (res.data) {
+  if (response.data) {
     // console.log('请求成功')
   }
-  return res
+  return response;
 }
 
 export default {

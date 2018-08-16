@@ -93,15 +93,17 @@
       infiniteHandler($state) {
         this.$axios.get(Collection.Projects, { id: this.category, page: this.page, pageSize: this.pageSize })
         .then((res)=>{
-          if (res.data.items.length) {
-            this.list = this.list.concat(this.filterlist(res.data.items));
-            this.totalCount = res.data.totalCount;
-            $state.loaded();
-            if (this.finished) {
+          if(res.code === 0){
+            if (res.data.items.length) {
+              this.list = this.list.concat(this.filterlist(res.data.items));
+              this.totalCount = res.data.totalCount;
+              $state.loaded();
+              if (this.finished) {
+                $state.complete();
+              }
+            } else {
               $state.complete();
             }
-          } else {
-            $state.complete();
           }
         })
       },
