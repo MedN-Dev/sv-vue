@@ -4,7 +4,6 @@
       v-model="error"
       width="500"
     >
-    <v-btn slot="activator" color="primary" dark>Open Dialog</v-btn>
       <v-card>
         <v-card-title class="headline">Error</v-card-title>
         <v-card-text>{{msg}}</v-card-text>

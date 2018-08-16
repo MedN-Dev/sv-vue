@@ -5,8 +5,9 @@
       <sv-monthSelect slot="right" :default="start" @listenStart="val=>{this.start=val}" @listenEnd="val=>{this.end=val}"></sv-monthSelect>
       <!-- 图表1 -->
       <div id="sv_hightCharts_sea" class="sv-hightCharts"></div>
+      <sv-highCharts-energy id="sv_hightCharts_energy_a" :project="id" :start="start" :end="end"></sv-highCharts-energy>
       <!-- 图表2 -->
-      <div id="sv_hightCharts_seb" class="sv-hightCharts"></div>
+      <sv-highCharts-energy id="sv_hightCharts_energy_b" :project="id" :start="start" :end="end"></sv-highCharts-energy>
     </sv-panel>
     <sv-panel title="予実比較表">
       <sv-dataTable :bodys="compare_bodys"></sv-dataTable>
@@ -21,10 +22,8 @@
   import SVPanel from '@/components/common/Panel.vue'
   import SVDashboard from '@/components/common/Dashboard.vue'
   import SVDataTable from '@/components/common/DataTable.vue'
-  import SVMonthSelect from '@/components/common/MonthSelect'
-  import Highcharts from 'highcharts'
-  import { HighchartsTheme } from '@/utils/highChartsTheme'
-  import { SINGLE_ENERGY_A, SINGLE_ENERGY_B } from '@/utils/highChartsOption'
+  import SVMonthSelect from '@/components/common/MonthSelect.vue'
+  import SVHighchartsEnergy from '@/components/common/HighchartsEnergy.vue'
   import { Widgets, Energy } from '@/http/api'
   import SVDate from '@/utils/date'
   export default {
@@ -33,6 +32,7 @@
     components: {
       'sv-dashboard': SVDashboard,
       'sv-panel': SVPanel,
+      'sv-highCharts-energy': SVHighchartsEnergy,
       'sv-dataTable': SVDataTable,
       'sv-monthSelect': SVMonthSelect
     },
@@ -52,9 +52,6 @@
     },
     mounted() {
       this.loadPage();
-      Highcharts.setOptions(HighchartsTheme);
-      Highcharts.chart('sv_hightCharts_sea', SINGLE_ENERGY_A);
-      Highcharts.chart('sv_hightCharts_seb', SINGLE_ENERGY_B);
     },
     methods: {
       // 刷新页面

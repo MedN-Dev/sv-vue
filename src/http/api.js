@@ -35,7 +35,7 @@ export const Portfolio = {
 export const Energy = {
     Projects: `${apiAddress}/api/energy/projects`,
     Tables: `${apiAddress}/api/energy/tables`,
-    Data: `${apiAddress}/api/energy/data?pid=17&start=2018-8-1&end=2018-9-1&cid=1`, // 发电量图表
+    Data: `${apiAddress}/api/energy/data`, // 发电量图表
 }
 
 // 项目相关
