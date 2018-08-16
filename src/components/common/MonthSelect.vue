@@ -48,13 +48,12 @@
     methods: {
       // 计算开始时间
       getStartDate(date) {
-        const [year, month, day] = date.split('-');
-        return `${year}-${month}-01`;
+        return SVDate.parseMonthDay(date);
       },
       // 根据开始时间推算结束时间
       getEndDate(date) {
         if (!date) return null;
-        return SVDate.getNextMonth(date);
+        return SVDate.getNextMonthDay(date);
       },
       // 往父组件传递状态
       popDateState() {
@@ -63,6 +62,7 @@
         this.$emit('listenStart', this.start);
         this.$emit('listenEnd', this.end);
       },
+      // 设置控件默认日期
       setDefaultDate() {
         let [year, month] = this.default.split('-');
         this.date = `${year}-${month}`;

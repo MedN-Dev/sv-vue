@@ -39,7 +39,7 @@
     data() {
       return {
         start: SVDate.getThisMonthDay(),
-        end: '',
+        end: SVDate.getNextMonthDay(SVDate.getThisMonthDay()),
         dashboard: [],
         compare_headers: [],
         compare_bodys: [],
@@ -104,6 +104,3 @@
     }
   }
 </script>
-<style>
-
-</style>
