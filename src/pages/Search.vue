@@ -10,6 +10,7 @@
                 clearable
                 required
                 @click="alert=false"
+                placeholder="Please enter key words"
             ></v-text-field>
           </v-form>
         </v-flex>
@@ -35,7 +36,7 @@
     data() {
       return {
         valid: false,
-        search: 'Please enter key words',
+        search: '',
         searchRules: [
         // v => !!v || 'search is required',
         // v => /.+@.+/.test(v) || 'search must be valid',

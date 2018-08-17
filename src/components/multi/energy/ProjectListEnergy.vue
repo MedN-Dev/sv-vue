@@ -63,12 +63,9 @@
       }
     },
     watch: {
-      category() {
-        this.resetList();
-      },
-      source() {
-        this.resetList();
-      }
+      category() { this.resetList(); },
+      source() { this.resetList(); },
+      start() { this.resetList(); },
     },
     computed: {
       page() {
