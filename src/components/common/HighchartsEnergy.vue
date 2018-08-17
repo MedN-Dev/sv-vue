@@ -1,16 +1,16 @@
 <template>
   <div class="sv-hightCharts-energy">
     <div :id=id></div>
+    <div id='sv_chart_b' v-if="!isSingle"></div>
   </div>
 </template>
-
 <script>
   import Highcharts from 'highcharts/highstock';
   import { HighchartsTheme } from '@/utils/highChartsTheme';
   import { Energy } from '@/http/api'
   export default {
     name: 'sv-hightCharts-energy',
-    props: ['id', 'project', 'category', 'start', 'end'],
+    props: ['isSingle','id', 'project', 'category', 'start', 'end'],
     data() {
       return {
         options: {},
@@ -30,6 +30,7 @@
     },
     mounted() {
       this.fetchEnergyData();
+       
     },
     methods: {
       // 请求数据
@@ -40,6 +41,7 @@
               // 清洗数据源
               this.filterEnergyData(res.data);
               // 加载列表
+              
               this.loadCharts();
             }
           })
@@ -61,16 +63,18 @@
       // 配置变量
       loadCharts() {
         let SERIES = [{
+            yAxis: 1,
             name: '発電量実績',
             type: 'column',
             color:'#FE6C6E',
             data: this.yield,
-          }, {
+          },{
             name: '日射量実績',
             type: 'column',
             color:'#5577E4',
             data: this.sun,
           },{
+           
             name: '発電量予測',
             type: 'line',
             color:'#FE6C6E',
@@ -85,6 +89,7 @@
             },
             enableMouseTracking: false
           },{
+             yAxis: 1,
             name: '日射量予測',
             type: 'line',
             color:'#5577E4',
@@ -113,32 +118,32 @@
             categories: XAXIS,
             crosshair: true,
             min:0,
-            max:5,
+			      max:10
           },
-          //滚动条
-          scrollbar : {
-            enabled:true,
-            barBackgroundColor: 'gray',
-            barBorderRadius: 7,
-            barBorderWidth: 0,
-            buttonBackgroundColor: 'gray',
-            buttonBorderWidth: 0,
-            buttonArrowColor: 'yellow',
-            buttonBorderRadius: 7,
-            rifleColor: 'yellow',
-            trackBackgroundColor: 'white',
-            trackBorderWidth: 1,
-            trackBorderColor: 'silver',
-            trackBorderRadius: 7
-        },
-          yAxis: {
+          scrollbar: {
+              enabled: true,
+              barBackgroundColor: '#CCCCCC'
+          },
+          yAxis: [ {
+            lineWidth: 1,
+            tickWidth: 1,
+            title: {
+              align: 'high',
+              offset: 0,
+              text: 'Rainfall (mm)',
+              rotation: 0,
+              y: -10
+            }
+          },{
             gridLineWidth:'0px', 
             lineWidth: 1,
-          min: 0,
+            min: 0,
             title: {
-                text: '发电量 (KWH)',
-            } 
-          },
+                text: 'KWh',
+            } ,
+            opposite: true,
+          }]
+          ,
           tooltip: {
             borderColor:null,
             borderWidth: 0,
@@ -168,6 +173,7 @@
           series: SERIES,
         });
       }
+
     }
   }
 </script>

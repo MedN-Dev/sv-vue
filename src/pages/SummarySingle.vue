@@ -73,9 +73,14 @@ export default {
         if(res.code === 0){
           this.details = this.filterProjectDetail(res.data.items);
           this.setMapConfig(res.data.latitude, res.data.longitude);
-          this.images = res.data.images;
+          this.images = this.filterImages(res.data.images);
           //this.images = [SVBannerImg,SVBannerImg,SVBannerImg];
         }
+      })
+    },
+    filterImages(items) {
+      return items.map((item)=>{
+        return item.url;
       })
     },
     // 清洗项目明细数据源
