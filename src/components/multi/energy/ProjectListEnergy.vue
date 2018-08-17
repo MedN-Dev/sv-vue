@@ -24,15 +24,15 @@
         </v-list-tile-action>
 
         <v-list-tile-content class="sv-projectList-title">
-          <v-list-tile-title v-text="item.title"></v-list-tile-title>
+          <v-list-tile-title v-text="item.title" :class="`sv-projectList-${item.className}`"></v-list-tile-title>
         </v-list-tile-content>
 
         <v-list-tile-content class="sv-projectList-col1">
-          <v-list-tile-title v-text="item.col1"></v-list-tile-title>
+          <v-list-tile-title v-text="item.col1" :class="`sv-projectList-${item.className}`"></v-list-tile-title>
         </v-list-tile-content>
 
         <v-list-tile-content class="sv-projectList-col2">
-          <v-list-tile-title v-text="item.col2"></v-list-tile-title>
+          <v-list-tile-title v-text="item.col2" :class="`sv-projectList-${item.className}`"></v-list-tile-title>
         </v-list-tile-content>
 
         <v-list-tile-action class="sv-projectList-link">
@@ -102,7 +102,7 @@
       },
       filterlist(items) {
         return items.map((item)=>{
-          return { id: item.id, favor: item.hasFavorite, title: item.name, col1: item.items[0], col2: item.items[1], link: `/project/${item.id}/summary?name=${item.name}` }
+          return { id: item.id, className: item.className, favor: item.hasFavorite, title: item.name, col1: item.items[0], col2: item.items[1], link: `/project/${item.id}/summary?name=${item.name}` }
         })
       },
       favoriteHandle(projectId) {
@@ -124,9 +124,9 @@
       updateListById(projectId, favor) {
         this.list = this.list.map((item)=>{
           if(item.id === projectId) {
-            return { id: item.id, favor: favor, title: item.title, col1: item.col1, col2: item.col2, link: item.link };
+            return { ...item, favor }; // 析构表达式-优雅
           }else{
-            return { id: item.id, favor: item.favor, title: item.title, col1: item.col1, col2: item.col2, link: item.link };
+            return item;
           }
         })
       },
@@ -146,7 +146,7 @@
   }
 </script>
 
-<style>
+<style scoped>
 .sv-projectList > .sv-projectList-list{
   background: transparent;
 }
@@ -165,6 +165,11 @@
 .sv-projectList-list > div:first-child {
   color: #999999;
 }
+.sv-projectList-Level1 { color: #5478e5 }
+.sv-projectList-Level2 { color: #2eba87 }
+.sv-projectList-Level3 { color: #ffc000 }
+.sv-projectList-Level4 { color: rgb(243, 135, 56) }
+.sv-projectList-Level5 { color: #fe6c6e }
 </style>
 
 
