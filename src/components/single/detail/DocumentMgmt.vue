@@ -37,7 +37,7 @@
             </v-list-tile-content>
 
             <v-list-tile-action>
-              <a href="" :download=item.src>
+              <a :href="item.src" :download="item.title">
                 <v-icon
                   color="grey lighten-1"
                 >
