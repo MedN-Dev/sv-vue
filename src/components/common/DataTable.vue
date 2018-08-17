@@ -64,11 +64,12 @@
 .sv-dataTable-table{
   margin-bottom: 20px;
 }
-table td, table th{
-  padding: 0 10px !important;
+.sv-dataTable table.v-table thead tr{ height: 38px; }
+.sv-dataTable table td, table th{
+  padding: 0 6px !important;
 }
 .sv-dataTable-title{
-  width: 15%;
+  width: 16%;
 }
 .sv-dataTable-col-red{
   color: #fe6c6e;
