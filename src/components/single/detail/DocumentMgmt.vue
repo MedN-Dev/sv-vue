@@ -79,7 +79,7 @@
         }else if(this.tab === 1){
           return 'workPicture';
         }else{
-          return 'comfirmDoc';
+          return 'confirmDoc';
         }
       }
     },
