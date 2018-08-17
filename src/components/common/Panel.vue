@@ -6,7 +6,8 @@
           <v-flex xs4>
             <v-card-text class="sv-panel-title" align="left">{{title}}</v-card-text>
           </v-flex>
-          <v-flex xs8 align-space-around>
+          <v-flex xs4></v-flex>
+          <v-flex xs4 align-space-around>
             <!-- 插槽-右侧控制 -->
             <slot name="right"></slot>
           </v-flex>

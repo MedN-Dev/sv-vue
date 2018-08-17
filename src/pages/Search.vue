@@ -55,7 +55,7 @@
     methods: {
       fetchSearchResult() {
         this.searchResult = [];
-        this.$axios.get(Search.Projects, { keyword: this.search })
+        this.$axios.get(`${Search.Projects}?keyword=${this.search}`)
           .then((res) => {
             //this.searchResult = this.$_.capitalize(res.data);
             if(res.code === 0) { this.searchResult = this.filterSearchResult(res.data); }
