@@ -1,28 +1,12 @@
 <template>
   <div class="sv-page-summarySingle">
     <sv-dashboard :dashboard="dashboard"></sv-dashboard>
-    <!-- 静态图 -->
-    <!-- <v-jumbotron
-      :gradient="gradient"
-      dark
-      :src="items[0].src"
-      height="180px"
-      class="sv-page-summarySingle-carousel"
-    >
-      <v-container fill-height>
-        <v-layout align-center>
-          <v-flex text-xs-center>
-            <h3 class="display-13"></h3>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-jumbotron> -->
     <!-- 轮播图 -->
-    <v-carousel class="sv-page-summarySingle-carousel" dark hide-controls>
+    <v-carousel v-if="images.length>0" class="sv-page-summarySingle-carousel" dark hide-controls>
       <v-carousel-item
-        v-for="(item,i) in items"
+        v-for="(img,i) in images"
         :key="i"
-        :src="item.src"
+        :src="img"
       ></v-carousel-item>
     </v-carousel>
     <!-- 项目明细 -->
@@ -57,11 +41,7 @@ export default {
   data() {
     return {
       dashboard: [],
-      items: [ 
-        { src: SVBannerImg },
-        { src: SVBannerImg },
-        { src: SVBannerImg }
-      ],
+      images: [],
       details: [],
       gradient: 'to top right, rgba(44,48,59, .7), rgba(31,33,45, .3)',
       lat: '',
@@ -93,6 +73,8 @@ export default {
         if(res.code === 0){
           this.details = this.filterProjectDetail(res.data.items);
           this.setMapConfig(res.data.latitude, res.data.longitude);
+          this.images = res.data.images;
+          //this.images = [SVBannerImg,SVBannerImg,SVBannerImg];
         }
       })
     },
