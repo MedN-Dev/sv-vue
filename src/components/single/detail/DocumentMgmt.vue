@@ -29,7 +29,6 @@
             :key="item.index"
             avatar
             ripple
-            @click="download(item.src)"
           >
             <v-list-tile-content>
               <v-list-tile-title>{{ item.title }}</v-list-tile-title>
@@ -38,11 +37,13 @@
             </v-list-tile-content>
 
             <v-list-tile-action>
-              <v-icon
-                color="grey lighten-1"
-              >
-                cloud_download
-              </v-icon>
+              <a href="" :download=item.src>
+                <v-icon
+                  color="grey lighten-1"
+                >
+                  cloud_download
+                </v-icon>
+              </a>
             </v-list-tile-action>
 
           </v-list-tile>
@@ -103,9 +104,6 @@
         return items.map((item)=>{
           return { id: item.id, title: item.name, date: item.date, src: item.url }
         })
-      },
-      download(src) {
-        window.location.href = src;
       }
     },
   }
