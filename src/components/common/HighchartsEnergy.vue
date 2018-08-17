@@ -102,9 +102,7 @@
         // 绘制图表
         this.drawChart(this.id, this.xAxis, SERIES);  
       },
-      /**
-       * 绘制图表， 挂载id, 横轴坐标数组，数据组
-       */
+      // 绘制图表， 挂载id, 横轴坐标数组，数据组
       drawChart(ID, XAXIS, SERIES) {
         Highcharts.setOptions(HighchartsTheme);
         Highcharts.chart(ID, {
