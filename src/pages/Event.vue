@@ -99,7 +99,7 @@
     },
     mounted() {
       this.list = MOCK_EVENTLIST.events;
-      this.fetchEventsList();
+      // this.fetchEventsList();
     }
   }
 </script>
