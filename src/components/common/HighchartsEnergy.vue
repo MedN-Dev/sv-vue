@@ -1,7 +1,7 @@
 <template>
   <div class="sv-hightCharts-energy">
     <div :id=id></div>
-    <div id='sv_chart_b' v-if="!isSingle"></div>
+    <div id='sv_chart_energy_b'></div>
   </div>
 </template>
 <script>
@@ -30,7 +30,6 @@
     },
     mounted() {
       this.fetchEnergyData();
-       
     },
     methods: {
       // 请求数据
@@ -41,8 +40,9 @@
               // 清洗数据源
               this.filterEnergyData(res.data);
               // 加载列表
-              
               this.loadCharts();
+              // 只渲染一个图表
+              if(!this.isSingle){ this.loadNextCharts(); }
             }
           })
       },
@@ -74,7 +74,7 @@
             color:'#5577E4',
             data: this.sun,
           },{
-           
+            yAxis: 1,
             name: '発電量予測',
             type: 'line',
             color:'#FE6C6E',
@@ -89,7 +89,6 @@
             },
             enableMouseTracking: false
           },{
-             yAxis: 1,
             name: '日射量予測',
             type: 'line',
             color:'#5577E4',
@@ -171,8 +170,42 @@
           },
           series: SERIES,
         });
+      },
+      // 加载第二个图表
+      loadNextCharts() {
+        let SERIES = [{
+            yAxis: 1,
+            name: '发电总量',
+            type: 'line',
+            color:'#FE6C6E',
+            data: this.totalYield,
+            marker: {
+              enabled: false
+            },
+            states: {
+              hover: {
+                lineWidth: 0
+              }
+            },
+            enableMouseTracking: false
+          },{
+            name: '日射量总量',
+            type: 'line',
+            color:'#5577E4',
+            data:  this.totalSun,
+            marker: {
+              enabled: false
+            },
+            states: {
+              hover: {
+                lineWidth: 0
+              }
+            },
+            enableMouseTracking: false
+          }];
+        // 绘制图表
+        this.drawChart('sv_chart_energy_b', this.xAxis, SERIES);  
       }
-
     }
   }
 </script>

@@ -5,7 +5,7 @@
     <sv-panel title="発電実績">
       <sv-monthSelect slot="right" :default="start" @listenStart="val=>{this.start=val}" @listenEnd="val=>{this.end=val}"></sv-monthSelect>
       <!-- 组件-发电量图表 -->
-      <sv-highCharts-energy id="sv_hightCharts_energy" isSingle :category="category" :start="start" :end="end"></sv-highCharts-energy>
+      <sv-highCharts-energy id="sv_hightCharts_energy" isSingle=true :category="category" :start="start" :end="end"></sv-highCharts-energy>
     </sv-panel>
     <sv-panel title="Portfolio">
       <!-- 组件-RadioButton -->
