@@ -104,8 +104,8 @@
           return { id: item.id, title: item.name, date: item.date, src: item.url }
         })
       },
-      download() {
-        // location.href = src;
+      download(src) {
+        window.location.href = src;
       }
     },
   }
