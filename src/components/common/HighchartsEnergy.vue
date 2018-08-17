@@ -58,10 +58,8 @@
         this.totalSun = totalSun.map(item => item.value);
         this.totalYield = totalYield.map(item => item.value);
       },
-      // 更新图表
+      // 配置变量
       loadCharts() {
-        // 变量
-        let MONTH = this.xAxis;
         let SERIES = [{
             name: '発電量実績',
             type: 'column',
@@ -102,13 +100,19 @@
             enableMouseTracking: false
           }];
         // 绘制图表
+        this.drawChart(this.id, this.xAxis, SERIES);  
+      },
+      /**
+       * 绘制图表， 挂载id, 横轴坐标数组，数据组
+       */
+      drawChart(ID, XAXIS, SERIES) {
         Highcharts.setOptions(HighchartsTheme);
-        Highcharts.chart(this.id, {
+        Highcharts.chart(ID, {
           title: { text: '', },
           subtitle: { text: '', },
           credits: { enabled:false },
           xAxis: {
-            categories: MONTH,
+            categories: XAXIS,
             crosshair: true,
           },
           yAxis: {
