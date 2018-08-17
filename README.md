@@ -52,7 +52,9 @@ npm run build // publish
 | :-------- | -------- | ---------- | ----------- | :-----: |
 | 谷歌地图联调，多项目顶部菜单改造,搜索功能样式 | 2018/08/13 | 2018/08/13 | 达标 | DengDeng |
 | 完成 `Energy/Table` 的拼接联调接口 | 2018/08/14 | 2018/08/14 | 达标 | DengDeng |
-| 新增日历选择控件，修改日期联动发电量图表 | 2018/08/15 | 2018/08/15 | - | DengDeng |
+| 新增月份选择控件，修改日期联动发电量图表 | 2018/08/15 | 2018/08/15 | 达标 | DengDeng |
+| 调试剩余接口 | 2018/08/16 | 2018/08/16 | 达标 | DengDeng |
+| 发电量图表接口联调与组件开发 | 2018/08/17 | 2018/08/17 | - | Zhangquan |
     
 ## Restful API
 
@@ -74,7 +76,6 @@ npm run build // publish
 | 单项目滚屏幕明细 | GET | /api/project/Items?pid=105 |
 | 单项目总览明细 | GET | /api/project/Infoes?pid=105 |
 | 单项目相关文档 | GET | /api/project/documents?pid=105&type=monthlyreport&page=1&pagesize=10 |
-| 日历列表 | GET | /api/events/data |
 | 项目搜索功能 | GET | /api/search/projects?keyword=金尺 |
 
 ## Work Log

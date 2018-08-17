@@ -112,8 +112,8 @@
           xAxis: {
             categories: XAXIS,
             crosshair: true,
-            min:0,//最小值
-			      max:5//最大值
+            min:0,
+            max:5,
           },
           //滚动条
           scrollbar : {

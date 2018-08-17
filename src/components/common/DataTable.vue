@@ -69,7 +69,7 @@
   padding: 0 6px !important;
 }
 .sv-dataTable-title{
-  width: 16%;
+  width: 30%;
 }
 .sv-dataTable-col-red{
   color: #fe6c6e;
