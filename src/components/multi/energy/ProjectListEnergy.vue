@@ -69,7 +69,7 @@
     },
     computed: {
       page() {
-        return (this.list.length-1) / 10 + 1;
+        return Math.ceil((this.list.length-1) / 10) + 1;
       },
       finished() {
         return (this.list.length-1) / 10 === 10
