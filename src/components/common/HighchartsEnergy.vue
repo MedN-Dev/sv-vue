@@ -15,12 +15,12 @@
       return {
         options: {},
         xAxis: [], // 天数
-        sun: [],
-        sunEstimation: [],
-        totalSun: [],
-        totalYield: [],
-        yield: [],
-        yieldEstimation: []
+        sun: [], // 日射量
+        sunEstimation: [], // 日射量预测
+        yield: [], //発電量実績
+        yieldEstimation: [], //発電量予測
+        totalSun: [], // 曲线图
+        totalYield: [], // 曲线图
       }
     },
     watch: {
@@ -37,7 +37,8 @@
         this.$axios.get(Energy.Data, { pid: this.project, cid: this.category, start: this.start, end: this.end})
           .then((res)=>{
             if(res.code === 0) {
-              this.options = this.filterEnergyData(res.data);
+              // 清洗数据源
+              this.filterEnergyData(res.data);
               // 加载列表
               this.loadCharts();
             }
@@ -45,23 +46,32 @@
       },
       // 清洗数据源
       filterEnergyData(data) {
-        // 拆分数据组装 => 
-        return data;
+        let { sun, sunEstimation, totalSun, totalYield, yieldEstimation } = data;
+        // 获取横坐标
+        this.xAxis = sun.map(item => item.dateTime);
+        // 获取数据数组
+        this.sun = sun.map(item => item.value);
+        this.sunEstimation = sunEstimation.map(item => item.value);
+        this.yield = data['yield'].map(item => item.value);
+        this.yieldEstimation = yieldEstimation.map(item => item.value);
+        // 曲线图表
+        this.totalSun = totalSun.map(item => item.value);
+        this.totalYield = totalYield.map(item => item.value);
       },
       // 更新图表
       loadCharts() {
         // 变量
-        const MONTH = ['1','2','3','4','5','6','7','8','9','10','11','12'];
-        const SERIES = [{
+        let MONTH = this.xAxis;
+        let SERIES = [{
             name: '発電量実績',
             type: 'column',
             color:'#FE6C6E',
-            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 116.4, 194.1, 95.6, 54.4,],
+            data: this.yield,
           }, {
             name: '日射量実績',
             type: 'column',
             color:'#5577E4',
-            data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3,],
+            data: this.sun,
           },{
             name: '発電量予測',
             type: 'line',

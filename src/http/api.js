@@ -1,5 +1,5 @@
 // 开发环境域名-Egg服务器接口
-const apiAddress = 'http://localhost:9000';
+const apiAddress = 'http://10.1.2.59:9000';
 
 // 生产环境域名
 // const apiAddress = 'http://solar-value.com';
