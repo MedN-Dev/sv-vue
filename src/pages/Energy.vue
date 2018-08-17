@@ -12,7 +12,7 @@
         <v-flex xs12 sm6 class="py-2">
           <v-btn-toggle v-model="trigger" mandatory>
             <v-btn flat value="output">
-              発電量(kWh)
+              発電量(万kWh)
             </v-btn>
             <v-btn flat value="SunRadiation">
               日射量(kWh/m2)
