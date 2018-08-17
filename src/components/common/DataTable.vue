@@ -68,18 +68,15 @@ table td, table th{
   padding: 0 10px !important;
 }
 .sv-dataTable-title{
-  width: 25%;
+  width: 15%;
 }
 .sv-dataTable-col-red{
-  width: 25%;
   color: #fe6c6e;
 }
 .sv-dataTable-col-green{
-  width: 25%;
   color: #2eba87;
 }
 .sv-dataTable-col-blue{
-  width: 25%;
   color: #5478e5;
 }
 .sv-dataTable-col-yellow{

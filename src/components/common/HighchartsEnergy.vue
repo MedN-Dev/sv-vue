@@ -51,9 +51,9 @@
         this.xAxis = sun.map(item => item.dateTime);
         // 获取数据数组
         this.sun = sun.map(item => item.value);
-        this.sunEstimation = sunEstimation.map(item => item.value);
+        this.sunEstimation = [[0, sunEstimation[0].value], [this.xAxis.length, sunEstimation[0].value]];
         this.yield = data['yield'].map(item => item.value);
-        this.yieldEstimation = yieldEstimation.map(item => item.value);
+        this.yieldEstimation = [[0, yieldEstimation[0].value], [this.xAxis.length, yieldEstimation[0].value]];
         // 曲线图表
         this.totalSun = totalSun.map(item => item.value);
         this.totalYield = totalYield.map(item => item.value);
@@ -74,7 +74,7 @@
             name: '発電量予測',
             type: 'line',
             color:'#FE6C6E',
-            data: [[0,200],[11,200]],
+            data: this.yieldEstimation,
             marker: {
               enabled: false
             },
@@ -88,7 +88,7 @@
             name: '日射量予測',
             type: 'line',
             color:'#5577E4',
-            data: [[0,150],[11,150]],
+            data:  this.sunEstimation,
             marker: {
               enabled: false
             },
@@ -112,7 +112,25 @@
           xAxis: {
             categories: XAXIS,
             crosshair: true,
+            min:0,//最小值
+			      max:5//最大值
           },
+          //滚动条
+          scrollbar : {
+            enabled:true,
+            barBackgroundColor: 'gray',
+            barBorderRadius: 7,
+            barBorderWidth: 0,
+            buttonBackgroundColor: 'gray',
+            buttonBorderWidth: 0,
+            buttonArrowColor: 'yellow',
+            buttonBorderRadius: 7,
+            rifleColor: 'yellow',
+            trackBackgroundColor: 'white',
+            trackBorderWidth: 1,
+            trackBorderColor: 'silver',
+            trackBorderRadius: 7
+        },
           yAxis: {
             gridLineWidth:'0px', 
             lineWidth: 1,
