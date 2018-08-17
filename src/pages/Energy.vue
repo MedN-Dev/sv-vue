@@ -2,10 +2,9 @@
   <div class="sv-page-energy">
     <sv-dashboard :dashboard="dashboard"></sv-dashboard>
     <sv-panel title="全体実績">
-      <!-- 图表1 -->
-      <div id="sv_hightCharts_ea" class="sv-hightCharts"></div>
-      <!-- 图表2 -->
-      <div id="sv_hightCharts_eb" class="sv-hightCharts"></div>
+      <sv-monthSelect slot="right" :default="start" @listenStart="val=>{this.start=val}" @listenEnd="val=>{this.end=val}"></sv-monthSelect>
+      <!-- 组件-发电量图表 -->
+      <sv-highCharts-energy id="sv_hightCharts_energy" :category="category" :start="start" :end="end"></sv-highCharts-energy>
     </sv-panel>
     <sv-panel title="個別実績">
       <!-- Radio Button -->
@@ -33,11 +32,11 @@
 <script>
   import SVPanel from '@/components/common/Panel.vue'
   import SVDashboard from '@/components/common/Dashboard.vue'
+  import SVMonthSelect from '@/components/common/MonthSelect.vue'
+  import SVHighchartsEnergy from '@/components/common/HighchartsEnergy.vue'
   import SVProjectListEnergy from '@/components/multi/energy/ProjectListEnergy.vue'
-  import Highcharts from 'highcharts'
-  import { HighchartsTheme } from '@/utils/highChartsTheme'
-  import { ENERGY_A, ENERGY_B } from '@/utils/highChartsOption'
   import { Widgets } from '@/http/api'
+  import SVDate from '@/utils/date'
   export default {
     name: 'sv-energy',
     props: {
@@ -45,27 +44,24 @@
     },
     data() {
       return {
+        start: SVDate.getThisMonthDay(),
+        end: SVDate.getNextMonthDay(SVDate.getThisMonthDay()),
         dashboard: [],
-        start: '',
-        end: '',
         trigger: 'output'
       }
     },
     components: {
       'sv-dashboard': SVDashboard,
       'sv-projectList-energy': SVProjectListEnergy,
-      'sv-panel': SVPanel
+      'sv-panel': SVPanel,
+      'sv-highCharts-energy': SVHighchartsEnergy,
+      'sv-monthSelect': SVMonthSelect
     },
     watch: {
-      category() {
-        this.fetchDashboard();
-      }
+      category() { this.fetchDashboard(); }
     },
     mounted() {
       this.fetchDashboard();
-      Highcharts.setOptions(HighchartsTheme);
-      Highcharts.chart('sv_hightCharts_ea', ENERGY_A);
-      Highcharts.chart('sv_hightCharts_eb', ENERGY_B);
     },
     methods: {
       fetchDashboard() {

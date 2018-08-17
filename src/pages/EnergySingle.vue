@@ -3,10 +3,8 @@
     <sv-dashboard :dashboard="dashboard"></sv-dashboard>
     <sv-panel title="予実Graph">
       <sv-monthSelect slot="right" :default="start" @listenStart="val=>{this.start=val}" @listenEnd="val=>{this.end=val}"></sv-monthSelect>
-      <!-- 图表1 -->
-      <sv-highCharts-energy id="sv_hightCharts_energy_a" :project="id" :start="start" :end="end"></sv-highCharts-energy>
-      <!-- 图表2 -->
-      <sv-highCharts-energy id="sv_hightCharts_energy_b" :project="id" :start="start" :end="end"></sv-highCharts-energy>
+      <!-- 组件-发电量图表 -->
+      <sv-highCharts-energy id="sv_hightCharts_energy" :project="id" :start="start" :end="end"></sv-highCharts-energy>
     </sv-panel>
     <sv-panel title="予実比較表">
       <sv-dataTable :bodys="compare_bodys"></sv-dataTable>

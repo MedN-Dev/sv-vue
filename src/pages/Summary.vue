@@ -3,8 +3,9 @@
     <!-- 组件-指标面板 -->
     <sv-dashboard :dashboard="dashboard" view="summary"></sv-dashboard>
     <sv-panel title="発電実績">
-      <!-- 组件-图表1 -->
-      <sv-highCharts id="sv_hightCharts_se" :options=chart_se_options></sv-highCharts>
+      <sv-monthSelect slot="right" :default="start" @listenStart="val=>{this.start=val}" @listenEnd="val=>{this.end=val}"></sv-monthSelect>
+      <!-- 组件-发电量图表 -->
+      <sv-highCharts-energy id="sv_hightCharts_energy" isSingle :category="category" :start="start" :end="end"></sv-highCharts-energy>
     </sv-panel>
     <sv-panel title="Portfolio">
       <!-- 组件-RadioButton -->
@@ -31,12 +32,12 @@
 <script>
 import SVPanel from '@/components/common/Panel.vue'
 import SVDashboard from '@/components/common/Dashboard.vue'
-import SVHighcharts from '@/components/common/Highcharts.vue'
-import SVProjectList from '@/components/multi/summary/ProjectList.vue'
+import SVMonthSelect from '@/components/common/MonthSelect.vue'
+import SVHighchartsEnergy from '@/components/common/HighchartsEnergy.vue'
 import SVHighchartsPortfolio from '@/components/multi/summary/HighchartsPortfolio.vue'
-import { SUMMARY_ENERGY } from '@/utils/highChartsOption'
+import SVProjectList from '@/components/multi/summary/ProjectList.vue'
 import { Portfolio, Widgets } from '@/http/api'
-
+import SVDate from '@/utils/date'
 export default {
   name: 'sv-summary',
   props: {
@@ -46,14 +47,16 @@ export default {
     'sv-dashboard': SVDashboard,
     'sv-projectList': SVProjectList,
     'sv-panel': SVPanel,
-    'sv-highCharts': SVHighcharts,
-    'sv-highCharts-portfolio': SVHighchartsPortfolio
+    'sv-highCharts-portfolio': SVHighchartsPortfolio,
+    'sv-highCharts-energy': SVHighchartsEnergy,
+    'sv-monthSelect': SVMonthSelect
   },
   data() {
     return {
+      start: SVDate.getThisMonthDay(),
+      end: SVDate.getNextMonthDay(SVDate.getThisMonthDay()),
       dashboard: [],
       trigger: 'COUNT',
-      chart_se_options: SUMMARY_ENERGY,
       portfolio_sum: [],
       portfolio_count: []
     }
