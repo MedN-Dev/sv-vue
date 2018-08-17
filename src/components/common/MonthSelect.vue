@@ -4,7 +4,6 @@
         ref="dialog"
         v-model="modal"
         :return-value.sync="date"
-        persistent
         lazy
         full-width
         width="290px"
