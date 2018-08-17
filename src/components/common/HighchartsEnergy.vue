@@ -121,8 +121,7 @@
 			      max:10
           },
           scrollbar: {
-              enabled: true,
-              barBackgroundColor: '#CCCCCC'
+            enabled: true,
           },
           yAxis: [ {
             lineWidth: 1,
