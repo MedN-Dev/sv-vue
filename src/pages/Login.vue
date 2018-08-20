@@ -63,12 +63,12 @@
     data: () => ({
       valid: false,
       alert: false,
-      username: 'panbo',
+      username: '',
       usernameRules: [
         v => !!v || 'username is required',
         // v => /.+@.+/.test(v) || 'username must be valid',
       ],
-      password: '123456',
+      password: '',
       show: false,
       passwordRules: [
         v => !!v || 'password is required',
