@@ -63,18 +63,19 @@
       // 配置变量
       loadCharts() {
         let SERIES = [{
-            yAxis: 1,
+            yAxis: 0,
             name: '発電量実績',
             type: 'column',
             color:'#FE6C6E',
             data: this.yield,
           },{
+            yAxis: 1,
             name: '日射量実績',
             type: 'column',
             color:'#5577E4',
             data: this.sun,
           },{
-            yAxis: 1,
+              yAxis: 0,
             name: '発電量予測',
             type: 'line',
             color:'#FE6C6E',
@@ -89,6 +90,7 @@
             },
             enableMouseTracking: false
           },{
+             yAxis: 1,
             name: '日射量予測',
             type: 'line',
             color:'#5577E4',
@@ -108,40 +110,57 @@
       },
       // 绘制图表， 挂载id, 横轴坐标数组，数据组
       drawChart(ID, XAXIS, SERIES) {
+        let sunEstimation = this.sunEstimation;
+        let yieldEstimation = this.yieldEstimation;
         Highcharts.setOptions(HighchartsTheme);
         Highcharts.chart(ID, {
-          title: { text: '', },
+          title: { text: '発電実績', },
           subtitle: { text: '', },
           credits: { enabled:false },
           xAxis: {
             categories: XAXIS,
             crosshair: true,
             min:0,
-			      max:10
+            max:10,
+            
           },
           scrollbar: {
             enabled: true,
           },
-          yAxis: [ {
-            lineWidth: 1,
-            tickWidth: 1,
-            title: {
-              align: 'high',
-              offset: 0,
-              text: 'Rainfall (mm)',
-              rotation: 0,
-              y: -10
-            }
-          },{
-            gridLineWidth:'0px', 
-            lineWidth: 1,
-            min: 0,
-            title: {
+          yAxis: [ 
+              {
+              lineWidth: 1,
+              title: {
+                 enabled: 'true',
                 text: 'KWh',
-            } ,
-            opposite: true,
-          }]
-          ,
+                align:'high',
+                 rotation: 0,
+                y: -15,
+                 offset: 0,
+                  margin:'10px',
+                  style:{
+                    'font-size':'14px',
+                    
+                  }
+		        	}
+            },
+            { 
+              lineWidth: 1,
+              title: {
+                enabled: 'true',
+                align:'high',
+                  text: 'KWh/m2',
+                rotation: 0,
+                y: -15,
+                x:0,
+                offset: -25,
+			          style:{
+                    'font-size':'14px',
+                  }
+			      } ,
+              opposite: true,
+            }
+          ],
           tooltip: {
             borderColor:null,
             borderWidth: 0,
@@ -152,9 +171,16 @@
             useHTML: true,
             valueDecimals: 2,
             formatter: function () {
-              return '<table style="border:1px solid #FF6D6C;text-align:center;padding:4px;width:100px"><thead style="color:#676C8A"><tr><th>'+this.x+'日</th><th>発電量</th><th>日射量</th></tr></thead>' +
-              '<tr><td style="color:#FF6D6C;text-align: right">実績: </td><td>'+this.points[0].y+'kWh</td><td >'+this.points[1].y+'kWh/m2</td></tr>'+
-              '<tr><td style="color:#5477E4;text-align: right">比較: </td><td>'+70+'%</td><td style="text-align: right">'+60+'%</td></tr>'+
+              var day = this.x;
+              var yd = this.points[0].y;
+              var sun = this.points[1].y;
+              var sunEs = sunEstimation[0][1];
+              var yieldEs = yieldEstimation[0][1];
+              var ydPe = yd / yieldEs * 100;
+              var sunPe = sun/ sunEs * 100;
+              return '<table style="border:1px solid #FF6D6C;text-align:center;padding:4px;width:100px;background:white"><thead style="color:#676C8A"><tr><th>'+this.x+'日</th><th>発電量</th><th>日射量</th></tr></thead>' +
+              '<tr><td style="color:#FF6D6C;text-align: right">実績: </td><td style="color:#676C8A">'+this.points[0].y+'kWh</td><td style="color:#676C8A">'+this.points[1].y+'kWh/m2</td></tr>'+
+              '<tr><td style="color:#5477E4;text-align: right">比較: </td><td style="color:#676C8A">'+ydPe.toFixed()+'%</td><td style="text-align: right;color:#676C8A">'+sunPe.toFixed()+'%</td></tr>'+
               '</table>';
             }
           },
