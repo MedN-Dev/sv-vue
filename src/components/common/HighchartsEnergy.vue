@@ -170,6 +170,7 @@
             formatter: function () {
               let ydPe = this.points[0].y / yieldEstimation[0][1] * 100;
               let sunPe = this.points[1].y / sunEstimation[0][1] * 100;
+              console.log(this)
               return `<table style="border:1px solid #FF6D6C;text-align:center;padding:4px;width:100px;background:#2c303b">
                         <thead style="color:#676C8A">
                           <tr><th>${this.x}日</th><th style="text-align: right">発電量</th><th style="text-align: right">日射量</th></tr>
