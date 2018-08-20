@@ -1,10 +1,10 @@
 // 本地开发环境域名
-const apiAddress = 'http://10.1.2.59:9000';
+const devpAddress = 'http://localhost:9000';
 
-// 生产环境域名
-// const apiAddress = 'http://solar-value.com';
+// 生产发布环境域名
+const prodAddress = 'http://solar-value.com/mobile';
 
-export default apiAddress;
+const apiAddress = process.env.NODE_ENV === 'production' ? prodAddress : devpAddress;
 
 // 账户相关
 export const Account = {
@@ -35,7 +35,7 @@ export const Portfolio = {
 export const Energy = {
     Projects: `${apiAddress}/api/energy/projects`,
     Tables: `${apiAddress}/api/energy/tables`,
-    Data: `${apiAddress}/api/energy/data`, // 发电量图表
+    Data: `${apiAddress}/api/energy/data`,
 }
 
 // 项目相关
