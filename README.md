@@ -22,6 +22,8 @@ npm run serve // dev
 npm run build // publish
 ```
 
+![N](./doc/sv-pc-demo.png)
+
 ## Work Plan
 
 - 第一阶段：APP 静态原型开发（1周）
