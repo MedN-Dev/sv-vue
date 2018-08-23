@@ -2,7 +2,7 @@
 const devpAddress = 'http://localhost:9000';
 
 // 生产发布环境域名
-const prodAddress = 'http://solar-value.com/mobile';
+const prodAddress = 'http://jira.sail-fs.com:8099/svs';
 
 const apiAddress = process.env.NODE_ENV === 'production' ? prodAddress : devpAddress;
 
@@ -29,6 +29,7 @@ export const Portfolio = {
     Charts: `${apiAddress}/api/portfolio/chats`,
     Projects: `${apiAddress}/api/portfolio/projects`,
     Widgets: `${apiAddress}/api/portfolio/widgets`,
+    Locations:`${apiAddress}/api/portfolio/Locations`
 }
 
 // 发电量

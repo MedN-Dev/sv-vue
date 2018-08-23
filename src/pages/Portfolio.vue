@@ -1,6 +1,7 @@
 <template>
   <div class="sv-page-profolio">
     <sv-dashboard :dashboard="dashboard"></sv-dashboard>
+    <sv-googleMaps :items="items"></sv-googleMaps>
     <sv-panel title="Portfolio">
       <!-- Radio Button -->
       <v-layout row wrap text-xs-center>
@@ -30,6 +31,7 @@
 <script>
   import SVPanel from '@/components/common/Panel.vue'
   import SVDashboard from '@/components/common/Dashboard.vue'
+  import SVGoogleMap from '@/components/multi/portfolio/GoogleMaps.vue'
   import SVProjectListPortfolio from '@/components/multi/portfolio/ProjectListPortfolio.vue'
   import SVHighchartsPortfolios from '@/components/multi/portfolio/HighchartsPortfolios.vue'
   import { Portfolio } from '@/http/api'
@@ -42,7 +44,8 @@
       'sv-dashboard': SVDashboard,
       'sv-panel': SVPanel,
       'sv-projectList-portfolio': SVProjectListPortfolio,
-      'sv-highCharts-portfolios': SVHighchartsPortfolios
+      'sv-highCharts-portfolios': SVHighchartsPortfolios,
+      'sv-googleMaps':SVGoogleMap
     },
     data() {
       return {
@@ -56,7 +59,8 @@
         fit_sum: [],
         fit_count: [],
         codYears_sum: [],
-        codYears_count: []
+        codYears_count: [],
+        items: []
       }
     },
     computed: {
@@ -80,7 +84,7 @@
       this.loadPortfolio();
     },
     methods: {
-      loadPortfolio() { this.fetchPortfolio(); this.fetchDashboard(); },
+      loadPortfolio() { this.fetchPortfolio(); this.fetchDashboard(); this.fetchLatAndLng();},
       resetChart() { this.region = ''; this.fit = ''; this.codYears = ''; },
       changeRegion(value) { this.region = value; },
       changeFit(value) { this.fit = value; },
@@ -91,6 +95,7 @@
       fetchPortfolio() {
         this.$axios.get(Portfolio.Charts,{ id: this.category, region: this.region, fit: this.fit, codYears: this.codYears })
           .then((res)=>{
+             
             if(res.code === 0){
               this.region_count = this.filtersPortfolioSum(res.data.region);
               this.region_sum = this.filtersPortfolioCount(res.data.region);
@@ -110,6 +115,14 @@
         return items.map((item)=>{
           return { name: item.label, code: item.code, y: item.indexValues['2'] }
         });
+      },
+      fetchLatAndLng(){
+        this.$axios.get(Portfolio.Locations,{ id: this.category, region: this.region, fit: this.fit, codYears: this.codYears })
+          .then((res)=>{
+              if(res.code === 0){
+                 this.items = (res.data);
+              }
+          })
       },
       /**
        * 获取面板指标

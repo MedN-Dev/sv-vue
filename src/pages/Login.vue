@@ -23,7 +23,6 @@
                             :type="show ? 'text' : 'password'"
                             name="input-10-1"
                             label="Password"
-                            hint="At least 8 characters"
                             counter
                             @click:append="show = !show"
                             @click="alert=false"
@@ -47,7 +46,7 @@
                     transition="scale-transition"
                     outline
                     >
-                    Password Error
+                    {{passError}}
                 </v-alert>
             </v-layout>
         </v-container>
@@ -73,7 +72,8 @@
       passwordRules: [
         v => !!v || 'password is required',
         // v => v.length >= 8 || 'Min 8 characters',
-      ]
+      ],
+      passError: ''
     }),
     mounted() {
         this.logOut();
@@ -82,14 +82,16 @@
     },
     methods: {
         submit() {
+            debugger
             this.$axios.post(`${Account.Login}`, { LoginName: this.username, Password: this.password })
                 .then((res) => {
-                    if(res.Code === 0){
+                    if(res.Code === 0){-
                         // const expireDays = 1000 * 60 * 60 * 24 * 15;
                         // const cookie = 'QBbT4Y6QHT9jWDBzJ1bZceQBD40tCOOm_kfJkDizC96X_13fOH25hf0FuNixRTDE-0Qp9BSfZwDvlIKvT66FpnWd3xtADD5TL0QDC88_kox453B0HagN79EHdyN51CPe2WyDD4X3piiZSSCVrL6ONjAztedhLVwquPLOnlX1AXJRCtrUph1BwHpx5uw16C962YnhuejGItH98nrPsnDuSPSVIWUzgWewc1ehhjHUaFOBgBcYuMokk5ExeMeioZrYzgYhNA77rkCyUk8gjOzt_8KYBmQWon1vtBqut_lA5bLaJmzycRo6iSTg7Yd6kGFfYOxjKqO64VH7pMMobs4JGRa4EcSSSViNRw0J2UfJOZuJ-rRVHsVdytnRpJrnNmi-Aa45CmyYAYrRwHpHcE3QR2jlAsNXS3ODXWXUvCyDCCrrDExiVRI8_S8RSqHCnF9YrDcykaRJEHsBoWc9G_IXUCDav-ZJXXSGz7dy6e38SlChAueRqAKsXkgsmRlBL9w70CapXLwjoa-W-3w41nCMpw';
                         // this.$setCookie('sv_cookie', cookie, expireDays);
                         this.$router.push({ path: '/summary/1' });
                     }else{
+                        this.passError = res.Message;
                         this.alert = true;
                     }
                 });

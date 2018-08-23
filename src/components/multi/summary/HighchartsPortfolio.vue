@@ -38,7 +38,11 @@
             type: 'pie'
           },
           title: {
-            text: ''
+             floating:true,
+             text:'',
+            style:{
+              fontSize:'20'
+            }
           },
           credits: {
             enabled:false
@@ -47,17 +51,17 @@
             align: 'center',
             verticalAlign: 'bottom',
             labelFormatter: function () {
-                return this.name + ':'+this.percentage.toFixed(2)+'%';
+                return this.name + '：'+this.percentage.toFixed(1)+'%';
             }
           },
           tooltip: {
             pointFormatter: function(){
-                return this.name+':'+(this.percentage).toFixed(2)+'%';
+                return this.name+'：'+this.y;
             }
           },
           plotOptions: {
             pie: {
-                innerSize: '40%',
+                innerSize: '60%',
                 allowPointSelect: false,
                 cursor: 'pointer',
                 dataLabels: {
@@ -71,6 +75,14 @@
               colorByPoint: true,
               data: this.options
           }]
+        }, function(c) {
+		// 环形图圆心
+          var centerY = c.series[0].center[1],
+          titleHeight = parseInt(c.title.styles.fontSize);
+          c.setTitle({
+            y:centerY + titleHeight/2
+          });
+           
         });
       }
     }

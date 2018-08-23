@@ -45,15 +45,10 @@
             type: 'pie',
           },
           title: {
+            floating:true,
             text: this.title,
-            align: 'center',
-            verticalAlign: 'middle',
-            y:-30,
-            x:0,
-            style: {
-              color: '#ffffff',
-              fontWeight: 'bold',
-              fontSize: "24px"
+            style:{
+              fontSize:'20'
             }
           },
           credits: {
@@ -63,12 +58,12 @@
             align: 'center',
             verticalAlign: 'bottom',
             labelFormatter: function () {
-              return this.name ;
+              return this.name+'：'+(this.percentage).toFixed(1)+'%';
             }
           },
           tooltip: {
             pointFormatter: function(){
-              return this.name+':'+(this.percentage).toFixed(2)+'%';
+              return this.name+'：'+this.y;
             }
           },
           plotOptions: {
@@ -92,6 +87,12 @@
             colorByPoint: true,
             data: this.options
           }]
+        }, function(c) {
+            var centerY = c.series[0].center[1],
+            titleHeight = parseInt(c.title.styles.fontSize);
+            c.setTitle({
+              y:centerY + titleHeight/2
+            });
         });
       }
     }

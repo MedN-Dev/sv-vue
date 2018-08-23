@@ -40,11 +40,11 @@
         default: ()=>{
           return [
             { title: '所在地', descript: '岩手县一关市', },
-            { title: 'Panel出力', descript: '10,793.64KW', },
+            { title: 'Panel出力', descript: '10,793.64kW', },
             { title: 'Panel枚数', descript: '42,328枚', },
-            { title: '発電設備容量', descript: '7,920KW', },
-            { title: 'FIT価格', descript: '36円/KWH', },
-            { title: '年間予想発電量', descript: '11,473,361/KWH', },
+            { title: '発電設備容量', descript: '7,920kW', },
+            { title: 'FIT価格', descript: '36円/kWH', },
+            { title: '年間予想発電量', descript: '11,473,361/kWH', },
             { title: '運転開始日', descript: '2015/12/20', }
           ]
         }
@@ -102,6 +102,9 @@
 }
 .sv-detailTable-control{
   text-align: center;
+}
+.v-table tbody tr td{
+    text-transform: none!important;
 }
 </style>
 

@@ -1,12 +1,7 @@
 <template>
   <div class="sv-projectList">
     <v-list class="sv-projectList-list" dense>
-      <v-list-tile
-        v-for="(item, index) in list"
-        :key="index"
-        subTitle
-        v-ripple
-      >
+      <v-list-tile v-for="(item, index) in list" :key="index" subTitle v-ripple>
         <v-list-tile-action class="sv-projectList-star">
           <v-icon
             v-if="item.favor != 1"
@@ -41,6 +36,7 @@
             <v-icon color="sv_gray">keyboard_arrow_right</v-icon>
           </router-link>
         </v-list-tile-action>
+
       </v-list-tile>
     </v-list>
     <!-- lazy-loading component -->
@@ -109,7 +105,15 @@
       },
       filterlist(items) {
         return items.map((item)=>{
-          return { id: item.id, className: item.className, favor: item.hasFavorite, title: item.name, col1: item.items[0], col2: item.items[1], link: `/project/${item.id}/summary?name=${item.name}` }
+          return { 
+            id: item.id, 
+            className: item.className, 
+            favor: item.hasFavorite, 
+            title: item.name, 
+            col1: item.items[0], 
+            col2: item.items[1], 
+            link: `/project/${item.id}/summary?name=${item.name}` 
+            }
         })
       },
       favoriteHandle(projectId) {
@@ -148,10 +152,14 @@
 </script>
 
 <style scoped>
+.v-btn-toggle--selected button{
+  text-transform: none;
+}
 .sv-projectList > .sv-projectList-list{ background: transparent; }
-.sv-projectList-title, .sv-projectList-star, .sv-projectList-link{ width: 10%; }
+.sv-projectList-star{ width: 10%; min-width: 0}
+.sv-projectList-title{width: 22%;}
 .sv-projectList-col1, .sv-projectList-col2{ width: 20%; }
-.sv-projectList-col1 div, .sv-projectList-col2 div{ text-align: right; }
+.sv-projectList-col1 div, .sv-projectList-col2 div,.sv-projectList-title div{ text-align: center; }
 .sv-projectList-list > div:first-child .sv-projectList-star i{ display: none; }
 .sv-projectList-list > div:first-child { color: #999999; }
 .sv-projectList-Level1 { color: #5478e5 }

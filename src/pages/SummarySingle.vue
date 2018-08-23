@@ -14,7 +14,7 @@
       <sv-detailTable :tableList="details" :pageSize="details.length"></sv-detailTable>
     </sv-panel>
     <!-- 谷歌地图 -->
-    <sv-googleMap :lat="lat" :lng="lng"></sv-googleMap>
+    <sv-googleMap :lat="lat" :lng="lng" :gmapScale="gmapScale"></sv-googleMap>
     <!-- 百度地图 -->
     <!-- <sv-baiduMap></sv-baiduMap> -->
   </div>
@@ -45,7 +45,8 @@ export default {
       details: [],
       gradient: 'to top right, rgba(44,48,59, .7), rgba(31,33,45, .3)',
       lat: '',
-      lng: ''
+      lng: '',
+      gmapScale:''
     }
   },
   mounted() {
@@ -72,7 +73,7 @@ export default {
       .then((res)=>{
         if(res.code === 0){
           this.details = this.filterProjectDetail(res.data.items);
-          this.setMapConfig(res.data.latitude, res.data.longitude);
+          this.setMapConfig(res.data.latitude, res.data.longitude, res.data.gmapScale);
           this.images = this.filterImages(res.data.images);
           //this.images = [SVBannerImg,SVBannerImg,SVBannerImg];
         }
@@ -90,9 +91,10 @@ export default {
       })
     },
     // 设置地图经纬度
-    setMapConfig(lat, lng) {
+    setMapConfig(lat, lng, scale) {
       this.lat = lat;
       this.lng = lng;
+	  this.gmapScale = scale;
     },
   }
 }

@@ -12,7 +12,7 @@ export default {
   mutations: {
     updateTopBar(state, topBar) {
       state.topBar = topBar.map((item) => {
-        return { id: item.sequence, name: item.id, text: item.name };
+        return { id: item.id, name: item.id, text: item.name };
       });
     },
     setCategory(state, category) {

@@ -8,7 +8,7 @@
   import GoogleMapsLoader from 'google-maps'
   export default {
     name: 'sv-googleMap',
-    props: ['lat', 'lng'],
+    props: ['lat', 'lng','gmapScale'],
     data() {
       return {
         key: 'AIzaSyCm_mBbcHow6L8IDEJvWFdZ8q0F-R_RhS0'
@@ -17,11 +17,16 @@
     watch: {
       lat() { this.renderMap(); },
       lng() { this.renderMap(); },
+	  gmapScale() { this.renderMap(); },
     },
     methods: {
       renderMap() {
         var LAT = this.lat;
         var LNG = this.lng;
+        var scale= this.gmapScale;
+        if(scale == null || scale == ''){
+            scale = 18;
+        }
         GoogleMapsLoader.KEY = this.key;
         GoogleMapsLoader.load(function(google) {
           var calculateDu = function(value) {
@@ -38,10 +43,11 @@
           var center = new google.maps.LatLng(calculateDu(LAT), calculateDu(LNG));
           var mapProp = {
               center: center,
-              zoom: 18,
+              zoom: scale,
               streetViewControl: false,
               mapTypeId: google.maps.MapTypeId.HYBRID
           };
+		 
           var marker = new google.maps.Marker({
               position: center,
           });

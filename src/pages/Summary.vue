@@ -93,12 +93,12 @@ export default {
     },
     filtersPortfolioSum(items) {
       return items.map((item)=>{
-        return { name: item.label, y: item.indexValues['1'] }
+        return { name: item.label, y: item.indexValues['2'] }
       });
     },
     filtersPortfolioCount(items) {
       return items.map((item)=>{
-        return { name: item.label, y: item.indexValues['2'] }
+        return { name: item.label, y: item.indexValues['1'] }
       });
     },
     fetchDashboard() {

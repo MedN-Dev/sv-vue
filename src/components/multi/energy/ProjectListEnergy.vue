@@ -147,15 +147,13 @@
 .sv-projectList > .sv-projectList-list{
   background: transparent;
 }
-.sv-projectList-title, .sv-projectList-star, .sv-projectList-link{
-  width: 10%;
+.v-btn-toggle--selected button{
+  text-transform: none;
 }
-.sv-projectList-col1, .sv-projectList-col2{
-  width: 20%;
-}
-.sv-projectList-col1 div, .sv-projectList-col2 div{
-  text-align: right;
-}
+.sv-projectList-star{ width: 10%; min-width: 0}
+.sv-projectList-title{width: 22%;}
+.sv-projectList-col1, .sv-projectList-col2{ width: 20%; }
+.sv-projectList-col1 div, .sv-projectList-col2 div,.sv-projectList-title div{ text-align: center; }
 .sv-projectList-list > div:first-child .sv-projectList-star i{
   display: none;
 }

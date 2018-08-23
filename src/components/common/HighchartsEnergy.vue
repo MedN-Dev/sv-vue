@@ -54,7 +54,9 @@
         // 获取数据数组
         this.sun = sun.map(item => item.value);
         this.sunEstimation = [[0, sunEstimation[0].value], [this.xAxis.length-1, sunEstimation[0].value]];
+       
         this.yield = data['yield'].map(item => item.value);
+        
         this.yieldEstimation = [[0, yieldEstimation[0].value], [this.xAxis.length-1, yieldEstimation[0].value]];
         // 曲线图表
         this.totalSun = totalSun.map(item => item.value);
@@ -130,7 +132,7 @@
             lineWidth: 1,
             title: {
               enabled: 'true',
-              text: 'KWh',
+              text: 'kWh',
               align:'high',
               rotation: 0,
               y: -15,
@@ -145,7 +147,7 @@
             title: {
               enabled: 'true',
               align:'high',
-              text: 'KWh/m2',
+              text: 'kWh/m2',
               rotation: 0,
               y: -15,
               x:0,
@@ -166,15 +168,26 @@
             useHTML: true,
             valueDecimals: 2,
             formatter: function () {
-              let ydPe = this.points[0].y / yieldEstimation[0][1] * 100;
-              let sunPe = this.points[1].y / sunEstimation[0][1] * 100;
+              var line1=1;
+              var line2=1;
+              if(this.points[0].y==0||this.points[0].y==null||this.points[0].y==''){
+                 line1=-1;
+              }else{
+                var ydPe = (this.points[0].y / yieldEstimation[0][1] * 100).toFixed()+'%';
+              }
+              if(this.points[1].y==0||this.points[1].y==null||this.points[1].y==''){
+                   line2=-1;
+              }else{
+                 var sunPe = (this.points[1].y / sunEstimation[0][1] * 100).toFixed()+'%';
+              }
+               
               return `<table style="border:1px solid #FF6D6C;text-align:center;padding:4px;width:100px;background:#2c303b">
                         <thead style="color:#676C8A">
                           <tr><th>${this.x}日</th><th style="text-align: right">発電量</th><th style="text-align: right">日射量</th></tr>
                         </thead>
                         <tbody>
                           <tr><td style="color:#FF6D6C;text-align: right">実績</td><td style="text-align: right">${this.points[0].y}kWh</td><td style="text-align: right">${this.points[1].y}kWh/m2</td></tr>
-                          <tr><td style="color:#5477E4;text-align: right">比較</td><td style="text-align: right">${ydPe.toFixed()}%</td><td style="text-align: right">${sunPe.toFixed()}%</td></tr>
+                          <tr><td style="color:#5477E4;text-align: right">比較</td><td style="text-align: right">${line1>0?ydPe:'-'}</td><td style="text-align: right">${line2>0?sunPe:'-'}</td></tr>
                         </tbody>
                       </table>`;
             }

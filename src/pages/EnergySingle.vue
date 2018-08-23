@@ -14,7 +14,6 @@
     </sv-panel>
   </div>
 </template>
-
 <script>
   import SVPanel from '@/components/common/Panel.vue'
   import SVDashboard from '@/components/common/Dashboard.vue'
