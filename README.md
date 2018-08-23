@@ -14,6 +14,8 @@
   <a href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/npm/l/vue.svg" alt="License"></a>
 </p>
 
+![N](./doc/sv-pc-demo.png)
+
 ## Start
 
 ``` npm
@@ -21,8 +23,6 @@ npm install
 npm run serve // dev
 npm run build // publish
 ```
-
-![N](./doc/sv-pc-demo.png)
 
 ## Work Plan
 
