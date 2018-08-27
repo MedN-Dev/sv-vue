@@ -22,12 +22,13 @@
       <sv-highCharts-portfolios id="sv_hightCharts_portfolios_fit" title="FIT" :options="fit_options" @listenActiveChart="changeFit"></sv-highCharts-portfolios>
       <!-- 组件-Portfolio图表 -->
       <sv-highCharts-portfolios id="sv_hightCharts_portfolios_codYears" title="建筑年限" :options="codYears_options" @listenActiveChart="changeCodYears"></sv-highCharts-portfolios>
+       <!-- 组件-Portfolio图表 -->
+      <sv-highCharts-portfolios id="sv_hightCharts_portfolios_panelMaker" title="製紙メーカー" :options="panel_options" @listenActiveChart="changePanel"></sv-highCharts-portfolios>
       <!-- 项目列表 -->
       <sv-projectList-portfolio :category="category" :region="region" :fit="fit" :codYears="codYears"></sv-projectList-portfolio>
     </sv-panel>
   </div>
 </template>
-
 <script>
   import SVPanel from '@/components/common/Panel.vue'
   import SVDashboard from '@/components/common/Dashboard.vue'
@@ -54,12 +55,15 @@
         region: '',
         fit: '',
         codYears: '',
+        panelMaker:'',
         region_sum: [],
         region_count: [],
         fit_sum: [],
         fit_count: [],
         codYears_sum: [],
         codYears_count: [],
+        panelMaker_sum:[],
+        panelMaker_count:[],
         items: []
       }
     },
@@ -72,6 +76,9 @@
       },
       codYears_options() {
         return this.trigger === 'COUNT' ? this.codYears_count : this.codYears_sum;
+      },
+      panel_options() {
+        return this.trigger === 'COUNT' ? this.panelMaker_count : this.panelMaker_sum;
       }
     },
     watch: {
@@ -79,41 +86,60 @@
       region() { this.loadPortfolio() },
       fit() { this.loadPortfolio() },
       codYears() { this.loadPortfolio() },
+      panelMaker() { this.loadPortfolio() },
     },
     mounted() {
       this.loadPortfolio();
     },
     methods: {
       loadPortfolio() { this.fetchPortfolio(); this.fetchDashboard(); this.fetchLatAndLng();},
-      resetChart() { this.region = ''; this.fit = ''; this.codYears = ''; },
+      resetChart() { this.region = ''; this.fit = ''; this.codYears = '';this.panelMaker=''; },
       changeRegion(value) { this.region = value; },
       changeFit(value) { this.fit = value; },
       changeCodYears(value) { this.codYears = value; },
+      changePanel(value){this.panelMaker=value;},
       /**
        * 获取图表
        */
       fetchPortfolio() {
         this.$axios.get(Portfolio.Charts,{ id: this.category, region: this.region, fit: this.fit, codYears: this.codYears })
           .then((res)=>{
-             
             if(res.code === 0){
+              //地域
               this.region_count = this.filtersPortfolioSum(res.data.region);
               this.region_sum = this.filtersPortfolioCount(res.data.region);
+              //FIT
               this.fit_count = this.filtersPortfolioSum(res.data.fit);
               this.fit_sum = this.filtersPortfolioCount(res.data.fit);
+              //建筑年限
               this.codYears_count = this.filtersPortfolioSum(res.data.codYears);
               this.codYears_sum = this.filtersPortfolioCount(res.data.codYears);
+              //panelmaker
+              this.panelMaker_count = this.filtersPortfolioSum(res.data.panelMaker);
+              this.panelMaker_sum = this.filtersPortfolioCount(res.data.panelMaker);
             }
           })
       },
       filtersPortfolioSum(items) {
         return items.map((item)=>{
-          return { name: item.label, code: item.code, y: item.indexValues['1'] }
+         
+            return { 
+              name: item.label, 
+              code: item.code, 
+              y: item.indexValues['1'] 
+              }
+           
         });
       },
       filtersPortfolioCount(items) {
         return items.map((item)=>{
-          return { name: item.label, code: item.code, y: item.indexValues['2'] }
+         
+            return { 
+              name: item.label, 
+              code: item.code, 
+              y: item.indexValues['2'] 
+              }
+           
         });
       },
       fetchLatAndLng(){

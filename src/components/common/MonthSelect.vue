@@ -34,6 +34,7 @@
     },
     watch: {
       date (val, newVal) {
+      debugger
         if(val != newVal){
           this.$refs.dialog.save(this.date);
           this.popDateState();

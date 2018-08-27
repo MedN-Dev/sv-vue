@@ -46,6 +46,8 @@
             }
           })
       },
+      //数字千位化
+     
       // 清洗数据源
       filterEnergyData(data) {
         let { sun, sunEstimation, totalSun, totalYield, yieldEstimation } = data;
@@ -170,6 +172,7 @@
             formatter: function () {
               var line1=1;
               var line2=1;
+              //没有值返回 ‘-’
               if(this.points[0].y==0||this.points[0].y==null||this.points[0].y==''){
                  line1=-1;
               }else{
@@ -179,19 +182,35 @@
                    line2=-1;
               }else{
                  var sunPe = (this.points[1].y / sunEstimation[0][1] * 100).toFixed()+'%';
+              }      
+              //数字千位化
+              function toThousands(num) {
+                  if(!num)return '0';
+                  var info = parseFloat(num).toFixed(0).toString().split('.');
+                  num=info[0];
+                  var result = '';
+                  while (num.length > 3) {
+                      result = ',' + num.slice(-3) + result;
+                      num = num.slice(0, num.length - 3);
+                  }
+                  if (num) { result = num + result; }
+                  info[0] = result;
+                  return info.join('.');
               }
-               
-              return `<table style="border:1px solid #FF6D6C;text-align:center;padding:4px;width:100px;background:#2c303b">
+              var threepoint0=toThousands(this.points[0].y);
+              var threepoint1=toThousands(this.points[1].y)
+              return `<table style="border:1px solid #FF6D6C;padding:4px;width:100px;background:#2c303b">
                         <thead style="color:#676C8A">
-                          <tr><th>${this.x}日</th><th style="text-align: right">発電量</th><th style="text-align: right">日射量</th></tr>
+                          <tr><th>(${this.x}日)</th><th style="text-align: center">発電量(kWh)</th><th style="text-align: left">日射量(kWh/m2)</th></tr>
                         </thead>
                         <tbody>
-                          <tr><td style="color:#FF6D6C;text-align: right">実績</td><td style="text-align: right">${this.points[0].y}kWh</td><td style="text-align: right">${this.points[1].y}kWh/m2</td></tr>
-                          <tr><td style="color:#5477E4;text-align: right">比較</td><td style="text-align: right">${line1>0?ydPe:'-'}</td><td style="text-align: right">${line2>0?sunPe:'-'}</td></tr>
+                          <tr><td style="color:#FF6D6C;padding-left:8px">実績</td><td style="text-align: center">${threepoint0}</td><td style="text-align: center">${threepoint1}</td></tr>
+                          <tr><td style="color:#5477E4;padding-left:8px">予実(%)</td><td style="text-align: center">${line1>0?ydPe:'-'}</td><td style="text-align: center">${line2>0?sunPe:'-'}</td></tr>
                         </tbody>
                       </table>`;
             }
           },
+
           plotOptions: {
             column: {
               pointPadding: 0.2,
@@ -205,6 +224,7 @@
           series: SERIES,
         });
       },
+     
       // 加载第二个图表
       loadNextCharts() {
         let SERIES = [{
