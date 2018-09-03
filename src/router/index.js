@@ -5,6 +5,7 @@ import SVSingleProject from '../components/single/SingleProject.vue'
 import SVLogin from '../pages/Login.vue'
 import SVError from '../pages/404.vue'
 import SVSearch from '../pages/Search.vue'
+import SVPreview from '../pages/Preview.vue'
 import SVSummary from '../pages/Summary.vue'
 import SVEnergy from '../pages/Energy.vue'
 import SVEvent from '../pages/Event.vue'
@@ -21,6 +22,7 @@ export default new Router({
   routes: [
     { path: '*', component: SVError },
     { path: '/search', name: 'search', component: SVSearch },
+    { path: '/prview', name: 'prview', component: SVPreview },
     { path: '/login', name: 'login', component: SVLogin },
     {
       path: '/',

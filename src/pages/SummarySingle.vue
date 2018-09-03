@@ -7,7 +7,9 @@
         v-for="(img,i) in images"
         :key="i"
         :src="img"
-      ></v-carousel-item>
+      >
+      <div class="sv-carousel-region" @click="goPreview(img)"></div>
+      </v-carousel-item>
     </v-carousel>
     <!-- 项目明细 -->
     <sv-panel>
@@ -46,7 +48,7 @@ export default {
       gradient: 'to top right, rgba(44,48,59, .7), rgba(31,33,45, .3)',
       lat: '',
       lng: '',
-      gmapScale:''
+      gmapScale:'',
     }
   },
   mounted() {
@@ -79,6 +81,7 @@ export default {
         }
       })
     },
+    // 清洗图片地址
     filterImages(items) {
       return items.map((item)=>{
         return item.url;
@@ -94,8 +97,12 @@ export default {
     setMapConfig(lat, lng, scale) {
       this.lat = lat;
       this.lng = lng;
-	  this.gmapScale = scale;
+	    this.gmapScale = scale;
     },
+    // 跳转预览图片路由
+    goPreview(src) {
+      this.$router.push({ name: 'prview', query: { src: src } });
+    }
   }
 }
 </script>
@@ -114,6 +121,10 @@ export default {
 }
 .sv-page-summarySingle .v-carousel__controls__item i{
   font-size: 14px !important; 
+}
+.sv-carousel-region{
+  width: 100%;
+  height: 100%;
 }
 </style>
 

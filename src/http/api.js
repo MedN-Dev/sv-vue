@@ -1,6 +1,6 @@
 // 本地开发环境域名
-// const devpAddress = 'http://localhost:9000';
-const devpAddress = 'http://10.1.2.92:9000';
+//const devpAddress = 'http://localhost:9000';
+const devpAddress = 'http://10.1.2.59:9000';
 
 // 生产发布环境域名
 const prodAddress = 'http://jira.sail-fs.com:8099/svs';
