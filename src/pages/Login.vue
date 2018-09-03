@@ -26,6 +26,11 @@
                             @click:append="show = !show"
                             @click="alert=false"
                         ></v-text-field>
+                        <v-checkbox
+                            v-model="remenber"
+                            label="Remenber Me ?"
+                            required
+                        ></v-checkbox>
                         <v-btn
                             large
                             color="sv_purple_light"
@@ -72,8 +77,17 @@
         v => !!v || 'password is required',
         // v => v.length >= 8 || 'Min 8 characters',
       ],
-      passError: ''
+      passError: '',
+      remenber: false
     }),
+    watch: {
+        remenber(val) {
+            val ? this.remenberMe() : this.forgetMe();
+        }
+    },
+    created() {
+        this.setDefaultLogin();
+    },
     mounted() {
         this.logOut();
         // 加载粒子动画
@@ -81,10 +95,9 @@
     },
     methods: {
         submit() {
-            debugger
             this.$axios.post(`${Account.Login}`, { LoginName: this.username, Password: this.password })
                 .then((res) => {
-                    if(res.Code === 0){-
+                    if(res.Code === 0){
                       this.$store.dispatch('FETCH_USERINFO');
                       this.$router.push({ path: '/summary/1' });
                     }else{
@@ -96,6 +109,19 @@
         logOut() {
             this.$axios.post(`${Account.Logout}`);
         },
+        remenberMe() {
+            let expiredays = 60 * 60 * 60 * 24 * 30;
+            this.$setCookie('REMENBER_USER', 'panbo', expiredays);
+            this.$setCookie('REMENBER_PASSWORD', '123', expiredays);
+        },
+        forgetMe() {
+            this.$deleteCookie('REMENBER_USER');
+            this.$deleteCookie('REMENBER_PASSWORD');
+        },
+        setDefaultLogin() {
+            this.username = this.$getCookie('REMENBER_USER');
+            this.password = this.$getCookie('REMENBER_PASSWORD');
+        }
     }
   }
 </script>
