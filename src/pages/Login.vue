@@ -78,7 +78,7 @@
         // v => v.length >= 8 || 'Min 8 characters',
       ],
       passError: '',
-      remenber: false
+      remenber: true
     }),
     watch: {
         remenber(val) {
@@ -95,6 +95,7 @@
     },
     methods: {
         submit() {
+            this.remenberMe();
             this.$axios.post(`${Account.Login}`, { LoginName: this.username, Password: this.password })
                 .then((res) => {
                     if(res.Code === 0){
@@ -111,8 +112,8 @@
         },
         remenberMe() {
             let expiredays = 60 * 60 * 60 * 24 * 30;
-            this.$setCookie('REMENBER_USER', 'panbo', expiredays);
-            this.$setCookie('REMENBER_PASSWORD', '123', expiredays);
+            this.$setCookie('REMENBER_USER', this.username, expiredays);
+            this.$setCookie('REMENBER_PASSWORD', this.password, expiredays);
         },
         forgetMe() {
             this.$deleteCookie('REMENBER_USER');
@@ -121,6 +122,7 @@
         setDefaultLogin() {
             this.username = this.$getCookie('REMENBER_USER');
             this.password = this.$getCookie('REMENBER_PASSWORD');
+            console.log(this.$getCookie('REMENBER_USER'))
         }
     }
   }
