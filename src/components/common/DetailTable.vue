@@ -106,5 +106,8 @@
 .v-table tbody tr td{
     text-transform: none!important;
 }
+.table.v-table tbody td{
+  font-size: 16px!important;
+}
 </style>
 

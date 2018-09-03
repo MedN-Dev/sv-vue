@@ -1,31 +1,38 @@
+
+import { Account } from '@/http/api.js'
+import axios from '@/http/axios'
+
 export default {
   state: {
     userInfo: {
       nick: null,
-      ulevel: null,
-      uid: null,
-      portrait: null
+      userName: null,
+      companyName: null,
     }
   },
   getters: {
     nick: state => state.userInfo.nick,
-    ulevel: state => state.userInfo.ulevel,
-    uid: state => state.userInfo.uid,
-    portrait: state => state.userInfo.portrait,
+    userName: state => state.userInfo.userName,
+    companyName: state => state.userInfo.companyName,
   },
   mutations: {
-    updateUserInfo(state, { nick, ulevel, uid, portrait }) {
-      state.userInfo.nick = nick;
-      state.userInfo.ulevel = ulevel;
-      state.userInfo.uid = uid;
-      state.userInfo.portrait = portrait;
+    updateUserInfo(state, { userName, nickName, companyName }) {
+      state.userInfo.nick = nickName;
+      state.userInfo.userName = userName;
+      state.userInfo.companyName = companyName;
     }
   },
   actions: {
-    FETCH_USERINFO ({ commit }, userInfo) {
-      setTimeout(() => {
-        commit('updateUserInfo', userInfo);
-      }, 1000);
+    FETCH_USERINFO({ commit }) {
+      axios.get(`${Account.UserInfo}`)
+      .then((res) => {
+          if(res.code === 0){
+            commit('updateUserInfo', res.data);
+          }else{
+            this.passError = res.Message;
+            this.alert = true;
+          }
+      });
     }
   }
 }

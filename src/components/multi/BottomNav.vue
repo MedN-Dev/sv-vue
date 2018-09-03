@@ -40,10 +40,10 @@ export default {
     },
     items: function() {
       return [
-        { id: 0, name: 'summary', text: 'summary', icon: 'home', link: `/summary/${this.$route.params.category}` },
-        { id: 1, name: 'energy', text: 'energy', icon: 'equalizer', link: `/energy/${this.$route.params.category}` },
-        { id: 2, name: 'event', text: 'event', icon: 'date_range', link: `/event/${this.$route.params.category}` },
-        { id: 3, name: 'portfolio', text: 'portfolio', icon: 'insert_chart', link: `/portfolio/${this.$route.params.category}` },
+        { id: 0, name: 'summary', text: 'SUMMARY', icon: 'home', link: `/summary/${this.$route.params.category}` },
+        { id: 1, name: 'energy', text: '発電実際', icon: 'equalizer', link: `/energy/${this.$route.params.category}` },
+        { id: 2, name: 'event', text: 'EVENT', icon: 'date_range', link: `/event/${this.$route.params.category}` },
+        { id: 3, name: 'portfolio', text: 'PORTFOLIO', icon: 'insert_chart', link: `/portfolio/${this.$route.params.category}` },
       ]
     }
   }

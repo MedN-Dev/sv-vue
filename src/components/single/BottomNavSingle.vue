@@ -28,10 +28,10 @@
         },
         mounted() {
             this.items = [
-                { id: 0, name: 'summarySingle', text: 'summary', icon: 'home', link: `/project/${this.$route.params.id}/summary?name=${this.$route.query.name}` },
-                { id: 1, name: 'energySingle', text: 'energy', icon: 'equalizer', link: `/project/${this.$route.params.id}/energy?name=${this.$route.query.name}` },
-                { id: 2, name: 'eventSingle', text: 'event', icon: 'date_range', link: `/project/${this.$route.params.id}/event?name=${this.$route.query.name}` },
-                { id: 3, name: 'detail', text: 'detail', icon: 'description', link: `/project/${this.$route.params.id}/detail?name=${this.$route.query.name}` },
+                { id: 0, name: 'summarySingle', text: 'SUMMARY', icon: 'home', link: `/project/${this.$route.params.id}/summary?name=${this.$route.query.name}` },
+                { id: 1, name: 'energySingle', text: '発電実際', icon: 'equalizer', link: `/project/${this.$route.params.id}/energy?name=${this.$route.query.name}` },
+                { id: 2, name: 'eventSingle', text: 'EVENT', icon: 'date_range', link: `/project/${this.$route.params.id}/event?name=${this.$route.query.name}` },
+                { id: 3, name: 'detail', text: 'DETAIL', icon: 'description', link: `/project/${this.$route.params.id}/detail?name=${this.$route.query.name}` },
             ];
             this.setDefaultNav();
         },

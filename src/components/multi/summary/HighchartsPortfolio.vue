@@ -27,6 +27,19 @@
       }
     },
     methods: {
+        toThousands(num) {
+            if(!num)return '0';
+            var info = parseFloat(num).toFixed(2).toString().split('.');
+            num=info[0];
+            var result = '';
+            while (num.length > 3) {
+              result = ',' + num.slice(-3) + result;
+              num = num.slice(0, num.length - 3);
+            }
+            if (num) { result = num + result; }
+            info[0] = result;
+            return info.join('.');
+        },
       loadCharts() {
         // 绘制图表
         Highcharts.setOptions(HighchartsTheme);
@@ -39,9 +52,9 @@
           },
           title: {
              floating:true,
-             text:'',
+             text:this.title,
             style:{
-              fontSize:'20'
+              fontSize:'16'
             }
           },
           credits: {
@@ -52,6 +65,26 @@
             verticalAlign: 'bottom',
             labelFormatter: function () {
                 return this.name + '：'+this.percentage.toFixed(1)+'%';
+            },
+            itemStyle : {
+              'fontSize' : '16px'
+            },
+            itemDistance:20,
+            width:300,
+            itemWidth:150,
+            borderColor: 'none',
+            borderWidth:  1,
+            maxHeight:80,
+            navigation: {
+              activeColor: '#3E576F',
+              animation: true,
+              arrowSize: 14,
+              inactiveColor: '#CCC',
+              style: {
+                fontWeight: 'bold',
+                color: 'white',
+                fontSize: '14px',
+              }
             }
           },
           tooltip: {
@@ -76,7 +109,6 @@
               data: this.options
           }]
         }, function(c) {
-		// 环形图圆心
           var centerY = c.series[0].center[1],
           titleHeight = parseInt(c.title.styles.fontSize);
           c.setTitle({

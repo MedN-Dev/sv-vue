@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-  import GoogleMapsLoader from 'google-maps'
+import GoogleMapsLoader from 'google-maps'
 export default {
 	name: "sv-googleMaps",
     props: ['items'],
@@ -19,12 +19,12 @@ export default {
     methods: {
 		calculateDu(value){
 			value = value.replace(/\s+/g, '');
-			var isN = /N/i.test(value);
-			var isE = /E/i.test(value);
-			var d = /\d+(?=°)/.exec(value)
-			var f = /\d+(?=')/.exec(value)
-			var m = /\d+(?:\.\d+){0,1}(?=")/.exec(value)
-			var f = parseFloat(f) + parseFloat(m / 60);
+			//var isN = /N/i.test(value);
+		//	var isE = /E/i.test(value);
+			var d = /\d+(?=°)/.exec(value);
+			var ff = /\d+(?=')/.exec(value);
+			var m = /\d+(?:\.\d+){0,1}(?=")/.exec(value);
+			var f = parseFloat(ff) + parseFloat(m / 60);
 			var du = parseFloat(f / 60) + parseFloat(d);
 			return du;
 		},
@@ -32,10 +32,11 @@ export default {
 			return new google.maps.LatLng(this.calculateDu(item.items[1]), this.calculateDu(item.items[0]))
 		},
 		getContent(item){
-			return "<div style='color: black'>" + item.name + "</div>";
+			return "<a href=/project/"+ item.id +"/summary?name="+item.name+" style='color: black;text-decoration:none'>" + item.name + "</a><div style='color:black;padding:6px 0;'>" + item.items[2] + "</div><div style='color: black'>" + item.items[3] + "</div>";
 		},
     renderMap(){
-			const items = this.items;
+			const itemsdata = this.items;
+			console.log(itemsdata)
 			var self = this;
 			GoogleMapsLoader.KEY = this.key
 			GoogleMapsLoader.load(function(google) {
@@ -47,19 +48,19 @@ export default {
           mapTypeId: google.maps.MapTypeId.HYBRID};
 				var info = new google.maps.InfoWindow();
 				var map = new google.maps.Map(document.getElementById("sv_googleMap_protfolio"), mapProp);
-				for(var i=0; i<items.length; i++){
-					var item = items[i];
+				for(var i=0; i<itemsdata.length; i++){
+					var item = itemsdata[i];
 					var marker = new google.maps.Marker({
 						map: map,
 						animation: google.maps.Animation.DROP,
 						position: self.latLng(google, item),
-						title: item.name,
+						title: item.id,
 						item: item
 					});
 					google.maps.event.addListener(marker, 'click', (function(marker) {
 						return function() {
-						  info.setContent(self.getContent(marker.item));
-						  info.open(map, marker);
+							info.setContent(self.getContent(marker.item));
+							info.open(map,marker);
 						}
 					})(marker));
         }

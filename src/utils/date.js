@@ -40,4 +40,28 @@ export default {
       return `${year}-${monthNum}-01`;
     }
   },
+  /**
+   * 比较两个日期大小
+   * @param {比较日期}} 当前日期
+   * @param {比较日期} 目标日期 
+   */
+  dateCompare(date1,date2){
+    var oDate1 = new Date(date1);
+    var oDate2 = new Date(date2);
+    if(oDate1.getTime() > oDate2.getTime()){
+      return true;
+    } else {
+      return false;
+    }
+  },
+  //格式化横坐标
+  timeFormated(str) {
+    if(str.length === 4){
+      return str;
+    }else if(str.length === 6){
+      return str.slice(0, 4) + '-' + str.slice(4,6);
+    }else{
+      return str.slice(0, 4) + '-' + str.slice(4,6)  + '-' + str.slice(6,8);
+    }
+  }
 };

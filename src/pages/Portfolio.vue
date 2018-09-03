@@ -122,18 +122,15 @@
       },
       filtersPortfolioSum(items) {
         return items.map((item)=>{
-         
             return { 
               name: item.label, 
               code: item.code, 
               y: item.indexValues['1'] 
               }
-           
         });
       },
       filtersPortfolioCount(items) {
         return items.map((item)=>{
-         
             return { 
               name: item.label, 
               code: item.code, 

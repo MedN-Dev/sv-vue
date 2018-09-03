@@ -2,7 +2,8 @@
   <div class="sv-page-energy">
     <sv-dashboard :dashboard="dashboard"></sv-dashboard>
     <sv-panel title="全体実績">
-      <sv-monthSelect slot="right" :default="start" @listenStart="val=>{this.start=val}" @listenEnd="val=>{this.end=val}"></sv-monthSelect>
+      <!-- <sv-monthSelect slot="right" :default="start" @listenStart="val=>{this.start=val}" @listenEnd="val=>{this.end=val}"></sv-monthSelect> -->
+      <sv-dayToDaySelect slot="right" :default="start" @listenStart="val=>{this.start=val}" @listenEnd="val=>{this.end=val}"></sv-dayToDaySelect>
       <!-- 组件-发电量图表 -->
       <sv-highCharts-energy id="sv_hightCharts_energy" :category="category" :start="start" :end="end"></sv-highCharts-energy>
     </sv-panel>
@@ -35,6 +36,7 @@
   import SVMonthSelect from '@/components/common/MonthSelect.vue'
   import SVHighchartsEnergy from '@/components/common/HighchartsEnergy.vue'
   import SVProjectListEnergy from '@/components/multi/energy/ProjectListEnergy.vue'
+  import SVDayToDaySelect from '@/components/common/DayToDaySelect.vue'
   import { Widgets } from '@/http/api'
   import SVDate from '@/utils/date'
   export default {
@@ -55,7 +57,8 @@
       'sv-projectList-energy': SVProjectListEnergy,
       'sv-panel': SVPanel,
       'sv-highCharts-energy': SVHighchartsEnergy,
-      'sv-monthSelect': SVMonthSelect
+      'sv-monthSelect': SVMonthSelect,
+      'sv-dayToDaySelect': SVDayToDaySelect
     },
     watch: {
       category() { this.fetchDashboard(); }

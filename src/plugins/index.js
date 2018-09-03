@@ -4,6 +4,8 @@ import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import 'vue-event-calendar/dist/style.css'
 import VueEventCalendar from 'vue-event-calendar'
+//引入覆盖样式的base
+import '@/assets/base.css'
 
 Vue.use(Vuetify, {
     theme: {

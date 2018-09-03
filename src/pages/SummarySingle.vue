@@ -113,7 +113,7 @@ export default {
   background: transparent;
 }
 .sv-page-summarySingle .v-carousel__controls__item i{
-  font-size: 12px !important; 
+  font-size: 14px !important; 
 }
 </style>
 

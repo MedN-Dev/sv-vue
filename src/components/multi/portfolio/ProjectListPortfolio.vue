@@ -148,8 +148,10 @@
   text-transform: none;
 }
 .sv-projectList-star{ width: 10%; min-width: 0}
-.sv-projectList-title{width: 22%;}
-.sv-projectList-col1, .sv-projectList-col2{ width: 20%; }
+.sv-projectList-title{width: 25%;}
+.sv-projectList-col1{ width: 35%; }
+.sv-projectList-link{min-width: 0; width: 10%;}
+.sv-projectList-col2{ width: 20%; }
 .sv-projectList-col1 div, .sv-projectList-col2 div,.sv-projectList-title div{ text-align: center; }
 .sv-projectList-list > div:first-child .sv-projectList-star i{
   display: none;

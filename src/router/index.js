@@ -51,7 +51,7 @@ export default new Router({
           name: 'portfolio',
           component: SVPortfolio,
           props: true
-        },
+        }
       ]
     },
     {

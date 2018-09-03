@@ -3,11 +3,10 @@
     <v-layout row wrap>
       <v-flex class="sv-panel-header" xs12>
         <v-layout row wrap>
-          <v-flex xs4>
+          <v-flex xs3>
             <v-card-text class="sv-panel-title" align="left">{{title}}</v-card-text>
           </v-flex>
-          <v-flex xs4></v-flex>
-          <v-flex xs4 align-space-around>
+          <v-flex xs9 align-space-around>
             <!-- 插槽-右侧控制 -->
             <slot name="right"></slot>
           </v-flex>

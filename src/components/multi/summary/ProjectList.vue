@@ -1,7 +1,7 @@
 <template>
   <div class="sv-projectList">
     <v-list class="sv-projectList-list" dense>
-      <v-list-tile v-for="(item, index) in list" :key="index" subTitle v-ripple>
+      <v-list-tile v-for="(item, index) in list" :key="index" subTitle>
         <v-list-tile-action class="sv-projectList-star">
           <v-icon
             v-if="item.favor != 1"
@@ -28,7 +28,15 @@
         </v-list-tile-content>
 
         <v-list-tile-content class="sv-projectList-col2">
-          <v-list-tile-title v-text="item.col2" :class="`sv-projectList-${item.className}`"></v-list-tile-title>
+          <v-badge v-if="item.col2 =='达成率'" right color="sv_gray" >
+            <span  @click="showTooltip" slot="badge" color="sv_purple_dark">?</span>
+            <v-tooltip lazy top v-model="showTooltipStat">
+              <v-list-tile-title slot="activator" v-text="item.col2" :class="`sv-projectList-${item.className}`">
+              </v-list-tile-title>
+              <span>達成率 = 前日までの当月発電量実績/前日までの当月発電量予測</span>
+            </v-tooltip>
+          </v-badge>
+          <v-list-tile-title v-else v-text="item.col2" :class="`sv-projectList-${item.className}`"></v-list-tile-title>        
         </v-list-tile-content>
 
         <v-list-tile-action class="sv-projectList-link">
@@ -62,7 +70,8 @@
       return {
         pageSize: 10,
         totalCount: 100,
-        list: [{favor: 0, title: '项目', col1: 'パネル出力MV', col2: '达成率%',}]
+        list: [{favor: 0, title: '项目', col1: 'パネル出力MV', col2: '达成率',}],
+        showTooltipStat: false
       }
     },
     watch: {
@@ -86,6 +95,12 @@
       },
     },
     methods: {
+      showTooltip(){
+        this.showTooltipStat = true;
+        setTimeout(()=>{
+          this.showTooltipStat = false;
+        },5000);
+      },
       infiniteHandler($state) {
         this.$axios.get(Collection.Projects, { id: this.category, page: this.page, pageSize: this.pageSize })
         .then((res)=>{
@@ -157,8 +172,10 @@
 }
 .sv-projectList > .sv-projectList-list{ background: transparent; }
 .sv-projectList-star{ width: 10%; min-width: 0}
-.sv-projectList-title{width: 22%;}
-.sv-projectList-col1, .sv-projectList-col2{ width: 20%; }
+.sv-projectList-title{width: 25%;}
+.sv-projectList-col1{ width: 35%; }
+.sv-projectList-link{min-width: 0; width: 10%;}
+.sv-projectList-col2{ width: 20%; }
 .sv-projectList-col1 div, .sv-projectList-col2 div,.sv-projectList-title div{ text-align: center; }
 .sv-projectList-list > div:first-child .sv-projectList-star i{ display: none; }
 .sv-projectList-list > div:first-child { color: #999999; }
@@ -168,5 +185,16 @@
 .sv-projectList-Level4 { color: rgb(243, 135, 56) }
 .sv-projectList-Level5 { color: #fe6c6e }
 </style>
+<style>
+  .sv-projectList .v-badge__badge{
+    width: 15px !important;
+    height: 15px !important;
+    top: 0px !important;
+    right: -17px !important;
+    background-color: #999999 !important;
+    border-color: #999999 !important;
+  }
+</style>
+
 
 

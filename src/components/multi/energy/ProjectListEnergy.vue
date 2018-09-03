@@ -130,7 +130,7 @@
       resetList() {
         this.$axios.get(Energy.Projects, { id: this.category, start: this.start, end: this.end, source: this.source, page: 1, pageSize: this.pageSize })
         .then((res)=>{
-          this.list = [{ favor: 0, title: '项目', col1: '実績值', col2: '预测比较',}];
+          this.list = [{ favor: 0, title: '项目', col1: '実績值', col2: '予実',}];
           if (res.data.items.length) {
             this.list = this.list.concat(this.filterlist(res.data.items));
           }

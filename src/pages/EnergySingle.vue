@@ -2,7 +2,7 @@
   <div class="sv-page-energySingle">
     <sv-dashboard :dashboard="dashboard"></sv-dashboard>
     <sv-panel title="予実Graph">
-      <sv-monthSelect slot="right" :default="start" @listenStart="val=>{this.start=val}" @listenEnd="val=>{this.end=val}"></sv-monthSelect>
+      <sv-dayToDaySelect slot="right" :default="start" @listenStart="val=>{this.start=val}" @listenEnd="val=>{this.end=val}"></sv-dayToDaySelect>
       <!-- 组件-发电量图表 -->
       <sv-highCharts-energy id="sv_hightCharts_energy" :project="id" :start="start" :end="end"></sv-highCharts-energy>
     </sv-panel>
@@ -18,7 +18,7 @@
   import SVPanel from '@/components/common/Panel.vue'
   import SVDashboard from '@/components/common/Dashboard.vue'
   import SVDataTable from '@/components/common/DataTable.vue'
-  import SVMonthSelect from '@/components/common/MonthSelect.vue'
+  import SVDayToDaySelect from '@/components/common/DayToDaySelect.vue'
   import SVHighchartsEnergy from '@/components/common/HighchartsEnergy.vue'
   import { Widgets, Energy } from '@/http/api'
   import SVDate from '@/utils/date'
@@ -30,7 +30,7 @@
       'sv-panel': SVPanel,
       'sv-highCharts-energy': SVHighchartsEnergy,
       'sv-dataTable': SVDataTable,
-      'sv-monthSelect': SVMonthSelect
+      'sv-dayToDaySelect': SVDayToDaySelect
     },
     data() {
       return {

@@ -50,7 +50,7 @@ export default {
       baseURL: '',
       url,
       data: data,
-      timeout: 10000,
+      timeout: 100000,
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -74,7 +74,7 @@ export default {
       baseURL: '',
       url,
       params,
-      timeout: 10000,
+      timeout: 100000,
       headers: {
         'X-Requested-With': 'XMLHttpRequest'
       }

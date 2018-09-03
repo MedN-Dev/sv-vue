@@ -35,6 +35,7 @@
       },
       loadCharts() {
         var That = this;
+        // var chart = null;
         // 绘制图表
         Highcharts.setOptions(HighchartsTheme);
         Highcharts.chart(this.id, {
@@ -42,14 +43,13 @@
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false,
-            type: 'pie',
           },
           title: {
             floating:true,
             text: this.title,
             style:{
-              fontSize:'20'
-            }
+              fontSize:'18'
+            },
           },
           credits: {
             enabled:false
@@ -59,6 +59,27 @@
             verticalAlign: 'bottom',
             labelFormatter: function () {
               return this.name+'：'+(this.percentage).toFixed(1)+'%';
+            },
+            layout:'horizontal',
+            itemStyle : {
+              'fontSize' : '14px'
+            },
+            itemDistance:20,
+            width:300,
+            itemWidth:150,
+            borderColor:'none',
+            borderWidth: 1,
+            maxHeight:80,
+            navigation: {
+              activeColor: '#3E576F',
+              animation: true,
+              arrowSize: 14,
+              inactiveColor: '#CCC',
+              style: {
+                fontWeight: 'bold',
+                color: 'white',
+                fontSize: '14px',
+              }
             }
           },
           tooltip: {
@@ -83,16 +104,22 @@
             }
           },
           series: [{
+            type: 'pie',
             name: 'Brands',
             colorByPoint: true,
             data: this.options
           }]
         }, function(c) {
-            var centerY = c.series[0].center[1],
-            titleHeight = parseInt(c.title.styles.fontSize);
-            c.setTitle({
-              y:centerY + titleHeight/2
-            });
+          // 环形图圆心
+         // console.log(c);
+          var centerY = c.series[0].center[1];
+          // 标题字体大小，返回类似 16px ，所以需要 parseInt 处理
+          var titleHeight = parseInt(c.title.styles.fontSize);   
+          // 设置图表偏移
+          c.setTitle({
+              y: centerY + titleHeight/2,
+          });
+          // chart = c;
         });
       }
     }

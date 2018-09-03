@@ -10,7 +10,15 @@
         fixed
         width="200"
         height="200"
-      >
+      > 
+      <v-flex xs12>
+        <v-card dark color="sv_purple">
+          <v-card-text class="px-0 loginName">
+            歓迎：{{ nick }}
+            ({{ companyName }})
+          </v-card-text>
+        </v-card>
+      </v-flex>
         <!-- 左侧菜单项 -->
         <v-list>
           <v-list-tile
@@ -18,14 +26,14 @@
             v-for="(item, i) in itemsLeft"
             :key="i"
             v-ripple
+            :href="item.link"
+            
           >
             <v-list-tile-action>
               <v-icon v-html="item.icon" color="sv_write"></v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <router-link :to="item.link" class="sv-multi-drawer-title">
-                <v-list-tile-title v-text="item.title"></v-list-tile-title>
-              </router-link>
+                <v-list-tile-title class="sv-multi-drawer-title" v-text="item.title"></v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
@@ -53,7 +61,7 @@
           <v-tabs-slider color="sv_purple_light"></v-tabs-slider>
           <v-tab v-for="item in items" :key="item.id">
               <router-link :key="item.id" :to="item.link" class="sv-topNav-link">
-                  {{ item.text }}
+                {{ item.text }}
               </router-link>
           </v-tab>
         </v-tabs>
@@ -62,6 +70,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'sv-top-nav',
   data() {
@@ -69,20 +78,20 @@ export default {
       clipped: false,
       drawer: false,
       itemsLeft: [
-        { id: 0, icon: 'account_box', title: 'Logout', link: '/login' },
-        { id: 1, icon: 'search', title: 'Search', link: '/search?name=千厩' }
+        { id: 0, icon: 'account_box', title: 'ログアウト', link: '/login' },
+        { id: 1, icon: 'search', title: '検索', link: '/search?name=千厩' }
       ],
       fixed: true,
       activeNav: 0,
     }
   },
   computed: {
-    category() {
-      return this.$store.state.multi.category;
-    },
-    topBar() {
-      return this.$store.state.multi.topBar;
-    },
+     ...mapGetters([
+      'nick',
+      'companyName',
+      'category',
+      'topBar'
+    ]),
     // 计算当前导航的路由
     items() {
       return this.topBar.map((item) => {
@@ -97,9 +106,9 @@ export default {
   },
   watch: {
     topBar() {
-        this.activeNav = this.topBar.filter((item) => {
-            if(this.category == item.name) return item;
-        })[0].id;
+      this.activeNav = this.topBar.filter((item) => {
+          if(this.category == item.name) return item;
+      })[0].itemIndex;
     }
   }
 }
@@ -112,4 +121,5 @@ export default {
 .sv-project-multi .v-content{ padding-top: 48px !important; }
 .sv-project-multi .sv-multi-drawer{ background: #2c303b; }
 .sv-project-multi .sv-multi-drawer-title{ color: #fff !important; text-decoration: none !important; }
+.loginName{padding: 16px !important}
 </style>

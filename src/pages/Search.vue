@@ -1,31 +1,53 @@
 <template>
   <div class="sv-search">
-    <v-container class="sv-search-container" grid-list-md text-xs-center>
-      <v-layout row wrap>
-        <v-flex xs12>
-          <v-form v-model="valid">
-            <v-text-field
-                v-model="search"
-                :rules="searchRules"
-                clearable
-                required
-                @click="alert=false"
-                placeholder="Please enter key words"
-            ></v-text-field>
-          </v-form>
-        </v-flex>
-        <v-flex xs12>
-          <v-list two-line subheader class="sv-search-list">
-              <v-list-tile avatar v-for="item in searchResult" :key="item.id" v-ripple :to="item.link.toString()">
-                <v-list-tile-content>
-                  <v-list-tile-title>{{item.name}}</v-list-tile-title>
-                  <v-list-tile-sub-title>{{item.descript}}</v-list-tile-sub-title>
-                </v-list-tile-content>
-              </v-list-tile>
-          </v-list>
-        </v-flex>
-      </v-layout>
-    </v-container>
+    <v-toolbar
+      app
+      color="sv_red"
+      dark
+      dense
+      height="0"
+      tabs
+      >
+      <!-- 返回上層 -->
+      <v-tabs color="sv_purple" slot="extension" class="sv-top-nav-back">
+        <router-link to="/summary/1">
+          <v-icon>arrow_back</v-icon>
+        </router-link>
+      </v-tabs>
+    </v-toolbar>
+    <v-content>
+      <v-container class="sv-search-container" grid-list-md text-xs-center>
+        <v-layout row wrap>
+          <v-flex xs12>
+            <v-form v-model="valid">
+              <v-text-field
+                  v-model="search"
+                  :rules="searchRules"
+                  clearable
+                  required
+                  @click="alert=false;"
+                  placeholder="キーワードを入力してください"
+              ></v-text-field>
+            </v-form>
+          </v-flex>
+          <v-flex xs12>
+            <v-list two-line subheader class="sv-search-list">
+                <v-list-tile avatar v-for="item in searchResult" :key="item.id" v-ripple :to="item.link.toString()">
+                  <v-list-tile-content>
+                    <v-list-tile-title>{{item.name}}</v-list-tile-title>
+                    <v-list-tile-sub-title>{{item.descript}}</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+                <v-list-tile avatar v-ripple v-if="noSearchData">
+                  <v-list-tile-content>
+                    <v-list-tile-title>データはありません</v-list-tile-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+            </v-list>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
   </div>
 </template>
 
@@ -42,12 +64,18 @@
         // v => /.+@.+/.test(v) || 'search must be valid',
         ],
         searchResult: [],
-        alert: ''
+        alert: '',
+        noSearchData: false,
+        loading: null
       }
     },
     watch: {
       search() {
-        this.debouncedSearch();
+        if(this.search == null){
+          this.noSearchData = false;
+        }else{
+          this.debouncedSearch();
+        }
       }
     },
     mounted() {
@@ -59,7 +87,14 @@
         this.$axios.get(`${Search.Projects}?keyword=${this.search}`)
           .then((res) => {
             //this.searchResult = this.$_.capitalize(res.data);
-            if(res.code === 0) { this.searchResult = this.filterSearchResult(res.data); }
+            if(res.code === 0) {
+              this.searchResult = this.filterSearchResult(res.data);
+              if(res.data && res.data.length == 0 && this.search != ""){
+                this.noSearchData = true;
+              }else{
+                this.noSearchData = false;
+              }
+            }
           })
       },
       filterSearchResult(items) {

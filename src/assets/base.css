@@ -1,0 +1,7 @@
+/* 覆盖相关字体大小 */
+.v-tabs__div{
+  font-size: 16px!important
+}
+.v-btn__content span{
+  font-size: 16px!important
+}

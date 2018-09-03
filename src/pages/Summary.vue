@@ -3,7 +3,7 @@
     <!-- 组件-指标面板 -->
     <sv-dashboard :dashboard="dashboard" view="summary"></sv-dashboard>
     <sv-panel title="発電実績">
-      <sv-monthSelect slot="right" :default="start" @listenStart="val=>{this.start=val}" @listenEnd="val=>{this.end=val}"></sv-monthSelect>
+      <!-- <sv-dayToDaySelect slot="right" :default="start" @listenStart="val=>{this.start=val}" @listenEnd="val=>{this.end=val}"></sv-dayToDaySelect> -->
       <!-- 组件-发电量图表 -->
       <sv-highCharts-energy id="sv_hightCharts_energy" isSingle=true :category="category" :start="start" :end="end"></sv-highCharts-energy>
     </sv-panel>
@@ -33,6 +33,7 @@
 import SVPanel from '@/components/common/Panel.vue'
 import SVDashboard from '@/components/common/Dashboard.vue'
 import SVMonthSelect from '@/components/common/MonthSelect.vue'
+// import SVDayToDaySelect from '@/components/common/DayToDaySelect.vue'
 import SVHighchartsEnergy from '@/components/common/HighchartsEnergy.vue'
 import SVHighchartsPortfolio from '@/components/multi/summary/HighchartsPortfolio.vue'
 import SVProjectList from '@/components/multi/summary/ProjectList.vue'
@@ -49,7 +50,7 @@ export default {
     'sv-panel': SVPanel,
     'sv-highCharts-portfolio': SVHighchartsPortfolio,
     'sv-highCharts-energy': SVHighchartsEnergy,
-    'sv-monthSelect': SVMonthSelect
+    'sv-monthSelect': SVMonthSelect,
   },
   data() {
     return {
@@ -121,7 +122,9 @@ export default {
   display: inline;
   text-align: center;
 }
+.v-card__text{padding: 16px 0 16px 16px;}
 .theme--dark .v-btn-toggle{
   background: transparent;
 }
+.v-list--dense .v-list__tile{font-size: 16px!important;}
 </style>

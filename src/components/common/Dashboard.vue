@@ -70,6 +70,7 @@
 </script>
 
 <style>
+.caption{font-size: 14px!important}
 .sv-dashboard-control{ background: #2c303b; }
 .sv-dashboard .v-tabs__container{ height: 20px; }
 .sv-dashboard{ text-align: center; margin-bottom: 4px; }

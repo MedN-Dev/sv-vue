@@ -8,11 +8,12 @@ export default {
   },
   getters: {
     category: state => state.category,
+    topBar: state => state.topBar,
   },
   mutations: {
     updateTopBar(state, topBar) {
-      state.topBar = topBar.map((item) => {
-        return { id: item.id, name: item.id, text: item.name };
+      state.topBar = topBar.map((item, index) => {
+        return { id: item.id, name: item.id, text: item.name, itemIndex: index };
       });
     },
     setCategory(state, category) {

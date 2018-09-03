@@ -23,15 +23,9 @@ var app = new Vue({
   },
   methods: {
     updateRouter() {
+      //监听catagory改变并存入vuex
       this.$store.dispatch('UPDATE_CATEGORY', this.$route.params.category);
-      //this.checkLogin();
     },
-    checkLogin() {
-      //检查是否存在session,判断是否登录状态,
-      if(!this.$getCookie('.AspNet.ApplicationCookie')){ // 如果取不到 cookie 值则跳转到登陆页
-        this.$router.push('/login');
-      }
-    }
   }
 });
 

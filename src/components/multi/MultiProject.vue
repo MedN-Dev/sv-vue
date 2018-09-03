@@ -11,7 +11,6 @@
     <sv-bottom-nav></sv-bottom-nav>
   </div>
 </template>
-
 <script>
 import SVTopNav from './TopNav.vue';
 import SVBottomNav from './BottomNav.vue'; // 底部导航路由菜单
@@ -32,3 +31,4 @@ export default {
   }
 }
 </script>
+ 
