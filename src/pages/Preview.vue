@@ -13,7 +13,7 @@
       }
     },
     mounted() {
-      //this.previewImg = this.$route.query.src;
+      this.previewImg = this.$route.query.src;
     },
     methods: {
       goback() {
