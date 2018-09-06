@@ -95,7 +95,7 @@
     },
     methods: {
         submit() {
-            this.remenberMe();
+            this.remenber ? this.remenberMe() : this.forgetMe();
             this.$axios.post(`${Account.Login}`, { LoginName: this.username, Password: this.password })
                 .then((res) => {
                     if(res.Code === 0){
@@ -113,16 +113,12 @@
         remenberMe() {
             let expiredays = 60 * 60 * 60 * 24 * 30;
             this.$setCookie('REMENBER_USER', this.username, expiredays);
-            this.$setCookie('REMENBER_PASSWORD', this.password, expiredays);
         },
         forgetMe() {
             this.$deleteCookie('REMENBER_USER');
-            this.$deleteCookie('REMENBER_PASSWORD');
         },
         setDefaultLogin() {
             this.username = this.$getCookie('REMENBER_USER');
-            this.password = this.$getCookie('REMENBER_PASSWORD');
-            console.log(this.$getCookie('REMENBER_USER'))
         }
     }
   }

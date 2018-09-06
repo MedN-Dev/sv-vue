@@ -6,7 +6,7 @@
        <v-flex xs12 sm6 class="py-2">
           <v-btn-toggle v-model="trigger" mandatory>
             <v-btn flat value=0>
-              事件予定
+              予定
             </v-btn>
             <v-btn flat value=1>
               発生事象

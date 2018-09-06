@@ -319,7 +319,8 @@
             formatter: function () {
               return `<table style="border:1px solid #FF6D6C;padding:4px;width:100px;background:#2c303b;font-size:14px">
                         <thead style="color:#676C8A">
-                          <tr><th>(${this.x})</th><th style="text-align: center">${this.points[0].series.name}</th><td>&nbsp</td><th style="text-align: left">${this.points[1].series.name}</th></tr>
+                          <tr><th colspan="3">${XAXIS[0]}至${this.x}</th></tr>
+                          <tr><th>&nbsp</th><th style="text-align: center">${this.points[0].series.name}</th><td>&nbsp</td><th style="text-align: left">${this.points[1].series.name}</th></tr>
                         </thead>
                         <tbody>
                           <tr>

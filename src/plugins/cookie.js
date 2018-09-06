@@ -17,29 +17,26 @@ SVCookie.install = function (Vue) {
      * 获取cookie
      * @param {String} name 默认为 session
      */
-    Vue.prototype.$getCookie = function(name) {
-        var strcookie = document.cookie;
-        var arrcookie = strcookie.split("; ");//分割
-        //遍历匹配
-        for ( var i = 0; i < arrcookie.length; i++) {
-            var arr = arrcookie[i].split("=");
-            if (arr[0] == name){
-                return arr[1];
-            }else{
-                return null
-            }
-        }
+    Vue.prototype.$getCookie = function(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') c = c.substring(1);
+          if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+      }
+      return "";
     }
     /**
      * 删除cookie
      * @param {String} name 默认为 session
      */
     Vue.prototype.$deleteCookie = function(name) {
-        let exp = new Date();
+      var exp = new Date();
         exp.setTime(exp.getTime() - 1);
-        let cval = this.$getCookie(name);
-        if (cval != null)
-        document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+        var cval= this.$getCookie(name);
+        if(cval!=null)
+        document.cookie= name + "="+cval+";expires="+exp.toGMTString();
     }
 }
 

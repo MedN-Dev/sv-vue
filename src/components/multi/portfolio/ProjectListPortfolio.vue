@@ -23,15 +23,24 @@
           </v-icon>
         </v-list-tile-action>
 
-        <v-list-tile-content class="sv-projectList-title">
+        <v-list-tile-content v-if="index == 0" @click="sortHead('name')" class="sv-projectList-title">
+          <v-list-tile-title v-text="item.title" :class="`sv-projectList-${item.className}`"></v-list-tile-title>
+        </v-list-tile-content>
+        <v-list-tile-content v-else class="sv-projectList-title">
           <v-list-tile-title v-text="item.title" :class="`sv-projectList-${item.className}`"></v-list-tile-title>
         </v-list-tile-content>
 
-        <v-list-tile-content class="sv-projectList-col1">
+        <v-list-tile-content v-if="index == 0" @click="sortHead('capacity')" class="sv-projectList-col1">
+          <v-list-tile-title v-text="item.col1" :class="`sv-projectList-${item.className}`"></v-list-tile-title>
+        </v-list-tile-content>
+        <v-list-tile-content v-else class="sv-projectList-col1">
           <v-list-tile-title v-text="item.col1" :class="`sv-projectList-${item.className}`"></v-list-tile-title>
         </v-list-tile-content>
 
-        <v-list-tile-content class="sv-projectList-col2">
+        <v-list-tile-content v-if="index == 0" @click="sortHead('fit')" class="sv-projectList-col2">
+          <v-list-tile-title v-text="item.col2" :class="`sv-projectList-${item.className}`"></v-list-tile-title>
+        </v-list-tile-content>
+        <v-list-tile-content v-else class="sv-projectList-col2">
           <v-list-tile-title v-text="item.col2" :class="`sv-projectList-${item.className}`"></v-list-tile-title>
         </v-list-tile-content>
 
@@ -55,12 +64,25 @@
     components: {
       'vue-infinite-loading': VueInfiniteLoading,
     },
-    props: ['category', 'region', 'fit', 'codYears'],
+    props: ['category', 'region', 'fit', 'codYears', 'maker'],
     data () {
       return {
         pageSize: 10,
         totalCount: 100,
-        list: [{favor: 0, title: '项目', col1: 'パネル出力MW', col2: 'FIT 円',}]
+        list: [{favor: 0, title: '項目', col1: 'パネル出力MW', col2: 'FIT 円',}],
+        key: '',
+        reverse: 0,
+        sortStart: false,
+        sortStorage: [{
+          key:'name',
+          reverse:0
+        },{
+          key:'capacity',
+          reverse:0
+        },{
+          key:'fit',
+          reverse:0
+        }]
       }
     },
     watch: {
@@ -68,10 +90,11 @@
       region() { this.resetList(); },
       fit() { this.resetList(); },
       codYears() { this.resetList(); },
+      maker() { this.resetList(); },
     },
     computed: {
       page() {
-        return Math.ceil((this.list.length-1) / 10) + 1;
+        return this.sortStart? 1 : Math.ceil((this.list.length-1) / 10) + 1;
       },
       finished() {
         return this.list.length >= this.totalCount + 1;
@@ -85,8 +108,94 @@
       }
     },
     methods: {
+      //排序规则
+      sortRule(_reverse, _currents){
+          if(_reverse == 0){
+            _currents.reverse = 1;
+          }else if(_reverse == 1){
+            _currents.reverse = 2;
+          }else if(_reverse == 2){
+            _currents.reverse = 0;
+          }
+      },
+      //排序渲染规则
+      sortChangeTitle(_reverse, _titleObj, title, _titleName){
+        if(_reverse == 0){
+          _titleObj[title]=`${_titleName}▼`;
+        }else if(_reverse == 1){
+          _titleObj[title]=`${_titleName}▲`;
+        }else if(_reverse == 2){
+          _titleObj[title]= _titleName;
+        }
+      },
+      //点击表头排序功能
+      sortHead(key){
+        //获取当前排序状态对象
+        let _currents = this.sortStorage.find(item=>item.key == key);
+        //获取当前排序状态
+        let _reverse = _currents.reverse;
+        //设置排序开始状态，page初始为1
+        this.sortStart = true;
+        let callback;
+        //执行排序规则
+        this.sortRule(_reverse, _currents);
+        if(key == 'name'){
+          //渲染完毕的回调，用于改变表头ui
+          callback = function(tar, listObj){
+            //title数据对象
+            tar.sortChangeTitle(_reverse, listObj, 'title', '項目');
+            //初始化其他列
+            tar.sortStorage[1].reverse = 0;
+            listObj.col1="パネル出力MW";
+            tar.sortStorage[2].reverse = 0;
+            listObj.col2="FIT 円";
+          }
+        }else if(key == 'capacity'){
+          //渲染完毕的回调，用于改变表头ui
+          callback = function (tar, listObj){
+            tar.sortChangeTitle(_reverse, listObj, 'col1', 'パネル出力MW');
+            //初始化其他列
+            tar.sortStorage[0].reverse = 0;
+            listObj.title="項目";
+            tar.sortStorage[2].reverse = 0;
+            listObj.col2="FIT 円";
+          }
+        }else if(key == 'fit'){
+          //渲染完毕的回调，用于改变表头ui
+          callback = function (tar, listObj){
+            tar.sortChangeTitle(_reverse, listObj, 'col2', 'FIT 円');
+            //初始化其他列
+            tar.sortStorage[0].reverse = 0;
+            listObj.title="項目";
+            tar.sortStorage[1].reverse = 0;
+            listObj.col1="パネル出力MW";
+          }
+        }
+        this.reverse = _currents.reverse;
+        if(_reverse == 2){
+          this.key = '';          
+        }else{
+          this.key = key;
+        }
+        this.reloadSortList(callback, _reverse);
+      },
+      reloadSortList(callback, reverse){
+        this.$axios.get(Portfolio.Projects, { id: this.category, region: this.region, fit: this.fit, codYears: this.codYears,maker: this.maker, page: this.page, pageSize: this.pageSize, key: this.key, reverse: this.reverse })
+        .then((res)=>{
+          if(res.code === 0){
+            if (res.data.items.length) {
+              this.list = [{favor: 0, title: '項目', col1: 'パネル出力MW', col2: 'FIT 円',}];
+              this.list = this.list.concat(this.filterlist(res.data.items));
+              this.totalCount = res.data.totalCount;
+              callback(this, this.list[0]);
+              this.sortStart = false;
+              this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset');
+            }
+          }
+        })
+      },
       infiniteHandler($state) {
-        this.$axios.get(Portfolio.Projects, { id: this.category, region: this.region, fit: this.fit, codYears: this.codYears, page: this.page, pageSize: this.pageSize })
+        this.$axios.get(Portfolio.Projects, { id: this.category, region: this.region, fit: this.fit, codYears: this.codYears,maker: this.maker, page: this.page, pageSize: this.pageSize })
         .then((res)=>{
           if (res.data.items.length) {
             this.list = this.list.concat(this.filterlist(res.data.items));
@@ -131,7 +240,7 @@
         })
       },
       resetList() {
-        this.list = [{ favor: 0, title: '项目', col1: 'パネル出力MW', col2: 'FIT 円',}];
+        // this.list = [{ favor: 0, title: '項目', col1: 'パネル出力MW', col2: 'FIT 円',}];
         this.$nextTick(() => {
           this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset');
         });

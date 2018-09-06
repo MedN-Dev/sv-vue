@@ -6,7 +6,7 @@
       <!-- 组件-发电量图表 -->
       <sv-highCharts-energy id="sv_hightCharts_energy" :project="id" :start="start" :end="end"></sv-highCharts-energy>
     </sv-panel>
-    <sv-panel title="予実比較表">
+    <sv-panel title="予実管理表">
       <sv-dataTable :bodys="compare_bodys"></sv-dataTable>
     </sv-panel>
     <sv-panel title="月次推移">

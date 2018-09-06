@@ -1,5 +1,5 @@
 <template>
-  <!-- 单项目 -->
+  <!-- 单項目 -->
   <div class="sv-project-single">
     <!-- 顶部菜单 -->
     <sv-top-nav-single></sv-top-nav-single>

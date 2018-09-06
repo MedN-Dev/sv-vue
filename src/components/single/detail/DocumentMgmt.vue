@@ -67,7 +67,7 @@
       return {
         tab: 0,
         items: [
-          '月次报告书', '施工图', '契约书'
+          '月次報告書', '施工图', '契约书'
         ],
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         list: []

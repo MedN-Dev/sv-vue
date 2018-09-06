@@ -7,7 +7,6 @@ import VueEventCalendar from 'vue-event-calendar'
 import SVCookie from './cookie';
 //引入覆盖样式的base
 import '@/assets/base.css'
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 Vue.use(Vuetify, {
     theme: {
@@ -22,6 +21,7 @@ Vue.use(Vuetify, {
         sv_chart_blue: '#5478e5',
         sv_chart_yellow: '#ffc000'
     },
+
     iconfont: 'md' // 'md' || 'mdi' || 'fa' || 'fa4'
 })
 
@@ -29,6 +29,4 @@ Vue.use(VueEventCalendar, {
     locale: 'en'
 })
 
-Vue.use(SVCookie, {
-    author: 'dengdeng'
-})
+Vue.use(SVCookie)

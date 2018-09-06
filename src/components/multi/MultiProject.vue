@@ -1,9 +1,9 @@
 <template>
-  <!-- 多项目 -->
+  <!-- 多項目 -->
   <div class="sv-project-multi">
     <!-- 顶部菜单 -->
     <sv-top-nav></sv-top-nav>
-    <!-- 多项目内容区域 -->
+    <!-- 多項目内容区域 -->
     <v-content color="sv_purple_dark">
       <router-view/>
     </v-content>

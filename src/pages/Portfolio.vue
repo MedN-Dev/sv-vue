@@ -25,7 +25,7 @@
        <!-- 组件-Portfolio图表 -->
       <sv-highCharts-portfolios id="sv_hightCharts_portfolios_panelMaker" title="製紙メーカー" :options="panel_options" @listenActiveChart="changePanel"></sv-highCharts-portfolios>
       <!-- 项目列表 -->
-      <sv-projectList-portfolio :category="category" :region="region" :fit="fit" :codYears="codYears"></sv-projectList-portfolio>
+      <sv-projectList-portfolio :category="category" :region="region" :fit="fit" :codYears="codYears" :maker="panelMaker"></sv-projectList-portfolio>
     </sv-panel>
   </div>
 </template>
@@ -102,7 +102,7 @@
        * 获取图表
        */
       fetchPortfolio() {
-        this.$axios.get(Portfolio.Charts,{ id: this.category, region: this.region, fit: this.fit, codYears: this.codYears })
+        this.$axios.get(Portfolio.Charts,{maker: this.panelMaker, id: this.category, region: this.region, fit: this.fit, codYears: this.codYears })
           .then((res)=>{
             if(res.code === 0){
               //地域
@@ -140,7 +140,7 @@
         });
       },
       fetchLatAndLng(){
-        this.$axios.get(Portfolio.Locations,{ id: this.category, region: this.region, fit: this.fit, codYears: this.codYears })
+        this.$axios.get(Portfolio.Locations,{maker: this.panelMaker, id: this.category, region: this.region, fit: this.fit, codYears: this.codYears })
           .then((res)=>{
               if(res.code === 0){
                  this.items = (res.data);
@@ -151,7 +151,7 @@
        * 获取面板指标
        */
       fetchDashboard() {
-        this.$axios.get(Portfolio.Widgets, {id: this.category, region: this.region, fit: this.fit, codYears: this.codYears})
+        this.$axios.get(Portfolio.Widgets, {maker: this.panelMaker, id: this.category, region: this.region, fit: this.fit, codYears: this.codYears})
         .then((res)=>{
           if(res.code === 0){ this.dashboard = this.filterDashboard(res.data); }
         })

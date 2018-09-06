@@ -36,7 +36,7 @@ export default {
 		},
     renderMap(){
 			const itemsdata = this.items;
-			console.log(itemsdata)
+			//console.logconsole.log(itemsdata)
 			var self = this;
 			GoogleMapsLoader.KEY = this.key
 			GoogleMapsLoader.load(function(google) {
