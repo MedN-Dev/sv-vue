@@ -67,7 +67,7 @@
     },
     watch: {
       trigger() {
-        if(this.trigger === 'left'){
+        if(this.trigger === 0){
           this.list = MOCK_EVENTLIST.events;
         }else{
           this.list = MOCK_EVENTLIST_HAPEN.events;
@@ -99,7 +99,7 @@
     },
     mounted() {
       this.list = MOCK_EVENTLIST.events;
-      // this.fetchEventsList();
+      this.fetchEventsList();
     }
   }
 </script>

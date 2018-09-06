@@ -11,7 +11,8 @@
     name: 'sv-hightCharts-portfolio',
     props: {
       id: String,
-      options: Array
+      options: Array,
+      title: String
     },
     data() {
       return {

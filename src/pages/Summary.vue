@@ -22,7 +22,7 @@
         </v-flex>
       </v-layout>
       <!-- 组件-Portfolio图表 -->
-      <sv-highCharts-portfolio id="sv_hightCharts_portfolio" :options="portfolio_options"></sv-highCharts-portfolio>
+      <sv-highCharts-portfolio title="地域" id="sv_hightCharts_portfolio" :options="portfolio_options"></sv-highCharts-portfolio>
       <!-- 组件-项目列表 -->
       <sv-projectList :category="category"></sv-projectList>
     </sv-panel>
