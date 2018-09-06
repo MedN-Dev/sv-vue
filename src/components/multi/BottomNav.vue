@@ -7,11 +7,11 @@
       fixed
       app
       >
-      <router-link v-for="item in items" :key="item.text" :to="item.link" class="sv-bottomNav-link">
-        <v-btn flat dark color="sv_write">
-          <span>{{item.text}}</span>
-          <v-icon color="sv_write">{{item.icon}}</v-icon>
-        </v-btn>
+      <router-link v-for="item in items" :key="item.id" :to="item.link" class="sv-bottomNav-link">
+        <div class="sv-bottom-nav-btn" v-ripple>
+          <span v-html="item.text"></span>
+          <v-icon color="sv_write" v-html="item.icon"></v-icon>
+        </div>
       </router-link>
     </v-bottom-nav>
   </div>
@@ -51,5 +51,19 @@ export default {
 </script>
 
 <style scoped>
+.sv-bottom-nav-btn{ 
+    height: 100%; 
+    color: #fff;
+    opacity: 0.5; 
+    display: flex; 
+    align-items:center; 
+    justify-content: center;
+    flex-direction:column-reverse; 
+    max-width: 168px;
+    min-width: 80px;
+    font-weight: 400;
+    padding: 8px 12px 10px;
+}
+.router-link-active .sv-bottom-nav-btn{ opacity: 1 !important; }
 .sv-bottomNav-link{ text-decoration: none; }
 </style>
