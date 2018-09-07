@@ -6,6 +6,7 @@
 
 <script>
   import Highcharts from 'highcharts/highstock';
+  import '@/plugins/adjustChartSize';
   import { HighchartsTheme } from '@/utils/highChartsTheme';
   export default {
     name: 'sv-hightCharts-portfolios',
@@ -38,11 +39,15 @@
         // var chart = null;
         // 绘制图表
         Highcharts.setOptions(HighchartsTheme);
+
         Highcharts.chart(this.id, {
           chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false,
+            style: {
+            height: '660px',
+        },
           },
           title: {
             floating:true,
@@ -55,6 +60,7 @@
             enabled:false
           },
           legend: {
+            enabled: true,
             align: 'center',
             verticalAlign: 'bottom',
             labelFormatter: function () {
@@ -69,18 +75,7 @@
             itemWidth:150,
             borderColor:'none',
             borderWidth: 1,
-            maxHeight:80,
-            navigation: {
-              activeColor: '#3E576F',
-              animation: true,
-              arrowSize: 14,
-              inactiveColor: '#CCC',
-              style: {
-                fontWeight: 'bold',
-                color: 'white',
-                fontSize: '14px',
-              }
-            }
+            adjustChartSize: true,
           },
           tooltip: {
             pointFormatter: function(){
@@ -111,7 +106,6 @@
           }]
         }, function(c) {
           // 环形图圆心
-         // console.log(c);
           var centerY = c.series[0].center[1];
           // 标题字体大小，返回类似 16px ，所以需要 parseInt 处理
           var titleHeight = parseInt(c.title.styles.fontSize);   
@@ -119,7 +113,6 @@
           c.setTitle({
               y: centerY + titleHeight/2,
           });
-          // chart = c;
         });
       }
     }

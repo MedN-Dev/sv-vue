@@ -6,7 +6,7 @@
        <v-flex xs12 sm6 class="py-2">
           <v-btn-toggle v-model="trigger" mandatory>
             <v-btn flat value=0>
-              予定
+              予定事象
             </v-btn>
             <v-btn flat value=1>
               発生事象
@@ -18,88 +18,99 @@
     <v-layout row wrap>
       <v-flex xs12 sm6 offset-sm3>
         <v-list>
-          <template v-for="(item, index) in list">
+          <template v-for="(item, index) in eventsList">
             <v-list-tile
-              :key="item.index"
+              :key="index"
               avatar
               ripple
             >
               <v-list-tile-content>
-                <v-list-tile-title>{{ item.date }}</v-list-tile-title>
-                <v-list-tile-sub-title>{{ item.name }}</v-list-tile-sub-title>
+                <v-list-tile-title>{{ item.name }}</v-list-tile-title>
+                <v-list-tile-sub-title>{{ item.date }} {{ item.time_start }} ~ {{item.time_end}}</v-list-tile-sub-title>
               </v-list-tile-content>
-
               <v-list-tile-action>
                 <v-list-tile-action-text>
                 {{ item.location }} 
                 </v-list-tile-action-text>
                 <v-icon size=16>location_on</v-icon>
               </v-list-tile-action>
-
             </v-list-tile>
-            <v-divider
-              v-if="index + 1 < list.length"
-              :key="index"
-            ></v-divider>
           </template>
         </v-list>
       </v-flex>
     </v-layout>
     <!-- lazy-loading component -->
-    <vue-infinite-loading @infinite="infiniteHandler"></vue-infinite-loading>
+    <vue-infinite-loading @infinite="infiniteHandler" ref="infiniteLoading"></vue-infinite-loading>
   </v-container>
 </template>
 <script>
   import VueInfiniteLoading from 'vue-infinite-loading'
   import { Events } from '@/http/api'
-  import MOCK_EVENTLIST from '@/mock/EventList.json'
-  import MOCK_EVENTLIST_HAPEN from '@/mock/EventListHapen.json'
   export default {
+    name: 'sv-page-event',
+    props: ['category'],
     data() {
-        return {
-          trigger: 0,
-          list: [],
-          eventsList: []
-        }
+      return {
+        pageSize: 10,
+        trigger: 0,
+        eventsList: []
+      }
     },
     components: {
       'vue-infinite-loading': VueInfiniteLoading,
     },
     watch: {
-      trigger() {
-        if(this.trigger === 0){
-          this.list = MOCK_EVENTLIST.events;
-        }else{
-          this.list = MOCK_EVENTLIST_HAPEN.events;
-        }
+      category(val, newVal) {
+        if(val != newVal){ this.resetList() };
+      },
+      trigger(val, newVal) {
+        if(val != newVal){ this.resetList() };
       }
+    },
+    computed: {
+      page() {
+        return Math.ceil((this.eventsList.length-1) / 10) + 1;
+      },
+      finished() {
+        return (this.eventsList.length-1) / 10 === 10
+      },
     },
     methods: {
       infiniteHandler($state) {
-        setTimeout(() => {
-          let temp;
-          if(this.trigger === 'left'){
-            temp = MOCK_EVENTLIST.events;
-          }else{
-            temp = MOCK_EVENTLIST_HAPEN.events;
-          }
-          this.list = this.list.concat(temp);
-          $state.loaded();
-        }, 1000);
-      },
-      fetchEventsList() {
-        this.$axios.get(Events.Data, { pid: '', begin: '', end: '', cid: 100, type: 0, page: 1, pageSize: 10 })
+         this.$axios.get(Events.Data, { pid: '', begin: '', end: '', cid: this.category, type: this.trigger, page: this.page, pageSize: this.pageSize })
           .then(res => {
-            if(res.code === 1) this.eventsList = this.filterEventsList(res.data);
+            if (res.data.items.length) {
+              this.eventsList = this.eventsList.concat(this.filterEventsList(res.data.items));
+              $state.loaded();
+              if (this.finished) { // 总共加载100条
+                $state.complete();
+              }
+            }else{
+              $state.complete();
+            }
           })
       },
       filterEventsList(items) {
-        return items;
+        return items.map(item => {
+          return { 
+            name: item.title,
+            location: item.projectName,
+            date: item.start.split(' ')[0],
+            time_start: item.start.split(' ')[1],
+            time_end: item.end.split(' ')[1],
+          }
+        });
+      },
+      resetList() {
+        this.eventsList = [];
+        this.$nextTick(() => {
+          // 设置组件引用，调用子组件内部的重置方法
+          this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset');
+        });
       }
     },
     mounted() {
-      this.list = MOCK_EVENTLIST.events;
-      this.fetchEventsList();
+      //this.fetchEventsList();
     }
   }
 </script>

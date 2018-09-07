@@ -7,6 +7,7 @@
 <script>
   import Highcharts from 'highcharts/highstock';
   import { HighchartsTheme } from '@/utils/highChartsTheme';
+  import '@/plugins/adjustChartSize';
   export default {
     name: 'sv-hightCharts-portfolio',
     props: {
@@ -49,7 +50,10 @@
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false,
-            type: 'pie'
+            type: 'pie',
+            style: {
+              height: '660px',
+            }
           },
           title: {
              floating:true,
@@ -62,6 +66,7 @@
             enabled:false
           },
           legend: {
+            enabled: true,
             align: 'center',
             verticalAlign: 'bottom',
             labelFormatter: function () {
@@ -75,18 +80,7 @@
             itemWidth:150,
             borderColor: 'none',
             borderWidth:  1,
-            maxHeight:80,
-            navigation: {
-              activeColor: '#3E576F',
-              animation: true,
-              arrowSize: 14,
-              inactiveColor: '#CCC',
-              style: {
-                fontWeight: 'bold',
-                color: 'white',
-                fontSize: '14px',
-              }
-            }
+            adjustChartSize: true,
           },
           tooltip: {
             pointFormatter: function(){

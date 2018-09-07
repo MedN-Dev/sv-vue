@@ -21,9 +21,9 @@
       <!-- 组件-Portfolio图表 -->
       <sv-highCharts-portfolios id="sv_hightCharts_portfolios_fit" title="FIT" :options="fit_options" @listenActiveChart="changeFit"></sv-highCharts-portfolios>
       <!-- 组件-Portfolio图表 -->
-      <sv-highCharts-portfolios id="sv_hightCharts_portfolios_codYears" title="建筑年限" :options="codYears_options" @listenActiveChart="changeCodYears"></sv-highCharts-portfolios>
+      <sv-highCharts-portfolios id="sv_hightCharts_portfolios_codYears" title="稼働年数" :options="codYears_options" @listenActiveChart="changeCodYears"></sv-highCharts-portfolios>
        <!-- 组件-Portfolio图表 -->
-      <sv-highCharts-portfolios id="sv_hightCharts_portfolios_panelMaker" title="製紙メーカー" :options="panel_options" @listenActiveChart="changePanel"></sv-highCharts-portfolios>
+      <sv-highCharts-portfolios id="sv_hightCharts_portfolios_panelMaker" title="パネルメーカー" :options="panel_options" @listenActiveChart="changePanel"></sv-highCharts-portfolios>
       <!-- 项目列表 -->
       <sv-projectList-portfolio :category="category" :region="region" :fit="fit" :codYears="codYears" :maker="panelMaker"></sv-projectList-portfolio>
     </sv-panel>
