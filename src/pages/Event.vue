@@ -51,6 +51,7 @@
     props: ['category'],
     data() {
       return {
+        totalPages: 10,
         pageSize: 10,
         trigger: 0,
         eventsList: []
@@ -61,10 +62,10 @@
     },
     watch: {
       category(val, newVal) {
-        if(val != newVal){ this.resetList() };
+        if(val != newVal){ this.resetList() }
       },
       trigger(val, newVal) {
-        if(val != newVal){ this.resetList() };
+        if(val != newVal){ this.resetList() }
       }
     },
     computed: {
@@ -72,7 +73,7 @@
         return Math.ceil((this.eventsList.length-1) / 10) + 1;
       },
       finished() {
-        return (this.eventsList.length-1) / 10 === 10
+        return (this.eventsList.length-1) / 10 >= this.totalPages;
       },
     },
     methods: {
@@ -80,9 +81,10 @@
          this.$axios.get(Events.Data, { pid: '', begin: '', end: '', cid: this.category, type: this.trigger, page: this.page, pageSize: this.pageSize })
           .then(res => {
             if (res.data.items.length) {
+              this.totalPages = res.data.totalPages;
               this.eventsList = this.eventsList.concat(this.filterEventsList(res.data.items));
               $state.loaded();
-              if (this.finished) { // 总共加载100条
+              if (this.finished) {
                 $state.complete();
               }
             }else{

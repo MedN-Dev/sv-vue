@@ -52,7 +52,11 @@
       },
       filterEventsList(items) {
         return items.map(item => {
-          return { date: this.toDate(item.start), title: item.title, datetime_start: item.start, datetime_end: item.end }
+          return { 
+            date: this.toDate(item.start), 
+            title: item.title, 
+            datetime_start: item.start.split(' ')[1], 
+            datetime_end: item.end.split(' ')[1] }
         });
       },
       toDate(date) {
